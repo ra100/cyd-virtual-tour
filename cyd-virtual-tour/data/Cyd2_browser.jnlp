@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://ra100.scifi-guide.net/brhlovce/files/" href="Cyd2_browser.jnlp">
+  <information>
+    <title>Cyd2</title>
+    <vendor>ra100</vendor>
+    <homepage href="http://ra100.scifi-guide.net/brhlovce/files/" />
+    <description>Cyd2</description>
+  </information>
+	<security>
+		<all-permissions/>
+	</security>
+  <resources>
+    <j2se version="1.5+" java-vm-args="-Xms256m -Xmx512m -Dj3d.rend=ogl" />
+    <extension name="JavaFX Runtime"
+    href="http://dl.javafx.com/1.2/javafx-rt.jnlp" />
+	<extension name="Java3D libs" href="http://download.java.net/media/java3d/webstart/release/java3d-latest.jnlp" />
+    <jar href="Cyd2.jar" main="true" />
+	<extension name="support" href="support.jnlp" />
+  </resources>
+  <applet-desc name="Cyd2" main-class="com.sun.javafx.runtime.adapter.Applet" width="700" height="500">
+    <param name="MainJavaFXScript" value="sk.ra100.cyd.main.Main">
+      <update check="background"></update>
+    </param>
+  </applet-desc>
+</jnlp>

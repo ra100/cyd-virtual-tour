@@ -1,0 +1,217 @@
+body { 
+    background-attachment: scroll;
+    background-repeat: repeat-x;
+    background-image: url(../images/background.png);
+    background-position: 0% 0%;
+    background-color: #4c4035;
+    font-family: "Arial", "Tahoma", sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    font-size: 100%;
+    line-height: 1.3em;
+    color: #FFFFFF;
+    display: block;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+#main-container {
+    width: 750px;
+    min-height: 100%;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    text-align: left;
+    background-color: transparent;
+}
+
+#bokehtop{
+    background-image: url(../images/bokehtop.png);
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
+}
+
+#bokehbottom{
+    background-image: url(../images/bokehbottom.png);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+}
+
+#header{
+    height: 191px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    background-image: url(../images/titleImage.png);
+    background-repeat: no-repeat;
+    background-position: 100% 10px;
+}
+
+#menu{
+    height: 55px;
+    vertical-align: bottom;
+    background-repeat: no-repeat;
+    background-image: url(../images/menubg.png);
+    background-position: 0% 0%;
+}
+
+#menu li {
+    display: inline;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 14px;
+    padding-top: 12px;
+}
+
+#menu ul {
+    float: left;
+    margin-top: 20px;
+    display: inline;
+    padding-left: 20px;
+    list-style-type: disc;
+    list-style-position: outside;
+}
+
+a:hover { 
+    text-decoration: underline;
+    color: #FFFFFF;
+}
+
+a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+a:visited{
+    color: #FFFFFF;
+}
+
+.top-menu{
+    margin-top: 10px;
+    font-family: "Arial", "Tahoma", sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    font-size: 120%;
+}
+
+.selected{
+    background-repeat: repeat-x;
+    background-image: url(../images/selected.png);
+    background-position: 0% 0%;
+}
+
+.title {
+    float: left;
+    margin-top: 30px;
+}
+
+#content-header{
+    background-repeat: no-repeat;
+    background-image: url(../images/contentHeader.png);
+    background-position: 50% 0%;
+    height: 16px;
+}
+
+#content{
+    padding-top: 14px;
+    padding-left: 32px;
+    padding-right: 32px;
+    margin-top: 3px;
+    background-repeat: repeat-y;
+    background-image: url(../images/contentBg.png);
+    background-position: 50% 0%;
+    color: #000000;
+    min-height: 400px;
+}
+
+#content a{
+    color: blue;
+}
+
+#content-footer{
+    background-repeat: no-repeat;
+    background-image: url(../images/contentFooter.png);
+    background-position: 50% 0%;
+    height: 53px;
+}
+
+#footer {
+    margin-top: 32px;
+    text-align: center;
+    color: #aaaaaa;
+    font-size: 80%;
+}
+
+h1 { 
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0px;
+    font-weight: 400;
+    margin-bottom: 0.67em;
+}
+
+p{
+    margin-bottom: 0px;
+}
+
+p.text{
+    margin-bottom: 0px;
+    text-align: justify;
+}
+
+p.credit{
+    font-size: 70%;
+}
+
+#slickbox {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0% 0%;
+    background-color: transparent;
+    border-top-color: #990000;
+    border-left-color: #990000;
+    border-right-color: #990000;
+    border-bottom-color: #990000;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    min-height: 50px;
+    margin-bottom: 0px;
+    display: none;
+}
+
+#slick-togglediv{
+    background-repeat: no-repeat;
+    background-image: url(../images/showHide.png);
+    background-position: 50% 100%;
+    min-width: 100%;
+    padding-top: 16px;
+    border-bottom-width: 0px;
+    border-style: none;
+}
+
+img{
+    border-bottom-width: 0px;
+    border-style: none;
+}
+
+div{
+    border-bottom-width: 0px;
+    border-style: none;
+}
+
+#applet{
+    margin-left: -8px;
+}

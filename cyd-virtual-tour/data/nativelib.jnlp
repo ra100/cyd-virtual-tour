@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://ra100.scifi-guide.net/brhlovce/files/" href="support.jnpl">
+    <information>
+        <title>support</title>
+        <vendor>ra100</vendor>
+    </information>
+	<security>
+		<all-permissions/>
+	</security>
+    <resources os="Windows" arch="x86">
+		<nativelib href="lib/j3d-win-i386.jar" />
+    </resources>
+	<resources os="Windows" arch="x86_64">
+		<nativelib href="lib/j3d-win-amd64.jar" />
+    </resources>
+	<resources os="Windows" arch="amd64">
+		<nativelib href="lib/j3d-win-amd64.jar" />
+    </resources>
+	<resources os="Linux" arch="x86">
+		<nativelib href="lib/j3d-lin-i386.jar" />
+    </resources>
+	<resources os="Linux" arch="amd64">
+		<nativelib href="lib/j3d-lin-amd64.jar" />
+    </resources>
+	<resources os="SunOS" arch="sparc">
+		<nativelib href="lib/j3d-solaris-sparc.jar" />
+    </resources>
+		<resources os="SunOS" arch="sparcv9">
+		<nativelib href="lib/j3d-solaris-sparcv9.jar" />
+    </resources>
+		<resources os="SunOS" arch="x86">
+		<nativelib href="lib/j3d-solaris-i386.jar" />
+    </resources>
+		<resources os="SunOS" arch="amd64">
+		<nativelib href="lib/j3d-solaris-amd64.jar" />
+    </resources>
+    <component-desc/>
+</jnlp>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<jnlp codebase="http://ra100.scifi-guide.net/brhlovce/files/lib"
+href="CydHelper.jnlp" spec="1.0+">
+  <information>
+    <title>CydHelper</title>
+    <vendor>ra100</vendor>
+    <homepage href="" />
+    <description>CydHelper</description>
+    <description kind="short">CydHelper</description>
+    <offline-allowed />
+  </information>
+  <security>
+    <all-permissions />
+  </security>
+  <resources>
+    <j2se version="1.5+" />
+    <jar eager="true" href="CydHelper.jar" main="true" />
+  </resources>
+  <component-desc />
+</jnlp>
