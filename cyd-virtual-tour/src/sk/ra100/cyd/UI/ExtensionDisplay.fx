@@ -115,7 +115,6 @@ public class ExtensionDisplay extends CustomNode {
                     imageView.visible = false;
                     imageViewBG.visible = false;
                     myScene.deleteExt();
-                    myScene.enable();
                 }
             };
 

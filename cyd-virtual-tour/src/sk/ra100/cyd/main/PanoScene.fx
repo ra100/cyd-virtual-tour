@@ -70,9 +70,9 @@ public class PanoScene {
     }
 
 
-    var exitPanel = RightPanel{
+    var exitPanel = RightPanel {
         visible: bind not extensionDisplay.visible;
-        myScene : this
+        myScene: this;
     }
 
      // Frame
@@ -235,14 +235,6 @@ public class PanoScene {
     public function changeLanguage(lang: String){
         Locale.setDefault(new Locale(lang));
         language = lang;
-    }
-
-    public function disable(){
-        exitPanel.visible = false;
-    }
-
-    public function enable() {
-        exitPanel.visible = true;
     }
 
     public function updateScreen(){

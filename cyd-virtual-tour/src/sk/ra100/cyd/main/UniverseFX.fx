@@ -86,12 +86,12 @@ package class UniverseFX extends JavaTaskBase, Observer {
     * 1 dopredu, 2 dozadu, 3 vpravo, 4 vlavo, 5 hore, 6 dole
     */
     package function moveCamera(direction: Integer) {
-         if (direction == FORWARD) universe.getWalkBeh().moveCamera(0.0, 0, -0.1*speed)
-         else if (direction == BACKWARD) universe.getWalkBeh().moveCamera(0.0, 0, 0.1*speed)
-         else if (direction == RIGHT) universe.getWalkBeh().moveCamera(0.1*speed, 0, 0)
-         else if (direction == LEFT) universe.getWalkBeh().moveCamera(-0.1*speed, 0, 0)
-         else if (direction == UP)  universe.getWalkBeh().moveCamera(0.0, -0.1*speed, 0)
-         else if (direction == DOWN) universe.getWalkBeh().moveCamera(0.0, 0.1*speed, 0);
+         if (direction == FORWARD) {universe.getWalkBeh().moveCamera(0.0, 0, -0.1*speed); scene.updateScreen();}
+         else if (direction == BACKWARD) {universe.getWalkBeh().moveCamera(0.0, 0, 0.1*speed); scene.updateScreen();}
+         else if (direction == RIGHT) {universe.getWalkBeh().moveCamera(0.1*speed, 0, 0); scene.updateScreen();}
+         else if (direction == LEFT) {universe.getWalkBeh().moveCamera(-0.1*speed, 0, 0); scene.updateScreen();}
+         else if (direction == UP) {universe.getWalkBeh().moveCamera(0.0, -0.1*speed, 0); scene.updateScreen();}
+         else if (direction == DOWN) {universe.getWalkBeh().moveCamera(0.0, 0.1*speed, 0);scene.updateScreen();}
     }
 
     protected var loaded: Integer = 0;
