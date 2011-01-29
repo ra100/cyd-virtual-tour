@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sk.ra100.cyd.scene;
 
 import java.net.URL;
@@ -108,8 +104,8 @@ public class SceneXML {
             }
 
             shapes.add(s);
-            Logger.getLogger(SceneXML.class.getName()).log(Level.INFO,
-                    s.getTitle()+ " "+ s.getName()+ " " + s.getTexture());
+            Logger.getLogger(SceneXML.class.getName()).log(Level.INFO, "{0} {1} {2}", 
+                    new Object[]{s.getTitle(), s.getName(), s.getTexture()});
         } else if (node.getName().matches(MAINPATH)){
             path = node.getText();
             Shape.path = path;
@@ -130,7 +126,7 @@ public class SceneXML {
         try {
             document = reader.read(url);
         } catch (DocumentException e) {
-            e.printStackTrace();
+            Logger.getLogger(SceneXML.class.getName()).log(Level.INFO, e.toString());
         }
         return document;
     }

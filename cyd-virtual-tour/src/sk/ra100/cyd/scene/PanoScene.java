@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import com.sun.j3d.loaders.Scene;
 import com.sun.j3d.utils.image.TextureLoader;
 import com.sun.j3d.utils.picking.PickTool;
-import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -87,7 +86,7 @@ public class PanoScene {
 
             Hashtable namedObjects = scene.getNamedObjects();
             Logger.getLogger(PanoScene.class.getName()).log(Level.INFO,
-                    "*** Named Objects in VRML file: \n" + namedObjects);
+                    "*** Named Objects in VRML file: \n{0}", namedObjects);
 
             // recursively set the user data here
             // so we can find our objects when they are picked
@@ -145,7 +144,7 @@ public class PanoScene {
                 ap.setCapability(Appearance.ALLOW_TEXTURE_ATTRIBUTES_WRITE);
                 ap.setCapability(Appearance.ALLOW_TEXGEN_READ);
                 ap.setCapability(Appearance.ALLOW_TEXGEN_WRITE);
-                Shape shape = Helper.findShape(sceneXml, sp.getName());
+                Shape shape = Helper.findShapeByTitle(sceneXml, sp.getName());
                 /*
                  * -1 nenaslo sa
                  *  0 je to panorama
@@ -155,7 +154,7 @@ public class PanoScene {
                  */
                 int shapeSwitch = -1;
                 Logger.getLogger(PanoScene.class.getName()).log(Level.INFO,
-                        "Shape processing: " + sp.getUserData());
+                        "Shape processing: {0}", sp.getUserData());
                 if (shape != null) {
                     shapeSwitch = 0;
                 } else {
@@ -210,7 +209,7 @@ public class PanoScene {
                 }
 
                 Logger.getLogger(PanoScene.class.getName()).log(Level.INFO,
-                        "Shape processed: " + sp.getUserData());
+                        "Shape processed: {0}", sp.getUserData());
 
                 PickTool.setCapabilities((Node) sg, PickTool.INTERSECT_FULL);
             }
