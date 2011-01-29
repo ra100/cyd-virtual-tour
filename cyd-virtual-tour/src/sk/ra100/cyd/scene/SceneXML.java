@@ -13,11 +13,14 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 /**
- *
+ * objek na nacitanie XML popisu sceny
  * @author ra100
  */
 public class SceneXML {
 
+    /**
+     * staticke texty na identifikaciu, parsovanie z xml
+     */
     public final static String PANORAMA = "panorama";
     public final static String PATH = "path";
     public final static String SHAPE = "shape";
@@ -35,17 +38,39 @@ public class SceneXML {
     public final static String TEXT = "text";
     public final static String URL = "url";
 
+    /**
+     * cety k texturam
+     */
     private ArrayList<String> paths = null;
+
+    /**
+     * jednotlive panoramy
+     */
     private ArrayList<Shape> shapes = null;
+
+    /**
+     * stredy panoram
+     */
     private ArrayList<Shape3D> centers = null;
+
+    /**
+     * base path
+     */
     private String path = null;
 
+    /**
+     * constructor
+     */
     public SceneXML() {
         Logger.getLogger(SceneXML.class.getName()).log(Level.INFO, "Loading XML.");
         paths = new ArrayList<String>();
         shapes = new ArrayList<Shape>();
     }
 
+    /**
+     * nacitanie popisneho XML suboru z adresy (vo vnutri balicka)
+     * @param _path - cesta k suboru
+     */
     public void load(String _path) {
         Document document = getDocument(_path);
 //        String xPath = "//";
@@ -59,6 +84,10 @@ public class SceneXML {
         }
     }
 
+    /**
+     * nacitavanie XML suboru a  vytvaranie prislusnych objektov
+     * @param node uzol dokumentu
+     */
     private void nodeResolve(Element node) {
 
         if (node.getName().matches(PANORAMA)) {
@@ -131,34 +160,66 @@ public class SceneXML {
         return document;
     }
 
+    /**
+     * getter
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getPaths() {
         return paths;
     }
 
+    /**
+     * setter
+     * @param paths
+     */
     public void setPaths(ArrayList<String> paths) {
         this.paths = paths;
     }
 
+    /**
+     * getter
+     * @return ArrayList<Shape>
+     */
     public ArrayList<Shape> getShapes() {
         return shapes;
     }
 
+    /**
+     * setter
+     * @param shapes
+     */
     public void setShapes(ArrayList<Shape> shapes) {
         this.shapes = shapes;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public String getPath() {
         return path;
     }
 
+    /**
+     * setter
+     * @param path
+     */
     public void setPath(String path) {
         this.path = path;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public ArrayList<Shape3D> getCenters() {
         return centers;
     }
 
+    /**
+     * setter
+     * @param centers
+     */
     public void setCenters(ArrayList<Shape3D> centers) {
         this.centers = centers;
     }

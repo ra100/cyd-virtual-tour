@@ -30,16 +30,39 @@ import javax.media.j3d.Transform3D;
  */
 public class PanoScene {
 
+    /**
+     * cesta k XML popisu sceny
+     */
     public static final String XMLPATH = "res/scene.xml";
-    public static final String BGPATH = "res/bgmask.png";
+//    public static final String BGPATH = "res/bgmask.png";
+
+    /**
+     * zoznam objektov v scene
+     */
     private OrderedGroup orderedGroup = null;
+
+    /**
+     * Objekt s nacitanym scene.xml
+     */
     private SceneXML sceneXml = null;
+
+    /**
+     * textura pozadia
+     */
     private Texture tex = null;
 
+
+    /**
+     * getter pre sceneXml
+     * @return SceneXML
+     */
     public SceneXML getSceneXml() {
         return sceneXml;
     }
 
+    /**
+     * constructor
+     */
     public PanoScene() {
         Logger.getLogger(PanoScene.class.getName()).log(Level.INFO, "Creating PanoScene.");
         try {
@@ -49,10 +72,20 @@ public class PanoScene {
         }
     }
 
+    /**
+     * getter
+     * @return OrderedGroup
+     */
     public OrderedGroup getScene() {
         return orderedGroup;
     }
 
+    /**
+     * Vytvorenie sceny<br>
+     * nacita XML subory popisujuce scenu a vztahy objektov, nacita texturu
+     * pre pozadie extension objektov, vytvori graf sceny
+     * @throws FileNotFoundException
+     */
     private void createScene() throws FileNotFoundException {
 //        Loader vrmlLoader = new VrmlLoader();
 
@@ -73,6 +106,11 @@ public class PanoScene {
         compileShapes(sceneXml.getShapes());
     }
 
+    /**
+     * nacitanie VRML suboru
+     * @param location
+     * @return
+     */
     private BranchGroup loadVrmlFile(String location) {
         BranchGroup sceneGroup = null;
         Scene scene = Helper.loadVRMLScene(location);
@@ -106,10 +144,11 @@ public class PanoScene {
         return sceneGroup;
     }
 
-    // method to recursively set the user data for objects in the scenegraph
-    // tree
-    // we also set the capabilites on Shape3D and Morph objects required by the
-    // PickTool
+    /** method to recursively set the user data for objects in the scenegraph
+    * tree
+    * we also set the capabilites on Shape3D and Morph objects required by the
+    * PickTool
+    */
     void recursiveSetUserData(BranchGroup sceneGroup, Object value, Object key) {
         if (value instanceof SceneGraphObject != false) {
             // set the user data for the item
@@ -144,7 +183,7 @@ public class PanoScene {
                 ap.setCapability(Appearance.ALLOW_TEXTURE_ATTRIBUTES_WRITE);
                 ap.setCapability(Appearance.ALLOW_TEXGEN_READ);
                 ap.setCapability(Appearance.ALLOW_TEXGEN_WRITE);
-                Shape shape = Helper.findShapeByTitle(sceneXml, sp.getName());
+                Shape shape = Helper.findShape(sceneXml, sp.getName());
                 /*
                  * -1 nenaslo sa
                  *  0 je to panorama
@@ -216,6 +255,11 @@ public class PanoScene {
         }
     }
 
+    /**
+     * nastavenie viditelnosti pre prvu panoramu (vychodzi bod), nastavenie
+     * susedov pre panoramy
+     * @param shapes
+     */
     private void compileShapes(ArrayList<Shape> shapes) {
         Iterator<Shape> it = shapes.iterator();
         ArrayList<Shape3D> shp = new ArrayList<Shape3D>();
@@ -237,6 +281,12 @@ public class PanoScene {
         sceneXml.setCenters(shp);
     }
 
+    /**
+     * najde v ktorej panorame je dany objekt
+     * @param sp panorama
+     * @param name meno rozsirenia
+     * @return rozsirenie
+     */
     private PanoExtension findExt(Shape sp, String name) {
         Iterator<PanoExtension> peit = sp.getExtended().iterator();
         while (peit.hasNext()) {
