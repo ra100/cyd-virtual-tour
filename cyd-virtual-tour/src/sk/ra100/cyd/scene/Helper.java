@@ -57,6 +57,23 @@ public class Helper {
     }
 
     /**
+     * Vyhladanie objektu reprezentovaneho jeho nazvom, podla mena
+     * @param sx - Zoznam objektov, v ktorom hladat
+     * @param name - nazov, ktory vyhladat
+     * @return - objekt popisujuci panoramu
+     */
+    public static Shape findShape(SceneXML sx, String name) {
+        Iterator<Shape> shi = sx.getShapes().iterator();
+        while (shi.hasNext()) {
+            Shape sh = shi.next();
+            if (sh.getName().matches(name)) {
+                return sh;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Najde panoramu, ktorej prislucha hladane ohranicenie
      * @param sx - zoznam objektov, v ktorom hladat
      * @param name - nazov hladaneho objektu
@@ -92,7 +109,7 @@ public class Helper {
                     return sh;
                 }
             }
-        }                      
+        }
         return null;
     }
 
@@ -149,7 +166,7 @@ public class Helper {
 //            return true;
 //        }
 //    }
-    
+
     /**
      * pomocny objekt, vytori InputStream z URL
      * @param url
