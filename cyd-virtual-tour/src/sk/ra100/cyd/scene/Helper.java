@@ -26,6 +26,11 @@ import org.jdesktop.j3d.loaders.vrml97.VrmlLoader;
  */
 public class Helper {
 
+    /**
+     * Nastavuje uroven priehladnosti
+     * @param ap - Appearance, ktoremu nastavi priehladnost
+     * @param trans - uroven priehladnosti
+     */
     public static void setTransparency(Appearance ap, float trans) {
         TransparencyAttributes ta =
                 new TransparencyAttributes(TransparencyAttributes.SCREEN_DOOR, trans);
@@ -34,17 +39,12 @@ public class Helper {
         ap.setTransparencyAttributes(ta);
     }
 
-    public static Shape findShape(SceneXML sx, String name) {
-        Iterator<Shape> shi = sx.getShapes().iterator();
-        while (shi.hasNext()) {
-            Shape sh = shi.next();
-            if (sh.getName().matches(name)) {
-                return sh;
-            }
-        }
-        return null;
-    }
-
+    /**
+     * Vyhladanie objektu reprezentovaneho jeho nazvom
+     * @param sx - Zoznam objektov, v ktorom hladat
+     * @param name - nazov, ktory vyhladat
+     * @return - objekt popisujuci panoramu
+     */
     public static Shape findShapeByTitle(SceneXML sx, String name) {
         Iterator<Shape> shi = sx.getShapes().iterator();
         while (shi.hasNext()) {
@@ -56,6 +56,12 @@ public class Helper {
         return null;
     }
 
+    /**
+     * Najde panoramu, ktorej prislucha hladane ohranicenie
+     * @param sx - zoznam objektov, v ktorom hladat
+     * @param name - nazov hladaneho objektu
+     * @return - Objekt popisujuci panoramu
+     */
     public static Shape findBoundShape(SceneXML sx, String name) {
         Iterator<Shape> shi = sx.getShapes().iterator();
         while (shi.hasNext()) {
@@ -70,6 +76,12 @@ public class Helper {
         return null;
     }
 
+    /**
+     * Najdenie, v ktorej panorame sa nachadza rozsirenie
+     * @param sx - zoznam objektov
+     * @param name - hladany nazov
+     * @return - Objekt panoramy
+     */
     public static Shape findExtensionShape(SceneXML sx, String name) {
         Iterator<Shape> shi = sx.getShapes().iterator();
         while (shi.hasNext()) {
@@ -84,6 +96,12 @@ public class Helper {
         return null;
     }
 
+    /**
+     * najdenie, ktorej panorame patri stred
+     * @param sx - zoznam objektov
+     * @param name - hladny nazov
+     * @return - panorama
+     */
     public static Shape findCenterShape(SceneXML sx, String name) {
         Iterator<Shape> shi = sx.getShapes().iterator();
         while (shi.hasNext()) {
@@ -96,25 +114,10 @@ public class Helper {
         return null;
     }
 
-    public static boolean loadTexture(Appearance ap, Shape shape, SceneXML sceneXml) {
-        BufferedImage img = null;
-        try {
-            URL loadUrl = new URL(sceneXml.getPath() + "" + shape.getTexture());
-            URLConnection con = loadUrl.openConnection();
-            //                        BufferedReader in = new BufferedReader(
-            //                                new InputStreamReader(
-            //                                con.getInputStream()));
-            img = ImageIO.read(con.getInputStream());
-        } catch (Exception e) {
-            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE,
-                    "Chyba pri nahravani suboru: ", e);
-        } finally {
-            TextureLoader tex = new TextureLoader(img);
-            ap.setTexture(tex.getTexture());
-            return true;
-        }
-    }
-
+    /**
+     * Nacitanie obrazku, ktory bude textura pre extension objekty
+     * @return BufferedImage
+     */
     public static BufferedImage loadBack() {
         BufferedImage img = null;
         try {
@@ -147,6 +150,11 @@ public class Helper {
 //        }
 //    }
     
+    /**
+     * pomocny objekt, vytori InputStream z URL
+     * @param url
+     * @return InputStream
+     */
     public static InputStream urlInputStream(String url){
         try {
             URL loadUrl = new URL(url);
@@ -162,6 +170,40 @@ public class Helper {
         return null;
     }
 
+    /**
+     * Nahravanie textury(obrazok panoramy na objekt)
+     * @param ap - kam nahrat texturu
+     * @param shape - panorama, ktora ma odkaz na texturu
+     * @param sceneXml - zoznam panoram
+     * @return - ak prebehne uspesne, vrati TRUE, inak FALSE
+     */
+    public static boolean loadTexture(Appearance ap, Shape shape, SceneXML sceneXml) {
+        BufferedImage img = null;
+        try {
+            URL loadUrl = new URL(sceneXml.getPath() + "" + shape.getTexture());
+            URLConnection con = loadUrl.openConnection();
+            //                        BufferedReader in = new BufferedReader(
+            //                                new InputStreamReader(
+            //                                con.getInputStream()));
+            img = ImageIO.read(con.getInputStream());
+        } catch (Exception e) {
+            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE,
+                    "Chyba pri nahravani suboru: ", e);
+            return false;
+        } finally {
+            TextureLoader tex = new TextureLoader(img);
+            ap.setTexture(tex.getTexture());
+            return true;
+        }
+    }
+
+    /**
+     * Nahravanie textury(obrazok panoramy na objekt)
+     * @param ap - kam nahrat texturu
+     * @param shape - panorama, ktora ma odkaz na texturu
+     * @param path - root cesty k obrazku
+     * @return - ak prebehne uspesne, vrati TRUE, inak FALSE
+     */
     public static boolean loadTexture(Appearance ap, Shape shape, String path) {
         BufferedImage img = null;
         try {
@@ -185,6 +227,11 @@ public class Helper {
         }
     }
 
+    /**
+     * Nacitanie sceny z .wrl suboru
+     * @param location - umiestnenie suboru
+     * @return vrati Scene objekt
+     */
     public static Scene loadVRMLScene(String location) {
         Scene scene = null;
         VrmlLoader loader = new VrmlLoader();
