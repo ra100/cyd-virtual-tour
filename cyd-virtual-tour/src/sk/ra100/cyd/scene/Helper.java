@@ -41,18 +41,9 @@ public class Helper {
      * @param trans - uroven priehladnosti
      */
     public static void setTransparency(Appearance ap, float trans) {
-        if (trans == 1.0f) {
-            RenderingAttributes att = new RenderingAttributes();
-            att.setVisible(false);
-            ap.setRenderingAttributes(att);
-        } else {
             TransparencyAttributes ta =
                     new TransparencyAttributes(TransparencyAttributes.SCREEN_DOOR, trans);
-            RenderingAttributes att = new RenderingAttributes();
-            att.setVisible(true);
-            ap.setRenderingAttributes(att);
             ap.setTransparencyAttributes(ta);
-        }
     }
 
     /**
@@ -62,19 +53,9 @@ public class Helper {
      * @param attr - typ priehladnosti
      */
     public static void setTransparency(Appearance ap, float trans, int attr) {
-        if (trans == 1.0f) {
-            RenderingAttributes att = new RenderingAttributes();
-            att.setVisible(false);
-            ap.setRenderingAttributes(att);
-        } else {
             TransparencyAttributes ta =
                 new TransparencyAttributes(attr, trans);
-            ta.setCapability(TransparencyAttributes.ALLOW_BLEND_FUNCTION_READ);
-            RenderingAttributes att = new RenderingAttributes();
-            att.setVisible(true);
-            ap.setRenderingAttributes(att);
             ap.setTransparencyAttributes(ta);
-        }
     }
 
     /**

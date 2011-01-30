@@ -183,8 +183,6 @@ public class PanoScene {
                 ap.setCapability(Appearance.ALLOW_TEXTURE_ATTRIBUTES_WRITE);
                 ap.setCapability(Appearance.ALLOW_TEXGEN_READ);
                 ap.setCapability(Appearance.ALLOW_TEXGEN_WRITE);
-                ap.setCapability(Appearance.ALLOW_RENDERING_ATTRIBUTES_WRITE);
-                ap.setCapability(Appearance.ALLOW_RENDERING_ATTRIBUTES_READ);
                 Shape shape = Helper.findShape(sceneXml, sp.getName());
                 /*
                  * -1 nenaslo sa

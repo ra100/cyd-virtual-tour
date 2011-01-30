@@ -117,7 +117,7 @@ public class PanoExtension {
             Helper.setTransparency(ap, 0.0f, TransparencyAttributes.BLENDED);
             shape.setPickable(true);
         } else {
-            Helper.setTransparency(ap, 1.0f, TransparencyAttributes.BLENDED);
+            Helper.setTransparency(ap, 1.0f, TransparencyAttributes.FASTEST);
             shape.setPickable(false);
         }
         this.visible = visible;
@@ -129,8 +129,8 @@ public class PanoExtension {
      */
     public void setTransparency(float trans) {
         Appearance ap = shape.getAppearance();
-        Helper.setTransparency(ap, trans, TransparencyAttributes.SCREEN_DOOR);
         if (trans >= 1.0f) {
+            Helper.setTransparency(ap, trans, TransparencyAttributes.SCREEN_DOOR);
             shape.setPickable(false);
         } else {
             Helper.setTransparency(ap, 0.0f, TransparencyAttributes.BLENDED);
