@@ -307,4 +307,14 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         this.parent = parent;
     }
 
+    /**
+     * vrati poziciu kamery
+     * @return
+     */
+    public Point3d getCenter() {
+        Point3d center = new Point3d();
+        this.getRotationCenter(center);
+        return center;
+    }
+
 }

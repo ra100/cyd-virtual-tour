@@ -48,6 +48,7 @@ package class FXCanvas3DSBComp extends SwingComponent, FXCanvas3DRepainter {
 
     // FXCanvas3DSB instance
     var fxCanvas3D: FXCanvas3DSB;
+    var panoscene = null;
 
     // Frames per second
     def updatesPerSecond = 2;
@@ -67,8 +68,9 @@ package class FXCanvas3DSBComp extends SwingComponent, FXCanvas3DRepainter {
     }
 
     // Called from Main
-    package function initFXCanvas3D(universe: PanoUniverse) {
+    package function initFXCanvas3D(universe: PanoUniverse, scene: PanoScene) {
         fxCanvas3D = universe.createFXCanvas3D(this, container, isScreenSize);
+        panoscene = scene;
     }
 
     // Interface FXCanvas3DRepainter
@@ -91,7 +93,7 @@ package class FXCanvas3DSBComp extends SwingComponent, FXCanvas3DRepainter {
 
                 // Call doesn't wait, paintComponent() will be called in the next loop !?
                 fxCanvas3D.repaint();
-
+                panoscene.updateScreen();
                 //
                 // Frames per second
                 //

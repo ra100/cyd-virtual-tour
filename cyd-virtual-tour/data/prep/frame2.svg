@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.0 r9654"
-   sodipodi:docname="frame.svg"
+   sodipodi:docname="frame2.svg"
    inkscape:export-filename="D:\Develop\NetBeansProjects\Diplomovka\Cyd2\data\ext\back.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -61,6 +61,9 @@
        transform="translate(0,796.36218)"
        id="rect2915"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccccccccccc" />
+       sodipodi:nodetypes="cccccccccccccccc"
+       inkscape:export-filename="D:\Develop\NetBeansProjects\Diplomovka\Cyd\data\prep\back.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

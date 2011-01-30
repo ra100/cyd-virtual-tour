@@ -24,6 +24,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Panel;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Polyline;
+import sk.ra100.cyd.UI.AsyncTask;
+import java.lang.Thread;
 
 /**
  * @author ra100
@@ -93,7 +95,7 @@ public class PanoScene {
             fxCanvas3DComp.isScreenSize = false;
             fxCanvas3DComp.frame = stage;
             // Finish FXCanvas3DComp
-            fxCanvas3DComp.initFXCanvas3D(universe);
+            fxCanvas3DComp.initFXCanvas3D(universe,this);
             // Show frame
             stage.visible = true;
         }
@@ -112,6 +114,8 @@ public class PanoScene {
 	stroke: Color.BLACK
     }
 
+    var debugswitch = true;
+
     var debug2 = Rectangle {
 	x: 0, y: 0
 	width: 700, height: 500
@@ -124,31 +128,31 @@ public class PanoScene {
         height: 500
         content: [debug2, debug]
         onMouseMoved: function( e: MouseEvent ):Void {
-            updateScreen();
+//            updateScreen();
         }
         onMouseEntered: function( e: MouseEvent ):Void {
-            updateScreen();
+//            updateScreen();
         }
         onMouseExited: function( e: MouseEvent ):Void {
-            updateScreen();
+//            updateScreen();
         }
         onMouseReleased: function( e: MouseEvent ):Void {
-            updateScreen();
+//            updateScreen();
         }
         onMouseDragged: function (e: MouseEvent): Void {
-            updateScreen();
+//            updateScreen();
         }
         onMouseClicked: function (e: MouseEvent): Void {
-            updateScreen();
+//            updateScreen();
         }
         onKeyPressed: function (e: KeyEvent): Void {
-            updateScreen();
+//            updateScreen();
         }
         onKeyTyped: function (e: KeyEvent): Void {
-            updateScreen();
+//            updateScreen();
         }
         onKeyReleased: function( e: KeyEvent ):Void {
-            updateScreen();
+//            updateScreen();
         }
     }
 
@@ -210,6 +214,17 @@ public class PanoScene {
     //
     // JavaTaskBase
     universeFX.start();
+//    FX.deferAction(
+//         function(): Void {
+//            AsyncTask {
+//                run: function() {
+//                    while (true) {
+//                        Thread.currentThread().sleep(100);
+//                        updateScreen();
+//                    }
+//                }
+//            }.start();
+//    });
     }
 
     public function showCenters(){
@@ -238,8 +253,7 @@ public class PanoScene {
     }
 
     public function updateScreen(){
-        debug.stroke = Color.WHITE;
-        debug.stroke = Color.BLACK;
+        if (debugswitch) {debug.stroke = Color.web("000001"); debugswitch = false;}
+        else {debug.stroke = Color.BLACK; debugswitch = true;}
     }
-
 }
