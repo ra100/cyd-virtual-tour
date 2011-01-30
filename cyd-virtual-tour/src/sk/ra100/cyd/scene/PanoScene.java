@@ -91,7 +91,7 @@ public class PanoScene {
 
         sceneXml = new SceneXML();
         sceneXml.load(XMLPATH);
-        tex = new TextureLoader(Helper.loadBack()).getTexture();
+        tex = new TextureLoader(Helper.loadBack(), "RGBA").getTexture();
 
         orderedGroup = new OrderedGroup();
 
@@ -183,6 +183,8 @@ public class PanoScene {
                 ap.setCapability(Appearance.ALLOW_TEXTURE_ATTRIBUTES_WRITE);
                 ap.setCapability(Appearance.ALLOW_TEXGEN_READ);
                 ap.setCapability(Appearance.ALLOW_TEXGEN_WRITE);
+                ap.setCapability(Appearance.ALLOW_RENDERING_ATTRIBUTES_WRITE);
+                ap.setCapability(Appearance.ALLOW_RENDERING_ATTRIBUTES_READ);
                 Shape shape = Helper.findShape(sceneXml, sp.getName());
                 /*
                  * -1 nenaslo sa

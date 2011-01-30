@@ -15,9 +15,18 @@ import javax.imageio.ImageIO;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.TransparencyAttributes;
 import com.sun.j3d.loaders.Scene;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.ImageProducer;
+import java.awt.image.RGBImageFilter;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import javax.media.j3d.RenderingAttributes;
 import org.jdesktop.j3d.loaders.vrml97.VrmlLoader;
 
 /**
@@ -32,11 +41,40 @@ public class Helper {
      * @param trans - uroven priehladnosti
      */
     public static void setTransparency(Appearance ap, float trans) {
-        TransparencyAttributes ta =
-                new TransparencyAttributes(TransparencyAttributes.SCREEN_DOOR, trans);
-//        ta.setCapability(TransparencyAttributes.FASTEST);
-//        ta.setTransparency(trans);
-        ap.setTransparencyAttributes(ta);
+        if (trans == 1.0f) {
+            RenderingAttributes att = new RenderingAttributes();
+            att.setVisible(false);
+            ap.setRenderingAttributes(att);
+        } else {
+            TransparencyAttributes ta =
+                    new TransparencyAttributes(TransparencyAttributes.SCREEN_DOOR, trans);
+            RenderingAttributes att = new RenderingAttributes();
+            att.setVisible(true);
+            ap.setRenderingAttributes(att);
+            ap.setTransparencyAttributes(ta);
+        }
+    }
+
+    /**
+     * Nastavuje uroven priehladnosti
+     * @param ap - Appearance, ktoremu nastavi priehladnost
+     * @param trans - uroven priehladnosti
+     * @param attr - typ priehladnosti
+     */
+    public static void setTransparency(Appearance ap, float trans, int attr) {
+        if (trans == 1.0f) {
+            RenderingAttributes att = new RenderingAttributes();
+            att.setVisible(false);
+            ap.setRenderingAttributes(att);
+        } else {
+            TransparencyAttributes ta =
+                new TransparencyAttributes(attr, trans);
+            ta.setCapability(TransparencyAttributes.ALLOW_BLEND_FUNCTION_READ);
+            RenderingAttributes att = new RenderingAttributes();
+            att.setVisible(true);
+            ap.setRenderingAttributes(att);
+            ap.setTransparencyAttributes(ta);
+        }
     }
 
     /**
@@ -140,9 +178,6 @@ public class Helper {
         try {
             URL loadUrl = new URL("http://ra100.scifi-guide.net/brhlovce/files/resources/back.png");
             URLConnection con = loadUrl.openConnection();
-            //                        BufferedReader in = new BufferedReader(
-            //                                new InputStreamReader(
-            //                                con.getInputStream()));
             img = ImageIO.read(con.getInputStream());
         } catch (Exception e) {
             Logger.getLogger(Helper.class.getName()).log(Level.SEVERE,
@@ -151,21 +186,6 @@ public class Helper {
             return img;
         }
     }
-
-//    public static boolean loadTextureBound(Appearance ap) {
-//        Image img = null;
-//
-//        try {
-//            img = Toolkit.getDefaultToolkit().createImage(PanoScene.XMLPATH);
-//        } catch (Exception e) {
-//            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE,
-//                    "Chyba pri nahravani suboru: ", e);
-//        } finally {
-//            TextureLoader tex = new TextureLoader((BufferedImage) img);
-//            ap.setTexture(tex.getTexture());
-//            return true;
-//        }
-//    }
 
     /**
      * pomocny objekt, vytori InputStream z URL

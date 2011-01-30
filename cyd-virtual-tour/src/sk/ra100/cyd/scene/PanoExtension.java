@@ -8,6 +8,7 @@ package sk.ra100.cyd.scene;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.Shape3D;
 import javafx.scene.image.Image;
+import javax.media.j3d.TransparencyAttributes;
 
 /**
  * rozsirenia pre panoramu, obrazky, texty, guestbook, ...
@@ -113,10 +114,10 @@ public class PanoExtension {
     public void setVisible(boolean visible) {
         Appearance ap = shape.getAppearance();
         if (visible) {
-            Helper.setTransparency(ap, 0.0f);
+            Helper.setTransparency(ap, 0.0f, TransparencyAttributes.BLENDED);
             shape.setPickable(true);
         } else {
-            Helper.setTransparency(ap, 1.0f);
+            Helper.setTransparency(ap, 1.0f, TransparencyAttributes.BLENDED);
             shape.setPickable(false);
         }
         this.visible = visible;
@@ -128,10 +129,11 @@ public class PanoExtension {
      */
     public void setTransparency(float trans) {
         Appearance ap = shape.getAppearance();
-        Helper.setTransparency(ap, trans);
+        Helper.setTransparency(ap, trans, TransparencyAttributes.SCREEN_DOOR);
         if (trans >= 1.0f) {
             shape.setPickable(false);
         } else {
+            Helper.setTransparency(ap, 0.0f, TransparencyAttributes.BLENDED);
             shape.setPickable(true);
         }
     }

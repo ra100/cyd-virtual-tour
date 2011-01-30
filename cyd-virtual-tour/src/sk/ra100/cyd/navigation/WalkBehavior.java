@@ -299,7 +299,7 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         ArrayList<PanoExtension> pe = getActualShape().getExtended();
         Iterator<PanoExtension> it = pe.iterator();
         while (it.hasNext()) {
-            it.next().setTransparency(0.8f);
+            it.next().setTransparency(0.0f);
         }
     }
 

@@ -65,7 +65,7 @@ public class MousePickListener implements MouseListener {
 
             Shape3D pickedShape3D = (Shape3D) pickInfo.getNode();
             Logger.getLogger(MousePickListener.class.getName()).log(Level.INFO,
-                    "Picked object: " + pickedShape3D.getName());
+                    "Picked object: {0}", pickedShape3D.getName());
             processShape(pickedShape3D);
         }
 
@@ -100,8 +100,8 @@ public class MousePickListener implements MouseListener {
         t3.get(vec);
         Shape sh = findShape(sp);
         if (sh != null) {
-            Logger.getLogger(MousePickListener.class.getName()).log(Level.INFO,
-                    "Jumping to: " + sh.getName());
+            Logger.getLogger(MousePickListener.class.getName()).log(Level.INFO, 
+                    "Jumping to: {0}", sh.getName());
             vector = vec;
             shape = sh;
             new Thread(new Runnable() {
