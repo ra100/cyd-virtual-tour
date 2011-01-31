@@ -102,14 +102,14 @@ public class WalkBehavior extends OrbitBehaviorInterim {
 
     public boolean moveCamera(Vector3d vec, Shape newAct){
 
-        Transform3D t3 = new Transform3D();
+        t3 = new Transform3D();
         getViewingTransform(t3);
 
         t3.setTranslation(vec);
         vec = new Vector3d();
         t3.get(vec);
 
-        Point3d newPos = new Point3d(vec.x, vec.y, vec.z);
+        newPos = new Point3d(vec.x, vec.y, vec.z);
         
         hideExtras();
         actualShape.setVisible(false);

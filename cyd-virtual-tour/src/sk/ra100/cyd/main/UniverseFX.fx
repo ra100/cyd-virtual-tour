@@ -11,6 +11,13 @@ import java.util.Observer;
 import java.util.Observable;
 import sk.ra100.cyd.UI.ExtensionDisplay;
 import sk.ra100.cyd.UI.AsyncTask;
+import javafx.scene.image.Image;
+import java.awt.image.BufferedImage;
+import javafx.ext.swing.SwingUtils;
+import java.awt.Component;
+import java.awt.Rectangle;
+import java.awt.Graphics;
+import javafx.animation.transition.ScaleTransition;
 
 /**
  * @author ra100
@@ -108,7 +115,7 @@ package class UniverseFX extends JavaTaskBase, Observer {
                 scene.block = true;
                 loaderVisible = false;
             } else {
-                loaderVisible = true;
+                setLoaderImage();
             }
             if (universe.getExtension() != null) {
                 scene.loaded = 0;
@@ -127,9 +134,31 @@ package class UniverseFX extends JavaTaskBase, Observer {
                 }.start();
             } else {
                 extension.visible = false;
-            }            scene.updateScreen();
+            }
+            scene.updateScreen();
             });
     }
+
+    function setLoaderImage() {
+        var bi : BufferedImage = componentToImage(scene.fxCanvas3DComp.getJComponent());
+        scene.progressBackground.image = SwingUtils.toFXImage(bi);
+
+        loaderVisible = true;
+    }
+
+    function componentToImage(cmp : Component) : BufferedImage  {
+        var d : Rectangle = cmp.getBounds();
+        var bi : BufferedImage = new BufferedImage (d.width,d.height,
+                                BufferedImage.TYPE_BYTE_INDEXED);
+        var g : Graphics = bi.createGraphics();
+        g.setColor(java.awt.Color.white);
+        g.fillRect(0, 0, d.width, d.height);
+        g.setClip(0, 0, d.width, d.height);
+        cmp.printAll(g);
+
+        return(bi);
+    }
+
 
     public function deleteExt(){
         universe.setExtensionNo(null);

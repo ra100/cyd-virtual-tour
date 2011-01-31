@@ -35,8 +35,8 @@ import javax.vecmath.Vector3d;
 import com.sun.j3d.utils.pickfast.PickCanvas;
 
 // FXCanvas3D API 3.0, see http://www.interactivemesh.org/testspace/j3dmeetsjfx.html
-import com.interactivemesh.j3d.community.gui.FXCanvas3DSB;
 import com.interactivemesh.j3d.community.gui.FXCanvas3DRepainter;
+import com.interactivemesh.j3d.community.gui.FXCanvas3DSB;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;

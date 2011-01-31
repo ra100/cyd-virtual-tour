@@ -20,12 +20,17 @@ import javafx.geometry.VPos;
 import sk.ra100.cyd.UI.RightPanel;
 import java.util.Locale;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Panel;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Polyline;
-import sk.ra100.cyd.UI.AsyncTask;
-import java.lang.Thread;
+import javafx.scene.image.Image;
+import javafx.scene.CustomNode;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
+import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Scale;
+import javafx.scene.effect.GaussianBlur;
+import javafx.animation.transition.ScaleTransition;
 
 /**
  * @author ra100
@@ -56,6 +61,17 @@ public class PanoScene {
         }
     }
 
+    public var progressBackground : ImageView = ImageView {
+        visible: bind universeFX.loaderVisible
+        image: null
+        preserveRatio: false
+        opacity: 1.0
+        effect: GaussianBlur {
+                radius: 10
+                }
+    }
+
+
     def progressIndicatorPerc: ProgressIndicator = ProgressIndicator {
         scaleX : 3
         scaleY : 3
@@ -81,7 +97,7 @@ public class PanoScene {
     var stage: Stage;
 
     // FXCanvas3D
-    def fxCanvas3DComp = FXCanvas3DSBComp {
+    public-read def fxCanvas3DComp = FXCanvas3DSBComp {
         // Resizing
         width: bind Math.max(stage.scene.width, 10);    // avoid width <= 0
         height: bind Math.max(stage.scene.height, 10);  // avoid height <= 0
@@ -100,13 +116,6 @@ public class PanoScene {
             stage.visible = true;
         }
     }
-
-//    var debug = Rectangle {
-//        visible: true
-//	x: 699, y: 499
-//	width: 1, height: 1
-//	fill: Color.BLACK
-//    }
 
     var debug = Polyline {
 	points : [ 0,0, 700,0, 700,500, 0,500, 0,0 ]
@@ -127,33 +136,6 @@ public class PanoScene {
         width : 700
         height: 500
         content: [debug2, debug]
-        onMouseMoved: function( e: MouseEvent ):Void {
-//            updateScreen();
-        }
-        onMouseEntered: function( e: MouseEvent ):Void {
-//            updateScreen();
-        }
-        onMouseExited: function( e: MouseEvent ):Void {
-//            updateScreen();
-        }
-        onMouseReleased: function( e: MouseEvent ):Void {
-//            updateScreen();
-        }
-        onMouseDragged: function (e: MouseEvent): Void {
-//            updateScreen();
-        }
-        onMouseClicked: function (e: MouseEvent): Void {
-//            updateScreen();
-        }
-        onKeyPressed: function (e: KeyEvent): Void {
-//            updateScreen();
-        }
-        onKeyTyped: function (e: KeyEvent): Void {
-//            updateScreen();
-        }
-        onKeyReleased: function( e: KeyEvent ):Void {
-//            updateScreen();
-        }
     }
 
     public function deleteExt(){
@@ -161,7 +143,6 @@ public class PanoScene {
     }
 
     public function create(){
-        //db.connect();
         universeFX.setScene(this);
         extensionDisplay.visible = false;
         topPanel.myScene = this;
@@ -171,6 +152,7 @@ public class PanoScene {
 
         progressIndicatorPerc.translateX = screenWidth/2 - progressIndicatorPerc.width/2;
         progressIndicatorPerc.translateY = screenHeight/2 - progressIndicatorPerc.height/2;
+
 
         stage = Stage {
         title: "Virtuálna prehliadka: Brhlovce"
@@ -188,6 +170,7 @@ public class PanoScene {
             fill: Color.TRANSPARENT // Color.TRANSPARENT | null
             content: [
                     fxCanvas3DComp,
+                    progressBackground,
                     progressIndicator,
                     
             Flow {
@@ -214,17 +197,6 @@ public class PanoScene {
     //
     // JavaTaskBase
     universeFX.start();
-//    FX.deferAction(
-//         function(): Void {
-//            AsyncTask {
-//                run: function() {
-//                    while (true) {
-//                        Thread.currentThread().sleep(100);
-//                        updateScreen();
-//                    }
-//                }
-//            }.start();
-//    });
     }
 
     public function showCenters(){

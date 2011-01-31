@@ -15,15 +15,13 @@ import javafx.scene.Node;
  */
 public class LoadingImage extends CustomNode {
 
-    def limage = Image {
-                
-            }
+    def limage = Image { }
     public var screenWidth ;
     public var screenHeight ;
 
     public override function create(): Node {
         return Group {
-                    content: [
+                    content: [ 
                        
                     ]
                 };

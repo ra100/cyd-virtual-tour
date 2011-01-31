@@ -333,11 +333,6 @@ public class Shape {
         this.mapcoordinates[0] = vec.getX();
         this.mapcoordinates[1] = vec.getY();
         this.mapcoordinates[2] = vec.getZ();
-        Logger.getLogger(Shape.class.getName()).log(Level.INFO,
-                        "Position: {0} {1} {2}", new Object[]{
-                        String.valueOf(this.mapcoordinates[0]),
-                        String.valueOf(this.mapcoordinates[1]),
-                        String.valueOf(this.mapcoordinates[2])});
     }
 
     /**
