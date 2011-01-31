@@ -95,9 +95,6 @@ package class FXCanvas3DSBComp extends SwingComponent, FXCanvas3DRepainter {
 
                 // Call doesn't wait, paintComponent() will be called in the next loop !?
                 fxCanvas3D.repaint();
-                 FX.deferAction(
-                    function(): Void {panoscene.updateScreen();
-                    });
 //                //
 //                //  Frames per second
 //                //
@@ -118,5 +115,6 @@ package class FXCanvas3DSBComp extends SwingComponent, FXCanvas3DRepainter {
 //                }
             }
         );
+//        FX.deferAction( function() : Void {panoscene.updateScreen();} );
     }
 }

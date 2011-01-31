@@ -21,16 +21,10 @@ import sk.ra100.cyd.UI.RightPanel;
 import java.util.Locale;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.Panel;
-import javafx.scene.shape.Polyline;
-import javafx.scene.image.Image;
-import javafx.scene.CustomNode;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
-import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Scale;
 import javafx.scene.effect.GaussianBlur;
 import javafx.animation.transition.ScaleTransition;
+import javafx.animation.Timeline;
 
 /**
  * @author ra100
@@ -117,13 +111,7 @@ public class PanoScene {
         }
     }
 
-    var debug = Polyline {
-	points : [ 0,0, 700,0, 700,500, 0,500, 0,0 ]
-	strokeWidth: 1.0
-	stroke: Color.BLACK
-    }
-
-    var debugswitch = true;
+    var debugswitch : Boolean = true;
 
     var debug2 = Rectangle {
 	x: 0, y: 0
@@ -135,7 +123,7 @@ public class PanoScene {
     var panel = Panel {
         width : 700
         height: 500
-        content: [debug2, debug]
+        content: [debug2]
     }
 
     public function deleteExt(){
@@ -166,7 +154,7 @@ public class PanoScene {
         width: screenWidth
         height: screenHeight
 
-        scene: Scene {
+        scene: Scene  {
             fill: Color.TRANSPARENT // Color.TRANSPARENT | null
             content: [
                     fxCanvas3DComp,
@@ -197,6 +185,16 @@ public class PanoScene {
     //
     // JavaTaskBase
     universeFX.start();
+
+    // stale sa prekresluje, riesi to problem s neprekreslovanim v browseroch
+    ScaleTransition {
+	duration: 20s
+	node: debug2
+	byX: 1.5 byY: 1.5
+	repeatCount: Timeline.INDEFINITE
+        autoReverse: true
+    }.play();
+
     }
 
     public function showCenters(){
@@ -224,8 +222,8 @@ public class PanoScene {
         language = lang;
     }
 
-    public function updateScreen(){
-        if (debugswitch) {debug.stroke = Color.web("000001"); debugswitch = false;}
-        else {debug.stroke = Color.BLACK; debugswitch = true;}
-    }
+//    public function updateScreen(){
+//        if (debugswitch) {debug2.fill = Color.web("000001"); debugswitch = false;}
+//        else {debug2.fill = Color.BLACK; debugswitch = true;}
+//    }
 }
