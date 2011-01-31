@@ -119,7 +119,7 @@ package class UniverseFX extends JavaTaskBase, Observer {
             }
             if (universe.getExtension() != null) {
                 scene.loaded = 0;
-                loaderVisible = true;
+                setLoaderImage();
                 AsyncTask {
                     run: function() {
                         extension.setExtension(universe.getExtension());

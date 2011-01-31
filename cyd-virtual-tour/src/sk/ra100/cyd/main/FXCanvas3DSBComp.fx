@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 
 import com.interactivemesh.j3d.community.gui.FXCanvas3DRepainter;
 import javafx.util.Math;
-import java.awt.image.BufferedImage;
 import com.interactivemesh.j3d.community.gui.FXCanvas3DSB;
 
 /**
@@ -96,7 +95,9 @@ package class FXCanvas3DSBComp extends SwingComponent, FXCanvas3DRepainter {
 
                 // Call doesn't wait, paintComponent() will be called in the next loop !?
                 fxCanvas3D.repaint();
-                panoscene.updateScreen();
+                 FX.deferAction(
+                    function(): Void {panoscene.updateScreen();
+                    });
 //                //
 //                //  Frames per second
 //                //
