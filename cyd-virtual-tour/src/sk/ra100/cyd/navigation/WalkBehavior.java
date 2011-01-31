@@ -29,6 +29,12 @@ public class WalkBehavior extends OrbitBehaviorInterim {
     private PanoUniverse parent = null;
 
     /**
+     * pomocne premenne, aby sa dalo k nim pristupovat z vlakna
+     */
+    private Shape pom = null;
+    private Transform3D t3 = null;
+    private Point3d newPos = null;
+    /**
      * Constructs a OrbitBehaviorInterim with a null source of Component,
      * null targets of TransformGroup and View, and specified constructor flags.
      *
@@ -44,10 +50,9 @@ public class WalkBehavior extends OrbitBehaviorInterim {
     public boolean moveCamera(double x, double y, double z){
 
         Transform3D tpom = new Transform3D();
-        Transform3D t3 = new Transform3D();
+        t3 = new Transform3D();
         getViewingTransform(t3);
         Vector3d vec = new Vector3d();
-//        t3.get(vec);
 
         vec.x=x;
         vec.y=y;
@@ -58,7 +63,7 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         vec = new Vector3d();
         t3.get(vec);
 
-        Point3d newPos = new Point3d(vec.x, vec.y, vec.z);
+        newPos = new Point3d(vec.x, vec.y, vec.z);
 
         if (isInBounds(newPos, actualShape)) {
             setViewingTransform(t3);
@@ -67,20 +72,27 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         } else {
             Iterator<Shape> it = actualShape.getConnection().iterator();
             while(it.hasNext()) {
-                Shape pom = it.next();  
+                pom = it.next();  
                 if (isInBounds(newPos, pom)) {
-                    hideExtras();
-                    if (parent.isIscenter()) parent.hideCentersNo();
-                    actualShape.setVisible(false);
-                    actualShape = pom;
-                    actualShape.setTextureLoaded(true);
-                    actualShape.setVisible(true);
-                    if (parent.isExtras()) {
-                        showExtras();
-                    }
-                    if (parent.isIscenter()) parent.showCenters();
-                    setViewingTransform(t3);
-                    setRotationCenter(newPos);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            parent.setLoaded(-1);
+                            hideExtras();
+                            if (parent.isIscenter()) parent.hideCentersNo();
+                            actualShape.setVisible(false);
+                            actualShape = pom;
+                            actualShape.setTextureLoaded(true);
+                            actualShape.setVisible(true);
+                            if (parent.isExtras()) {
+                                showExtras();
+                            }
+                            if (parent.isIscenter()) parent.showCenters();
+                            setViewingTransform(t3);
+                            setRotationCenter(newPos);
+                            parent.setLoaded(100);
+                                            }
+                    }).start();
                     return true;
                 }
             }
