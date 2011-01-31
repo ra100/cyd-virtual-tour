@@ -15,18 +15,9 @@ import javax.imageio.ImageIO;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.TransparencyAttributes;
 import com.sun.j3d.loaders.Scene;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.image.FilteredImageSource;
-import java.awt.image.ImageFilter;
-import java.awt.image.ImageProducer;
-import java.awt.image.RGBImageFilter;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import javax.media.j3d.RenderingAttributes;
 import org.jdesktop.j3d.loaders.vrml97.VrmlLoader;
 
 /**

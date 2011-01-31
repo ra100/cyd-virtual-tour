@@ -93,6 +93,10 @@ public class MousePickListener implements MouseListener {
 
     }
 
+    /**
+     * Presunie do druhej panoramy
+     * @param sp objekt reprezentujuci stred panoramy
+     */
     private void changePano(Shape3D sp) {
         Transform3D t3 = new Transform3D();
         sp.getLocalToVworld(t3);

@@ -1,9 +1,13 @@
 package sk.ra100.cyd.scene;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.Bounds;
 import javax.media.j3d.Shape3D;
+import javax.media.j3d.Transform3D;
+import javax.vecmath.Vector3f;
 
 /**
  * datova struktura na popisky 3d objektov, reprezentujuce jednotlive panoramy
@@ -322,6 +326,18 @@ public class Shape {
      */
     public void setCenter(Shape3D center) {
         this.center = center;
+        Transform3D t = new Transform3D();
+        center.getLocalToVworld(t);
+        Vector3f vec = new Vector3f();
+        t.get(vec);
+        this.mapcoordinates[0] = vec.getX();
+        this.mapcoordinates[1] = vec.getY();
+        this.mapcoordinates[2] = vec.getZ();
+        Logger.getLogger(Shape.class.getName()).log(Level.INFO,
+                        "Position: {0} {1} {2}", new Object[]{
+                        String.valueOf(this.mapcoordinates[0]),
+                        String.valueOf(this.mapcoordinates[1]),
+                        String.valueOf(this.mapcoordinates[2])});
     }
 
     /**

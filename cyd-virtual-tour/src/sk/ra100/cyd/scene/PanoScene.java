@@ -34,7 +34,6 @@ public class PanoScene {
      * cesta k XML popisu sceny
      */
     public static final String XMLPATH = "res/scene.xml";
-//    public static final String BGPATH = "res/bgmask.png";
 
     /**
      * zoznam objektov v scene
