@@ -111,8 +111,6 @@ public class PanoScene {
         }
     }
 
-    var debugswitch : Boolean = true;
-
     var debug2 = Rectangle {
 	x: 0, y: 0
 	width: 700, height: 500
@@ -190,7 +188,7 @@ public class PanoScene {
     ScaleTransition {
 	duration: 20s
 	node: debug2
-	byX: 1.5 byY: 1.5
+	byX: 1.1 byY: 1.1
 	repeatCount: Timeline.INDEFINITE
         autoReverse: true
     }.play();
@@ -221,9 +219,4 @@ public class PanoScene {
         Locale.setDefault(new Locale(lang));
         language = lang;
     }
-
-//    public function updateScreen(){
-//        if (debugswitch) {debug2.fill = Color.web("000001"); debugswitch = false;}
-//        else {debug2.fill = Color.BLACK; debugswitch = true;}
-//    }
 }

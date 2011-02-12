@@ -11,13 +11,11 @@ import java.util.Observer;
 import java.util.Observable;
 import sk.ra100.cyd.UI.ExtensionDisplay;
 import sk.ra100.cyd.UI.AsyncTask;
-import javafx.scene.image.Image;
 import java.awt.image.BufferedImage;
 import javafx.ext.swing.SwingUtils;
 import java.awt.Component;
 import java.awt.Rectangle;
 import java.awt.Graphics;
-import javafx.animation.transition.ScaleTransition;
 
 /**
  * @author ra100
@@ -129,13 +127,13 @@ package class UniverseFX extends JavaTaskBase, Observer {
                         extension.visible = true;
                         scene.loaded = 100;
                         loaderVisible = false;
-                        scene.updateScreen();
+//                        scene.updateScreen();
                     }
                 }.start();
             } else {
                 extension.visible = false;
             }
-            scene.updateScreen();
+//            scene.updateScreen();
             });
     }
 
