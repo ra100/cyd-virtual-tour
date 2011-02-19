@@ -30,7 +30,7 @@ public class TopPanel extends CustomNode {
     public var hideHeight: Integer = 48;
     var active: Boolean = true;
     var label = SwingLabel {text: " "
-    style: "font-family: 'Verdana'; font-size: 12pt"};
+    style: "font-family: 'Helvetica'; font-size: 12pt"};
 
     var naviButton = RSwitch {
         primary : RButton {
@@ -41,7 +41,7 @@ public class TopPanel extends CustomNode {
                 level: 1
             }
             action: function (): Void {
-                myScene.showCenters();
+                showMap();
             }
         };
         secondary :  RButton {
@@ -52,7 +52,7 @@ public class TopPanel extends CustomNode {
                 level: 1
             }
             action: function (): Void {
-                myScene.hideCenters();
+                hideMap();
             }
             visible : false;
         };
@@ -67,7 +67,7 @@ public class TopPanel extends CustomNode {
                 level: 1
             }
             action: function (): Void {
-                myScene.showExtras();
+                showExtras();
             }
         };
         secondary :  RButton {
@@ -78,7 +78,7 @@ public class TopPanel extends CustomNode {
                 level: 1
             }
             action: function (): Void {
-                myScene.hideExtras();
+                hideExtras();
             }
             visible : false;
         }
@@ -231,5 +231,20 @@ public class TopPanel extends CustomNode {
         helpButton.text = ##"Help Button";
     }
 
+    function showMap() {
+        myScene.showCenters();
+    }
+
+    function hideMap() {
+        myScene.hideCenters();
+    }
+
+    function showExtras() {
+        myScene.showExtras();
+    }
+
+    function hideExtras() {
+        myScene.hideExtras;
+    }
 
 }
