@@ -18,7 +18,7 @@ import javafx.scene.layout.Stack;
 import net.ra100.cyd.UI.res.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
-import javafx.ext.swing.SwingLabel;
+import javafx.scene.control.Label;
 
 /**
  * @author ra100
@@ -29,8 +29,10 @@ public class TopPanel extends CustomNode {
     public var width: Integer;
     public var hideHeight: Integer = 48;
     var active: Boolean = true;
-    var label = SwingLabel {text: " "
-    style: "font-family: 'Helvetica'; font-size: 12pt"};
+    var label = Label {text: ""
+    style: "font-family: 'Helvetica'; font-size: 12pt"
+    visible: true
+    translateX: 5};
 
     var naviButton = RSwitch {
         primary : RButton {
@@ -128,7 +130,7 @@ public class TopPanel extends CustomNode {
         };
 
     var langButton = RSwitch {
-            translateX : 16
+        translateX : 16
         primary : RButton {
             image: ImageView {
                 image: Image {

@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.SepiaTone;
 import javafx.scene.effect.Glow;
-import javafx.ext.swing.SwingLabel;
+import javafx.scene.control.Label;
 
 /**
  * @author ra100
@@ -26,7 +26,7 @@ public class RButton extends CustomNode {
                 };
     public var activeEffect : Effect;
     public var text : String;
-    public var label : SwingLabel;
+    public var label : Label;
 
     public var showGroup = Group {
                 content: [image]
