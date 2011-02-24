@@ -34,7 +34,7 @@ public class TopPanel extends CustomNode {
 
     var naviButton = RSwitch {
         primary : RButton {
-            image: HideNavButton { };
+            image: ToggleMap { };
             text: ##"ShowNavButton"
             label : label
             overEffect: Glow {
@@ -45,7 +45,7 @@ public class TopPanel extends CustomNode {
             }
         };
         secondary :  RButton {
-            image: ShowNavButton { };
+            image: ToggleMap { };
             text: ##"HideNavButton"
             label : label
             overEffect: Glow {
