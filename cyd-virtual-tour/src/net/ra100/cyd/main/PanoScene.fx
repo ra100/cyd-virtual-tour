@@ -70,8 +70,7 @@ public class PanoScene {
         scaleX : 3
         scaleY : 3
         visible: bind universeFX.loaderVisible
-        progress: bind ProgressIndicator.computeProgress( 100,
-            loaded)
+        progress: bind ProgressIndicator.computeProgress(100, loaded)
     }
 
     public var extensionDisplay: ExtensionDisplay = bind universeFX.extension;
@@ -111,16 +110,18 @@ public class PanoScene {
         }
     }
 
+    /* odstranenie problemu s tym, ze sa nerefreshuje obraz, ked je ako applet */
     var debug2 = Rectangle {
 	x: 0, y: 0
-	width: 700, height: 500
+	width: screenWidth, height: screenHeight
 	fill: Color.WHITE
         opacity: 0.0
     }
 
+    /* panel pre refreshovaci fix */
     var panel = Panel {
-        width : 700
-        height: 500
+        width : screenWidth
+        height: screenHeight
         content: [debug2]
     }
 
@@ -146,7 +147,7 @@ public class PanoScene {
         style: StageStyle.UNDECORATED
 
         fullScreen: false
-        resizable: true
+        resizable: false
         visible: true
 
         width: screenWidth
@@ -165,6 +166,10 @@ public class PanoScene {
                 content: [
                         topPanel
                         ]
+                onMouseDragged: function(event) {
+                    stage.x += event.dragX;
+                    stage.y += event.dragY;
+                  }
             }
             Flow {
                 translateX : screenWidth - 42;
@@ -177,6 +182,9 @@ public class PanoScene {
             ]
         }
     }
+    
+    changeLanguage(SK);
+    topPanel.updateLang();
 
     //
     // Start
