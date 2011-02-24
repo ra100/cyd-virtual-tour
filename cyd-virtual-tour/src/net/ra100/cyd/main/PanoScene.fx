@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.effect.GaussianBlur;
 import javafx.animation.transition.ScaleTransition;
 import javafx.animation.Timeline;
+import net.ra100.cyd.UI.MapPanel;
 
 /**
  * @author ra100
@@ -85,6 +86,13 @@ public class PanoScene {
         visible: bind not extensionDisplay.visible;
         myScene: this;
     }
+
+    var mapPanel = MapPanel {
+        visible: bind block;
+        disable: bind extensionDisplay.visible;
+        myScene: this;
+    }
+
 
      // Frame
     var stage: Stage;
@@ -172,6 +180,14 @@ public class PanoScene {
                   }
             }
             Flow {
+                hpos: HPos.LEFT
+                vpos: VPos.TOP
+                translateY : 80;
+                content: [
+                        mapPanel
+                        ]
+            }
+            Flow {
                 translateX : screenWidth - 42;
                 content: [
                         exitPanel
@@ -204,10 +220,12 @@ public class PanoScene {
     }
 
     public function showCenters(){
+        mapPanel.show();
         universeFX.showCenters();
     }
 
     public function hideCenters(){
+        mapPanel.hide();
         universeFX.hideCenters();
     }
 
