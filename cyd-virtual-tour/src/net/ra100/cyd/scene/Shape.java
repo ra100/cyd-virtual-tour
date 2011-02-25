@@ -1,8 +1,6 @@
 package net.ra100.cyd.scene;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.Bounds;
 import javax.media.j3d.Shape3D;

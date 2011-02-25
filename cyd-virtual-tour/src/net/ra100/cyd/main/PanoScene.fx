@@ -26,6 +26,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.animation.transition.ScaleTransition;
 import javafx.animation.Timeline;
 import net.ra100.cyd.UI.MapPanel;
+import net.ra100.cyd.scene.Shape;
 
 /**
  * @author ra100
@@ -45,6 +46,10 @@ public class PanoScene {
     public-read var screenHeight: Number = 500;
 
     public-read var language: String = SK;
+
+    /* security identifikatory pre zapis do DB a identifikaciu usera */
+    public-read var id: Integer;
+    public-read var token: String;
 
     def progressIndicator: ProgressIndicator = ProgressIndicator {
         progress: -1
@@ -221,12 +226,12 @@ public class PanoScene {
 
     public function showCenters(){
         mapPanel.show();
-        universeFX.showCenters();
+//        universeFX.showCenters();
     }
 
     public function hideCenters(){
         mapPanel.hide();
-        universeFX.hideCenters();
+//        universeFX.hideCenters();
     }
 
     public function showExtras(){
@@ -237,12 +242,30 @@ public class PanoScene {
         universeFX.hideExtras();
     }
 
-    public function getTrace():String{
-        return universeFX.getTrace();
-    }
-
     public function changeLanguage(lang: String){
         Locale.setDefault(new Locale(lang));
         language = lang;
+    }
+
+    function userInit() {
+        var random = new java.util.Random();
+        token = Float.toHexString(random.nextFloat());
+        /*TODO DB and other stuff*/
+        id = 1;
+    }
+
+
+    /* inicializacia po nacitani sceny */
+    public function firstInit() {
+        mapPanel.initMap();
+    }
+
+    /* zmeni panoramu podla instancie Shape */
+    public function changeShape(sp: Shape) {
+        universeFX.changeShape(sp);
+    }
+
+    public function getShapes(): Shape[] {
+        return universeFX.universe.getShapesArray();
     }
 }

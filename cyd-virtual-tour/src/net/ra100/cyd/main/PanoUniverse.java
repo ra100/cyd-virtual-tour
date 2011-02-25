@@ -69,10 +69,12 @@ public class PanoUniverse extends Observable implements RunnableFuture {
     private ArrayList<Shape3D> centers = null;
     private int loaded = 0;
     private PanoExtension extension = null;
-    private String trace = "pano01";
-    private long lastTime = 0;
     private boolean extras = false;
     private boolean iscenter = false;
+    private boolean initialized = false;
+    public MousePickListener mouseAdapter = null;
+    private Vector3d vector = null;
+    private Shape shape = null;
 
     PanoUniverse() {
         // Transparent 3D scene background
@@ -144,7 +146,7 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         }
 
         // MouseAdapter for picking
-        MouseListener mouseAdapter = new MousePickListener(this);
+        mouseAdapter = new MousePickListener(this);
 
         NavigationKeyListener keyListener = new NavigationKeyListener(walkBeh);
 
@@ -173,8 +175,8 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         createScene();
             setLoaded(87);
         setLive();
+        initialized = true;
             setLoaded(100);
-        lastTime = System.currentTimeMillis()/1000;
     }
 
     // Setup navigation
@@ -410,17 +412,6 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         this.extension = extension;
     }
 
-    public void addTrace(String name) {
-        long oldTime = lastTime;
-        lastTime = System.currentTimeMillis()/1000;
-        String time = Long.toString(lastTime - oldTime);
-        trace = trace+"-"+time+","+name;
-    }
-
-    public String getTrace(){
-        return trace;
-    }
-
     public boolean isExtras(){
         return extras;
     }
@@ -437,6 +428,39 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         this.iscenter = iscenter;
     }
 
+    public boolean isInitialized() {
+        return initialized;
+    }
+
+    /**
+     * Vrati posle shapes pre pouzitie v .fx triedach, nacitanie mapy
+     * @return Shape[]
+     */
+    public Shape[] getShapesArray() {
+        Shape[] sh = new Shape[shapes.size()];
+        for (int i = 0; i < sh.length; i++) {
+            sh[i] = shapes.get(i);
+        }
+        return sh;
+    }
+
+    public void changePano(Shape sh) {
+        setLoaded(-1);
+        Transform3D t3 = new Transform3D();
+        sh.getPano().getLocalToVworld(t3);
+        Vector3d vec = new Vector3d();
+        t3.get(vec);
+        vector = vec;
+        shape = sh;
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {             
+                walkBeh.moveCamera(vector, shape);
+                setLoaded(100);
+            }
+        }).start();
+    }
 
 
 }

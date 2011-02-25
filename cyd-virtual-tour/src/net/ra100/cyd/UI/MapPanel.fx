@@ -13,6 +13,15 @@ import javafx.scene.Node;
 import javafx.geometry.VPos;
 import javafx.scene.layout.Stack;
 import javafx.animation.transition.TranslateTransition;
+import javafx.scene.Group;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import net.ra100.cyd.scene.Shape;
+import javafx.scene.layout.Panel;
+import javafx.scene.layout.Flow;
+import javafx.scene.shape.Line;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  * @author ra100
@@ -20,21 +29,92 @@ import javafx.animation.transition.TranslateTransition;
  */
 
 public class MapPanel extends CustomNode {
-    public var hideWidth: Integer = 164;
+    def height: Float = 150;
+    def width: Float = 150;
+    public var hideWidth: Float = 164;
     public var myScene: PanoScene;
     var active: Boolean = true;
-    var label = Label {text: " "
-    style: "font-family: 'Helvetica'; font-size: 12pt"};
+    var label = Label {
+        translateX: 5
+        text: " "
+        style: "font-family: 'Helvetica'; font-size: 12pt"};
     def bg = MapBG{};
+
+    public var scale: Float = 1;
+    public var xoffset: Float = 0;
+    public var yoffset: Float = 0;
+
+    public var activePano: MapPoint;
+    public var mapPanos: MapPoint[];
+    
+    /*helper*/
+    def back: Rectangle = Rectangle {
+	x: 0, y: 0
+	width: 150, height: 200
+	fill: Color.web("#cccccc")
+        opacity: 0.0
+    }
+
+    public var map: CustomPanel = CustomPanel { content: [back]  }
 
     public override function create(): Node {
         hide();
         return Stack {
-                nodeVPos: VPos.TOP,
             content: [
         bg,
+        VBox {
+            content: [
+                HBox {
+                    height: 32
+                    spacing : 4
+                    content: [
+                        label
+                    ]
+                }
+                map
+            ]
+        }
         ]
         }
+
+    }
+
+    public function initMap() {
+       var minx: Float = 0;
+       var maxx: Float = 0;
+       var miny: Float = 0;
+       var maxy: Float = 0;
+       var shapes: Shape[] = myScene.getShapes();
+       for (a in shapes) {
+           var mp: MapPoint = MapPoint{};
+           mp.shape = a;
+           mp.panel = this;
+           mp.label = this.label;
+           insert mp into mapPanos;
+
+           if (minx > a.getMapcoordinates()[0]) minx = a.getMapcoordinates()[0];
+           if (maxx < a.getMapcoordinates()[0]) maxx = a.getMapcoordinates()[0];
+           if (miny > a.getMapcoordinates()[2]) miny = a.getMapcoordinates()[2];
+           if (maxy < a.getMapcoordinates()[2]) maxy = a.getMapcoordinates()[2];
+       }
+
+       var xscale: Float = width / (maxx - minx);
+       var yscale: Float = height / (maxy - miny);
+
+       if (xscale < yscale) scale = xscale
+       else scale = yscale;
+
+       xoffset = ((-1)*minx);
+       yoffset = ((-1)*miny);
+
+       activePano = mapPanos[0];
+       activePano.setFirst();
+       for (a in mapPanos) {
+           a.setShape();
+           insert a into map.content;
+       }
+
+
     }
 
     public function show() {
@@ -66,4 +146,19 @@ public class MapPanel extends CustomNode {
             show();
         }
     }
+
+    public function getScene(): PanoScene {
+        return myScene;
+    }
+
+    public function setActive(mp: MapPoint) {
+        activePano = mp;
+    }
+
+    public function getActive() : MapPoint {
+        return activePano;
+    }
+
+
+
 }

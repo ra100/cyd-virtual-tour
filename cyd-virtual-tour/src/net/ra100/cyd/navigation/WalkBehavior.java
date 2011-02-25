@@ -100,6 +100,12 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         }
     }
 
+    /**
+     *
+     * @param vec vektor kamery, pohlad
+     * @param newAct panorama, do ktorej sa ma presunut
+     * @return
+     */
     public boolean moveCamera(Vector3d vec, Shape newAct){
 
         t3 = new Transform3D();
@@ -114,7 +120,6 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         hideExtras();
         actualShape.setVisible(false);
         actualShape = newAct;
-        parent.addTrace(actualShape.getName());
         Helper.setTransparency(actualShape.getCenter().getAppearance(),1.0f);
         actualShape.setTextureLoaded(true);
         actualShape.setVisible(true);

@@ -14,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import net.ra100.cyd.UI.res.*;
 import java.lang.System;
 import javafx.io.http.HttpRequest;
-import java.lang.Exception;
 import net.ra100.cyd.main.PanoScene;
 import java.io.IOException;
 import java.lang.Integer;
@@ -36,7 +35,6 @@ public class RightPanel extends CustomNode {
                     level: 1
                 }
                 action: function (): Void {
-                    writeVisit();
                     FX.exit();
                 }
             };
@@ -105,14 +103,14 @@ public class RightPanel extends CustomNode {
     }
 
     function writeVisit(){
-        var duration  = (System.currentTimeMillis()-startTime)/1000;
-        var trace = myScene.getTrace();
-        request.location = "http://ra100.scifi-guide.net/brhlovce/scripts/visit.php?duration={duration}&trace={trace}";
-        try {
-            request.start();
-        } catch( ex: Exception) {
-            println("Chyba http poziadavky");
-        }
+//        var duration  = (System.currentTimeMillis()-startTime)/1000;
+//        var trace = myScene.getTrace();
+//        request.location = "http://ra100.scifi-guide.net/brhlovce/scripts/visit.php?duration={duration}&trace={trace}";
+//        try {
+//            request.start();
+//        } catch( ex: Exception) {
+//            println("Chyba http poziadavky");
+//        }
 
     }
 

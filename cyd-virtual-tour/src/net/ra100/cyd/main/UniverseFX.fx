@@ -16,6 +16,7 @@ import javafx.ext.swing.SwingUtils;
 import java.awt.Component;
 import java.awt.Rectangle;
 import java.awt.Graphics;
+import net.ra100.cyd.scene.Shape;
 
 /**
  * @author ra100
@@ -66,13 +67,17 @@ package class UniverseFX extends JavaTaskBase, Observer {
                 initUniverse(universe);
             };
 
-    package function showCenters() {
-        universe.showCenters();
-            }
+//    package function showCenters() {
+//        universe.showCenters();
+//            }
+    package function changeShape(sp: Shape) {
+        universe.changePano(sp);
+    }
 
-    package function hideCenters() {
-        universe.hideCenters();
-            }
+//
+//    package function hideCenters() {
+//        universe.hideCenters();
+//            }
 
     package function showExtras() {
         universe.showExtras();
@@ -103,10 +108,19 @@ package class UniverseFX extends JavaTaskBase, Observer {
     protected var loaded: Integer = 0;
     protected var loaderVisible: Boolean = true;
     protected var extension: ExtensionDisplay = new ExtensionDisplay();
+    protected var initialized: Boolean = false;
 
+    /* sledovanie zmien v PanoUniverse, spusti sa, ked sa zavola startNotification()*/
     override public function update(arg0: Observable, arg1: Object): Void {
         FX.deferAction(
         function (): Void {
+            if (not initialized) {
+                if (universe.isInitialized()) {
+                    initialized = true;
+                    scene.firstInit();
+                }
+
+            }
             loaded = universe.getLoaded();
             scene.loaded = loaded;
             if (loaded == 100) {
@@ -127,23 +141,24 @@ package class UniverseFX extends JavaTaskBase, Observer {
                         extension.visible = true;
                         scene.loaded = 100;
                         loaderVisible = false;
-//                        scene.updateScreen();
                     }
                 }.start();
             } else {
                 extension.visible = false;
             }
-//            scene.updateScreen();
             });
     }
 
-    function setLoaderImage() {
+    public function setLoaderImage() {
         var bi : BufferedImage = componentToImage(scene.fxCanvas3DComp.getJComponent());
         scene.progressBackground.image = SwingUtils.toFXImage(bi);
 
         loaderVisible = true;
     }
 
+    /*
+    * spravi obrazok z componentu, aby nezmizol obraz, ked sa meni scena
+    */
     function componentToImage(cmp : Component) : BufferedImage  {
         var d : Rectangle = cmp.getBounds();
         var bi : BufferedImage = new BufferedImage (d.width,d.height,
@@ -166,10 +181,5 @@ package class UniverseFX extends JavaTaskBase, Observer {
         scene = sc;
         extension.setScene(sc);
     }
-
-    public function getTrace():String{
-        return universe.getTrace();
-    }
-
 
 }

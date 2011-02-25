@@ -76,63 +76,24 @@ public class MousePickListener implements MouseListener {
      * @param sp najdeny objekt
      */
     private void processShape(Shape3D sp) {
-
-        int index = parent.getCenters().indexOf(sp);
-        if (index != -1) {
-            changePano(sp);
-        } else {
-            Iterator<PanoExtension> it = parent.getWalkBeh().getActualShape()
-                    .getExtended().iterator();
-            while (it.hasNext()) {
-                PanoExtension pe = it.next();
-                if (pe.getShape().equals(sp)) {
-                    parent.setExtension(pe);
-                }
-            }
-        }
-
-    }
-
-    /**
-     * Presunie do druhej panoramy
-     * @param sp objekt reprezentujuci stred panoramy
-     */
-    private void changePano(Shape3D sp) {
-        Transform3D t3 = new Transform3D();
-        sp.getLocalToVworld(t3);
-        Vector3d vec = new Vector3d();
-        t3.get(vec);
-        Shape sh = findShape(sp);
-        if (sh != null) {
-            Logger.getLogger(MousePickListener.class.getName()).log(Level.INFO, 
-                    "Jumping to: {0}", sh.getName());
-            vector = vec;
-            shape = sh;
-            new Thread(new Runnable() {
-
-                @Override
-                public void run() {
-                    parent.setLoaded(-1);
-                    parent.getWalkBeh().moveCamera(vector, shape);
-                    parent.setLoaded(100);
-                    parent.showCenters();
-//                    if (parent.isExtras()) parent.showExtras();
-                }
-            }).start();
-        } else {
-            Logger.getLogger(MousePickListener.class.getName()).log(Level.WARNING,
-                    "Shape assigned to center not found.");
-        }
-    }
-
-    private Shape findShape(Shape3D sp) {
-        Iterator<Shape> it = parent.getShapes().iterator();
+        Iterator<PanoExtension> it = parent.getWalkBeh().getActualShape()
+                .getExtended().iterator();
         while (it.hasNext()) {
-            Shape sh = it.next();
-            if (sh.getCenter().getName().matches(sp.getName())) {
-                return sh;
+            PanoExtension pe = it.next();
+            if (pe.getShape().equals(sp)) {
+                parent.setExtension(pe);
             }
         }
-        return null;
     }
+
+//    private Shape findShape(Shape3D sp) {
+//        Iterator<Shape> it = parent.getShapes().iterator();
+//        while (it.hasNext()) {
+//            Shape sh = it.next();
+//            if (sh.getCenter().getName().matches(sp.getName())) {
+//                return sh;
+//            }
+//        }
+//        return null;
+//    }
 }
