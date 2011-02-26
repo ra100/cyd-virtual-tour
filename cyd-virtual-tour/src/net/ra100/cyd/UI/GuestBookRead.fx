@@ -30,7 +30,7 @@ public class GuestBookRead extends CustomNode {
         smooth: false
         fill: Color.BLACK
         wrappingWidth: 500
-        style: "font-family: 'Verdana'; font-size: 16pt"
+        id: "headerText"
         content: ##"Guestbook";
     }
 
@@ -46,12 +46,12 @@ public class GuestBookRead extends CustomNode {
                                     content: bind for (a in array) [
                                             Label { translateY: 4
                                                 text: "{a.time} :: {a.name}"
-                                                style: "font-family: 'Helvetica';font-size: 12pt;"
+                                                id: "comment"
                                             }
                                             Text {
                                                 wrappingWidth: 650
                                                 content: a.text
-                                                style: "font-family: 'Helvetica';font-size: 12pt;"
+                                                id: "comment"
                                             }
                                         ]
                                 }

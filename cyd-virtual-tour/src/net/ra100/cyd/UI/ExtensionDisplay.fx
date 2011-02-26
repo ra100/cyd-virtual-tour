@@ -52,7 +52,7 @@ public class ExtensionDisplay extends CustomNode {
         smooth: false
         fill: Color.BLACK
         wrappingWidth: 500
-        style: "font-family: 'Verdana'; font-size: 16pt"
+        id : "headerText"
     }
 
     var text = Text {
@@ -61,7 +61,7 @@ public class ExtensionDisplay extends CustomNode {
         smooth: false
         fill: Color.BLACK
         textAlignment: TextAlignment.JUSTIFY
-        style: "font-family: 'Verdana';font-size: 14pt"
+        id: "longText"
    }
 
     var imageView = ImageView {
@@ -186,30 +186,10 @@ public class ExtensionDisplay extends CustomNode {
         ext.create(textName, myScene.language);
         textHeader.content = ext.title;
         text.content = ext.content;
-        println(textHeader.content);
+//        println(textHeader.content);
         text.wrappingWidth = myScene.screenWidth-border*2-5;
         text.visible = true;
         textHeader.visible = true;
-    }
-
-
-    function createStage(){
-        Stage {
-
-        style: StageStyle.UNDECORATED
-
-        fullScreen: false
-        resizable: true
-        visible: true
-
-        scene: Scene {
-            fill: Color.TRANSPARENT // Color.TRANSPARENT | null
-            content: [
-                this
-            ]
-
-            }
-        }
     }
 
     public function getExtension():PanoExtension {

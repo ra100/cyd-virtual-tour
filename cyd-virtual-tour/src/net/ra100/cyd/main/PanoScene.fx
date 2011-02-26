@@ -37,6 +37,8 @@ public class PanoScene {
     public def SK = "sk";
     public def EN = "en";
 
+    var stylesheets : String = "{__DIR__}default.css";
+
     // loading indicator
     package var loaded: Integer = 0;
     public var block = false;
@@ -167,6 +169,7 @@ public class PanoScene {
         height: screenHeight
 
         scene: Scene  {
+            stylesheets: bind stylesheets
             fill: Color.TRANSPARENT // Color.TRANSPARENT | null
             content: [
                     fxCanvas3DComp,

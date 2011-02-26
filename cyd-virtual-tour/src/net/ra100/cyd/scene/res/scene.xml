@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scene>
-    <mainpath>http://ra100.scifi-guide.net/</mainpath>
+    <mainpath>http://brhlovce.ra100.net/sites/brhlovce/misc/data/</mainpath>
     <panorama>
-        <path>brhlovce/files/resources/model/panoA.WRL</path>
+        <path>resources/model/panoA.WRL</path>
         <shape>
             <name>pano01</name>
             <title>01</title>
-            <texture>brhlovce/files/resources/maps/pano01.jpg</texture>
+            <texture>resources/maps/pano01.jpg</texture>
             <bounds>pano01bound01</bounds>
             <connection>02</connection>
             <center>pano01center</center>
@@ -14,7 +14,7 @@
         <shape>
             <name>pano02</name>
             <title>02</title>
-            <texture>brhlovce/files/resources/maps/pano02.jpg</texture>
+            <texture>resources/maps/pano02.jpg</texture>
             <bounds>pano02bound01</bounds>
             <connection>01</connection>
             <connection>16</connection>
@@ -25,69 +25,69 @@
         <shape>
             <name>pano03</name>
             <title>03</title>
-            <texture>brhlovce/files/resources/maps/pano03.jpg</texture>
+            <texture>resources/maps/pano03.jpg</texture>
             <bounds>pano03bound01</bounds>
             <connection>07</connection>
             <center>pano03center</center>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext01.jpg">pano03ext01</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext02.jpg">pano03ext02</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext03.jpg">pano03ext03</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext04.jpg">pano03ext04</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext05.jpg">pano03ext05</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext06.jpg">pano03ext06</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext07.jpg">pano03ext07</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext08.jpg">pano03ext08</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext09.jpg">pano03ext09</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext10.jpg">pano03ext10</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext11.jpg">pano03ext11</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext12.jpg">pano03ext12</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano03ext13.jpg">pano03ext13</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext01.jpg">pano03ext01</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext02.jpg">pano03ext02</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext03.jpg">pano03ext03</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext04.jpg">pano03ext04</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext05.jpg">pano03ext05</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext06.jpg">pano03ext06</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext07.jpg">pano03ext07</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext08.jpg">pano03ext08</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext09.jpg">pano03ext09</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext10.jpg">pano03ext10</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext11.jpg">pano03ext11</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext12.jpg">pano03ext12</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano03ext13.jpg">pano03ext13</extended>
         </shape>
         <shape>
             <name>pano04</name>
             <title>04</title>
-            <texture>brhlovce/files/resources/maps/pano04.jpg</texture>
+            <texture>resources/maps/pano04.jpg</texture>
             <bounds>pano04bound01</bounds>
             <connection>08</connection>
             <center>pano04center</center>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano04ext01.jpg">pano04ext01</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano04ext02.jpg">pano04ext02</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano04ext03.jpg">pano04ext03</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano04ext04.jpg">pano04ext04</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano04ext05.jpg">pano04ext05</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano04ext06.jpg">pano04ext06</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano04ext07.jpg">pano04ext07</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano04ext01.jpg">pano04ext01</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano04ext02.jpg">pano04ext02</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano04ext03.jpg">pano04ext03</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano04ext04.jpg">pano04ext04</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano04ext05.jpg">pano04ext05</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano04ext06.jpg">pano04ext06</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano04ext07.jpg">pano04ext07</extended>
         </shape>
         <shape>
             <name>pano05</name>
             <title>05</title>
-            <texture>brhlovce/files/resources/maps/pano05.jpg</texture>
+            <texture>resources/maps/pano05.jpg</texture>
             <bounds>pano05bound01</bounds>
             <connection>11</connection>
             <center>pano05center</center>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano05ext01.jpg">pano05ext01</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano05ext01.jpg">pano05ext01</extended>
         </shape>
         <shape>
             <name>pano06</name>
             <title>06</title>
-            <texture>brhlovce/files/resources/maps/pano06.jpg</texture>
+            <texture>resources/maps/pano06.jpg</texture>
             <bounds>pano06bound01</bounds>
             <connection>10</connection>
             <center>pano06center</center>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano06ext01.jpg">pano06ext01</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano06ext02.jpg">pano06ext02</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano06ext03.jpg">pano06ext03</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano06ext04.jpg">pano06ext04</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano06ext05.jpg">pano06ext05</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano06ext06.jpg">pano06ext06</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano06ext07.jpg">pano06ext07</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano06ext08.jpg">pano06ext08</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano06ext09.jpg">pano06ext09</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano06ext01.jpg">pano06ext01</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano06ext02.jpg">pano06ext02</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano06ext03.jpg">pano06ext03</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano06ext04.jpg">pano06ext04</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano06ext05.jpg">pano06ext05</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano06ext06.jpg">pano06ext06</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano06ext07.jpg">pano06ext07</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano06ext08.jpg">pano06ext08</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano06ext09.jpg">pano06ext09</extended>
         </shape>
         <shape>
             <name>pano07</name>
             <title>07</title>
-            <texture>brhlovce/files/resources/maps/pano07.jpg</texture>
+            <texture>resources/maps/pano07.jpg</texture>
             <bounds>pano07bound01</bounds>
             <bounds>pano07bound02</bounds>
             <bounds>pano07bound03</bounds>
@@ -97,13 +97,13 @@
             <connection>09</connection>
             <connection>17</connection>
             <center>pano07center</center>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano07ext01.jpg">pano07ext01</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano07ext02.jpg">pano07ext02</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano07ext01.jpg">pano07ext01</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano07ext02.jpg">pano07ext02</extended>
         </shape>
         <shape>
             <name>pano08</name>
             <title>08</title>
-            <texture>brhlovce/files/resources/maps/pano08.jpg</texture>
+            <texture>resources/maps/pano08.jpg</texture>
             <bounds>pano08bound01</bounds>
             <bounds>pano08bound02</bounds>
             <bounds>pano08bound03</bounds>
@@ -112,15 +112,15 @@
             <connection>13</connection>
             <connection>17</connection>
             <center>pano08center</center>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano08ext01.jpg">pano08ext01</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano08ext02.jpg">pano08ext02</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano08ext03.jpg">pano08ext03</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano08ext04.jpg">pano08ext04</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano08ext01.jpg">pano08ext01</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano08ext02.jpg">pano08ext02</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano08ext03.jpg">pano08ext03</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano08ext04.jpg">pano08ext04</extended>
         </shape>
         <shape>
             <name>pano09</name>
             <title>09</title>
-            <texture>brhlovce/files/resources/maps/pano09.jpg</texture>
+            <texture>resources/maps/pano09.jpg</texture>
             <bounds>pano09bound01</bounds>
             <bounds>pano09bound02</bounds>
             <bounds>pano09bound03</bounds>
@@ -133,32 +133,32 @@
         <shape>
             <name>pano10</name>
             <title>10</title>
-            <texture>brhlovce/files/resources/maps/pano10.jpg</texture>
+            <texture>resources/maps/pano10.jpg</texture>
             <bounds>pano10bound01</bounds>
             <connection>06</connection>
             <connection>07</connection>
             <center>pano10center</center>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano10ext01.jpg">pano10ext01</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano10ext02.jpg">pano10ext02</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano10ext01.jpg">pano10ext01</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano10ext02.jpg">pano10ext02</extended>
         </shape>
         <shape>
             <name>pano11</name>
             <title>11</title>
-            <texture>brhlovce/files/resources/maps/pano11.jpg</texture>
+            <texture>resources/maps/pano11.jpg</texture>
             <bounds>pano11bound01</bounds>
             <connection>05</connection>
             <center>pano11center</center>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano11ext01.jpg">pano11ext01</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano11ext02.jpg">pano11ext02</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano11ext03.jpg">pano11ext03</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano11ext04.jpg">pano11ext04</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano11ext05.jpg">pano11ext05</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano11ext06.jpg">pano11ext06</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano11ext01.jpg">pano11ext01</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano11ext02.jpg">pano11ext02</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano11ext03.jpg">pano11ext03</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano11ext04.jpg">pano11ext04</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano11ext05.jpg">pano11ext05</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano11ext06.jpg">pano11ext06</extended>
         </shape>
         <shape>
             <name>pano13</name>
             <title>13</title>
-            <texture>brhlovce/files/resources/maps/pano13.jpg</texture>
+            <texture>resources/maps/pano13.jpg</texture>
             <bounds>pano13bound01</bounds>
             <bounds>pano13bound02</bounds>
             <bounds>pano13bound03</bounds>
@@ -170,56 +170,56 @@
         <shape>
             <name>pano14</name>
             <title>14</title>
-            <texture>brhlovce/files/resources/maps/pano14.jpg</texture>
+            <texture>resources/maps/pano14.jpg</texture>
             <bounds>pano14bound01</bounds>
             <connection>15</connection>
             <connection>02</connection>
             <center>pano14center</center>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext01.jpg">pano14ext01</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext02.jpg">pano14ext02</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext03.jpg">pano14ext03</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext04.jpg">pano14ext04</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext05.jpg">pano14ext05</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext06.jpg">pano14ext06</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext07.jpg">pano14ext07</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext08.jpg">pano14ext08</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext09.jpg">pano14ext09</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext10.jpg">pano14ext10</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext11.jpg">pano14ext11</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext12.jpg">pano14ext12</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext13.jpg">pano14ext13</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext14.jpg">pano14ext14</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano14ext15.jpg">pano14ext15</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext01.jpg">pano14ext01</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext02.jpg">pano14ext02</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext03.jpg">pano14ext03</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext04.jpg">pano14ext04</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext05.jpg">pano14ext05</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext06.jpg">pano14ext06</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext07.jpg">pano14ext07</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext08.jpg">pano14ext08</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext09.jpg">pano14ext09</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext10.jpg">pano14ext10</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext11.jpg">pano14ext11</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext12.jpg">pano14ext12</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext13.jpg">pano14ext13</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext14.jpg">pano14ext14</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano14ext15.jpg">pano14ext15</extended>
         </shape>
         <shape>
             <name>pano15</name>
             <title>15</title>
-            <texture>brhlovce/files/resources/maps/pano15.jpg</texture>
+            <texture>resources/maps/pano15.jpg</texture>
             <bounds>pano15bound01</bounds>
             <connection>14</connection>
             <center>pano15center</center>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext01.jpg">pano15ext01</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext02.jpg">pano15ext02</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext03.jpg">pano15ext03</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext04.jpg">pano15ext04</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext05.jpg">pano15ext05</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext06.jpg">pano15ext06</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext07.jpg">pano15ext07</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext08.jpg">pano15ext08</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext09.jpg">pano15ext09</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext10.jpg">pano15ext10</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext11.jpg">pano15ext11</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext12.jpg">pano15ext12</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext13.jpg">pano15ext13</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext14.jpg">pano15ext14</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext15.jpg">pano15ext15</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext16.jpg">pano15ext16</extended>
-            <extended type="image" url="http://ra100.scifi-guide.net/brhlovce/files/resources/ext/pano15ext17.jpg">pano15ext17</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext01.jpg">pano15ext01</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext02.jpg">pano15ext02</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext03.jpg">pano15ext03</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext04.jpg">pano15ext04</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext05.jpg">pano15ext05</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext06.jpg">pano15ext06</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext07.jpg">pano15ext07</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext08.jpg">pano15ext08</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext09.jpg">pano15ext09</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext10.jpg">pano15ext10</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext11.jpg">pano15ext11</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext12.jpg">pano15ext12</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext13.jpg">pano15ext13</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext14.jpg">pano15ext14</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext15.jpg">pano15ext15</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext16.jpg">pano15ext16</extended>
+            <extended type="image" url="http://brhlovce.ra100.net/sites/brhlovce/misc/data/resources/ext/pano15ext17.jpg">pano15ext17</extended>
         </shape>
         <shape>
             <name>pano16</name>
             <title>16</title>
-            <texture>brhlovce/files/resources/maps/pano16.jpg</texture>
+            <texture>resources/maps/pano16.jpg</texture>
             <bounds>pano16bound01</bounds>
             <connection>02</connection>
             <center>pano16center</center>
@@ -228,7 +228,7 @@
         <shape>
             <name>pano17</name>
             <title>17</title>
-            <texture>brhlovce/files/resources/maps/pano17.jpg</texture>
+            <texture>resources/maps/pano17.jpg</texture>
             <bounds>pano17bound01</bounds>
             <connection>07</connection>
             <connection>09</connection>

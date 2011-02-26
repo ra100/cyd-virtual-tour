@@ -18,6 +18,7 @@ import com.sun.j3d.loaders.Scene;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.zip.ZipInputStream;
 import org.jdesktop.j3d.loaders.vrml97.VrmlLoader;
 
 /**
@@ -152,7 +153,7 @@ public class Helper {
             URLConnection con = loadUrl.openConnection();
             img = ImageIO.read(con.getInputStream());
         } catch (Exception e) {
-            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE,
+            Logger.getLogger("net.ra100.cyd").log(Level.SEVERE,
                     "Chyba pri nahravani suboru: ", e);
         } finally {
             return img;
@@ -173,7 +174,7 @@ public class Helper {
             //                                con.getInputStream()));
             return con.getInputStream();
         } catch (Exception e) {
-            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE,
+            Logger.getLogger("net.ra100.cyd").log(Level.SEVERE,
                     "Chyba pri nahravani suboru: ", e);
         }
         return null;
@@ -196,12 +197,14 @@ public class Helper {
             //                                con.getInputStream()));
             img = ImageIO.read(con.getInputStream());
         } catch (Exception e) {
-            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE,
+            Logger.getLogger("net.ra100.cyd").log(Level.SEVERE,
                     "Chyba pri nahravani suboru: ", e);
             return false;
         } finally {
             TextureLoader tex = new TextureLoader(img);
             ap.setTexture(tex.getTexture());
+            Logger.getLogger("net.ra100.cyd").log(Level.INFO,
+                    "Texture loaded.");
             return true;
         }
     }
@@ -223,11 +226,11 @@ public class Helper {
             //                                con.getInputStream()));
             img = ImageIO.read(con.getInputStream());
         } catch (java.net.ConnectException ex) {
-            Logger.getLogger(Helper.class.getName()).log(Level.WARNING,
+            Logger.getLogger("net.ra100.cyd").log(Level.WARNING,
                     "Chyba pri nahravani suboru, skusam znova.");
             return loadTexture(ap,shape,path);
         } catch (Exception e) {
-            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE,
+            Logger.getLogger("net.ra100.cyd").log(Level.SEVERE,
                     "Chyba pri nahravani suboru: ", e);
         } finally {
             TextureLoader tex = new TextureLoader(img);
@@ -255,7 +258,36 @@ public class Helper {
             in.close();
             return scene;
         } catch (Exception e) {
-            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE,
+            Logger.getLogger("net.ra100.cyd").log(Level.SEVERE,
+                    "Chyba pri nahravani suboru: ", e);
+        }
+        return null;
+    }
+
+    /**
+     * Nacitanie sceny z .wrl suboru .zip (zrychlenie loadovania)
+     * @param location - umiestnenie suboru
+     * @return vrati Scene objekt
+     */
+    public static Scene loadVRMLSceneZip(String location) {
+        Scene scene = null;
+        VrmlLoader loader = new VrmlLoader();
+        try {
+            URL loadUrl = new URL(location+".zip");
+
+            URLConnection con = loadUrl.openConnection();
+            ZipInputStream zis = new ZipInputStream(con.getInputStream());
+            zis.getNextEntry();
+            InputStreamReader isr = new InputStreamReader(zis);
+
+            BufferedReader in = new BufferedReader(isr);
+            loader.setBaseUrl(loadUrl);
+            scene = loader.load(in);
+            in.close();
+            zis.close();
+            return scene;
+        } catch (Exception e) {
+            Logger.getLogger("net.ra100.cyd").log(Level.SEVERE,
                     "Chyba pri nahravani suboru: ", e);
         }
         return null;

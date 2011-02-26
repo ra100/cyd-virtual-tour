@@ -30,7 +30,6 @@ public class TopPanel extends CustomNode {
     public var hideHeight: Integer = 48;
     var active: Boolean = true;
     var label = Label {text: ""
-    style: "font-family: 'Helvetica'; font-size: 12pt"
     visible: true
     translateX: 5};
 

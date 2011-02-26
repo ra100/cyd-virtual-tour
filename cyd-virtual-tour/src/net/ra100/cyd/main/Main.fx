@@ -5,11 +5,10 @@
  */
 package net.ra100.cyd.main;
 
-
 /**
  * @author ra100
  */
-function run(  args: String[]): Void {
+function run(args: String[]): Void {    
     var scene: PanoScene = new PanoScene();
     scene.create();
 }

@@ -64,7 +64,7 @@ public class MousePickListener implements MouseListener {
         if (pickInfo != null) {
 
             Shape3D pickedShape3D = (Shape3D) pickInfo.getNode();
-            Logger.getLogger(MousePickListener.class.getName()).log(Level.INFO,
+            Logger.getLogger("net.ra100.cyd").log(Level.INFO,
                     "Picked object: {0}", pickedShape3D.getName());
             processShape(pickedShape3D);
         }

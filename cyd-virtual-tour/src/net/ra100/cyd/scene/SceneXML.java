@@ -62,7 +62,7 @@ public class SceneXML {
      * constructor
      */
     public SceneXML() {
-        Logger.getLogger(SceneXML.class.getName()).log(Level.INFO, "Loading XML.");
+        Logger.getLogger("net.ra100.cyd").log(Level.INFO, "Loading XML.");
         paths = new ArrayList<String>();
         shapes = new ArrayList<Shape>();
     }
@@ -82,6 +82,7 @@ public class SceneXML {
         while (it.hasNext()) {
             nodeResolve(it.next());
         }
+        Logger.getLogger("net.ra100.cyd").log(Level.INFO, "Files initialized.");
     }
 
     /**
@@ -133,7 +134,7 @@ public class SceneXML {
             }
 
             shapes.add(s);
-            Logger.getLogger(SceneXML.class.getName()).log(Level.INFO, "{0} {1} {2}", 
+            Logger.getLogger("net.ra100.cyd").log(Level.FINE, "{0} {1} {2}",
                     new Object[]{s.getTitle(), s.getName(), s.getTexture()});
         } else if (node.getName().matches(MAINPATH)){
             path = node.getText();
@@ -155,7 +156,7 @@ public class SceneXML {
         try {
             document = reader.read(url);
         } catch (DocumentException e) {
-            Logger.getLogger(SceneXML.class.getName()).log(Level.INFO, e.toString());
+            Logger.getLogger("net.ra100.cyd").log(Level.WARNING, e.toString());
         }
         return document;
     }

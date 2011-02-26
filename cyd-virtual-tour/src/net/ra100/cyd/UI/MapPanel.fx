@@ -36,8 +36,7 @@ public class MapPanel extends CustomNode {
     var active: Boolean = true;
     var label = Label {
         translateX: 5
-        text: " "
-        style: "font-family: 'Helvetica'; font-size: 12pt"};
+        text: " "};
     def bg = MapBG{};
 
     public var scale: Float = 1;

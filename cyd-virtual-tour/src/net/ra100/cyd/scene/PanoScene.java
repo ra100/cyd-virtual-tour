@@ -63,11 +63,11 @@ public class PanoScene {
      * constructor
      */
     public PanoScene() {
-        Logger.getLogger(PanoScene.class.getName()).log(Level.INFO, "Creating PanoScene.");
+        Logger.getLogger("net.ra100.cyd").log(Level.INFO, "Creating PanoScene.");
         try {
             createScene();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PanoScene.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger("net.ra100.cyd").log(Level.SEVERE, null, ex);
         }
     }
 
@@ -112,7 +112,7 @@ public class PanoScene {
      */
     private BranchGroup loadVrmlFile(String location) {
         BranchGroup sceneGroup = null;
-        Scene scene = Helper.loadVRMLScene(location);
+        Scene scene = Helper.loadVRMLSceneZip(location);
 
         if (scene != null) {
             // get the scene group
@@ -122,7 +122,7 @@ public class PanoScene {
             sceneGroup.setCapability(BranchGroup.ALLOW_CHILDREN_READ);
 
             Hashtable namedObjects = scene.getNamedObjects();
-            Logger.getLogger(PanoScene.class.getName()).log(Level.INFO,
+            Logger.getLogger("net.ra100.cyd").log(Level.FINE,
                     "*** Named Objects in VRML file: \n{0}", namedObjects);
 
             // recursively set the user data here
@@ -191,7 +191,7 @@ public class PanoScene {
                  *  3 center
                  */
                 int shapeSwitch = -1;
-                Logger.getLogger(PanoScene.class.getName()).log(Level.INFO,
+                Logger.getLogger("net.ra100.cyd").log(Level.FINER,
                         "Shape processing: {0}", sp.getUserData());
                 if (shape != null) {
                     shapeSwitch = 0;
@@ -241,12 +241,12 @@ public class PanoScene {
                         shape.setCenter(sp);
                         break;
                     default:
-                        Logger.getLogger(PanoScene.class.getName()).log(
-                                Level.INFO, "Nerozpoznany objekt.");
+                        Logger.getLogger("net.ra100.cyd").log(
+                                Level.FINE, "Nerozpoznany objekt.");
                         break;
                 }
 
-                Logger.getLogger(PanoScene.class.getName()).log(Level.INFO,
+                Logger.getLogger("net.ra100.cyd").log(Level.FINER,
                         "Shape processed: {0}", sp.getUserData());
 
                 PickTool.setCapabilities((Node) sg, PickTool.INTERSECT_FULL);
