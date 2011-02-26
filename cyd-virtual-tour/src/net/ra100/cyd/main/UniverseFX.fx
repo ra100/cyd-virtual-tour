@@ -10,7 +10,7 @@ import javafx.async.RunnableFuture;
 import java.util.Observer;
 import java.util.Observable;
 import net.ra100.cyd.UI.ExtensionDisplay;
-import net.ra100.cyd.UI.AsyncTask;
+import net.ra100.cyd.utils.AsyncTask;
 import java.awt.image.BufferedImage;
 import javafx.ext.swing.SwingUtils;
 import java.awt.Component;

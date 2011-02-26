@@ -2,7 +2,7 @@
  * Helper class for JavaFX async process
  */
 
-package net.ra100.cyd.UI;
+package net.ra100.cyd.utils;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

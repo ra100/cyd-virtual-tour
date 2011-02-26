@@ -4,7 +4,7 @@
  * Created on 21.3.2010, 15:19:27
  */
 
-package net.ra100.cyd.UI;
+package net.ra100.cyd.utils;
 import javafx.async.Task;
 
 /**
