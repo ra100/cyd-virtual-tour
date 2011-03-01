@@ -79,7 +79,6 @@ public class WalkBehavior extends OrbitBehaviorInterim {
                         public void run() {
                             parent.setLoaded(-1);
                             hideExtras();
-                            if (parent.isIscenter()) parent.hideCentersNo();
                             actualShape.setVisible(false);
                             actualShape = pom;
                             actualShape.setTextureLoaded(true);
@@ -87,7 +86,6 @@ public class WalkBehavior extends OrbitBehaviorInterim {
                             if (parent.isExtras()) {
                                 showExtras();
                             }
-                            if (parent.isIscenter()) parent.showCenters();
                             setViewingTransform(t3);
                             setRotationCenter(newPos);
                             parent.setLoaded(100);
@@ -121,7 +119,6 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         if (actualShape != null) {
             actualShape.setVisible(false);
             actualShape = newAct;
-            Helper.setTransparency(actualShape.getCenter().getAppearance(),1.0f);
             actualShape.setTextureLoaded(true);
             actualShape.setVisible(true);
         }

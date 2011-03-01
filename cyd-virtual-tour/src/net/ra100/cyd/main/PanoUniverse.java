@@ -300,40 +300,6 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         enviBranch.addChild(bg);
     }
 
-    public void showCenters() {
-        setCentersTransparency(0.5f);
-        walkBeh.getActualShape().setTransparency(0.8f);
-        iscenter = true;
-    }
-
-    public void hideCenters() {
-        setCentersTransparency(1.0f);
-        walkBeh.getActualShape().setTransparency(0.0f);
-        iscenter = false;
-    }
-
-    public void hideCentersNo() {
-        setCentersTransparency(1.0f);
-        walkBeh.getActualShape().setTransparency(0.0f);
-    }
-
-    protected void setCentersTransparency(float trans) {
-        Iterator<Shape3D> it = centers.iterator();
-        while (it.hasNext()) {
-            Shape3D sp = it.next();
-            Helper.setTransparency(sp.getAppearance(), trans);
-            if (trans >= 1.0f) {
-                sp.setPickable(false);
-            } else {
-                if (!sp.equals(walkBeh.getActualShape().getCenter())) {
-                    sp.setPickable(true);
-                } else {
-                    Helper.setTransparency(sp.getAppearance(), 1.0f);
-                }
-            }
-        }
-    }
-
     public void showExtras() {
         if (!extras) {
             setExtraTransparency(0.8f);

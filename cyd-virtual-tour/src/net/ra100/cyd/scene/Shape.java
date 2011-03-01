@@ -50,16 +50,6 @@ public class Shape {
     private boolean textureLoaded = false;
 
     /**
-     * jedinecne meno objektu, ktory je v strede panoramy
-     */
-    private String centerName = null;
-
-    /**
-     * objek sceny v strede panoramy
-     */
-    private Shape3D center = null;
-
-    /**
      * suradnice stredu panoramy na minimape, x,y,z
      * TODO
      */
@@ -185,12 +175,8 @@ public class Shape {
         if (visible) {
             setTransparency(0.0f);
             setTextureLoaded(true);
-            if (center != null) {
-            center.setPickable(false);}
         } else {
             setTransparency(1.0f);
-            if (center != null) {
-            center.setPickable(true);}
         }
         this.visible = visible;
     }
@@ -290,6 +276,13 @@ public class Shape {
      */
     public void setPano(Shape3D pano) {
         this.pano = pano;
+        Transform3D t = new Transform3D();
+        pano.getLocalToVworld(t);
+        Vector3f vec = new Vector3f();
+        t.get(vec);
+        this.mapcoordinates[0] = vec.getX();
+        this.mapcoordinates[1] = vec.getY();
+        this.mapcoordinates[2] = vec.getZ();
     }
 
     /**
@@ -314,45 +307,6 @@ public class Shape {
      */
     public void addConnectionName(String cname){
         connectionNames.add(cname);
-    }
-
-    /**
-     * vrati objekt sceny pre stred panoramy
-     * @return
-     */
-    public Shape3D getCenter() {
-        return center;
-    }
-
-    /**
-     * nastavi objekt sceny pre stred
-     * @param center
-     */
-    public void setCenter(Shape3D center) {
-        this.center = center;
-        Transform3D t = new Transform3D();
-        center.getLocalToVworld(t);
-        Vector3f vec = new Vector3f();
-        t.get(vec);
-        this.mapcoordinates[0] = vec.getX();
-        this.mapcoordinates[1] = vec.getY();
-        this.mapcoordinates[2] = vec.getZ();
-    }
-
-    /**
-     * vrati nazov stredu
-     * @return
-     */
-    public String getCenterName() {
-        return centerName;
-    }
-
-    /**
-     * nastavi meno stredu
-     * @param centerName
-     */
-    public void setCenterName(String centerName) {
-        this.centerName = centerName;
     }
 
     /**

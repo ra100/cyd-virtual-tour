@@ -204,12 +204,7 @@ public class PanoScene {
                         shape = Helper.findExtensionShape(sceneXml, sp.getName());
                         if (shape != null) {
                             shapeSwitch = 2;
-                        } else {
-                            shape = Helper.findCenterShape(sceneXml, sp.getName());
-                            if (shape != null) {
-                                shapeSwitch = 3;
-                            }
-                        }
+                        } 
                     }
                 }
 
@@ -236,11 +231,6 @@ public class PanoScene {
                         PanoExtension pe = findExt(shape, sp.getName());
                         pe.setShape(sp);
                         break;
-                    case 3:
-                        Helper.setTransparency(ap, 1.0f);
-                        sp.setPickable(false);
-                        shape.setCenter(sp);
-                        break;
                     default:
                         Logger.getLogger("net.ra100.cyd").log(
                                 Level.FINE, "Nerozpoznany objekt.");
@@ -265,11 +255,6 @@ public class PanoScene {
         ArrayList<Shape3D> shp = new ArrayList<Shape3D>();
         while (it.hasNext()) {
             Shape sp = it.next();
-//            if (sp.getTitle().matches("03")) {
-//                sp.setVisible(true);
-//                sp.getCenter().setPickable(false);
-//            }
-            shp.add(sp.getCenter());
             Iterator<String> cons = sp.getConnectionNames().iterator();
             while (cons.hasNext()) {
                 Shape pom = Helper.findShapeByTitle(sceneXml, cons.next());

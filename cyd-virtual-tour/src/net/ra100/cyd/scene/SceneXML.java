@@ -30,7 +30,6 @@ public class SceneXML {
     public final static String MAINPATH = "mainpath";
     public final static String BOUNDS = "bounds";
     public final static String CONNECTION = "connection";
-    public final static String CENTER = "center";
     public final static String EXTENDED = "extended";
     public final static String TYPE = "type";
     public final static String IMAGE = "image";
@@ -103,7 +102,6 @@ public class SceneXML {
             s.setName(node.element(NAME).getText());
             s.setTexture(node.element(TEXTURE).getText());
             s.setTitle(node.element(TITLE).getText());
-            s.setCenterName(node.element(CENTER).getText());
             if (node.element(FIRST) != null) {
             String first = node.element(FIRST).getText();
                 if (first.equals("1")) {

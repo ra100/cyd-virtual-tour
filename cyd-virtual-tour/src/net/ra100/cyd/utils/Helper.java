@@ -128,24 +128,6 @@ public class Helper {
     }
 
     /**
-     * najdenie, ktorej panorame patri stred
-     * @param sx - zoznam objektov
-     * @param name - hladny nazov
-     * @return - panorama
-     */
-    public static Shape findCenterShape(SceneXML sx, String name) {
-        Iterator<Shape> shi = sx.getShapes().iterator();
-        while (shi.hasNext()) {
-            Shape sh = shi.next();
-            String is = sh.getCenterName();
-            if (is.matches(name)) {
-                return sh;
-            }
-        }
-        return null;
-    }
-
-    /**
      * Nacitanie obrazku, ktory bude textura pre extension objekty
      * @return BufferedImage
      */

@@ -14,6 +14,7 @@
         <shape>
             <name>pano02</name>
             <title>02</title>
+            <first>1</first>
             <texture>resources/maps/pano02.jpg</texture>
             <bounds>pano02bound01</bounds>
             <connection>01</connection>
@@ -25,7 +26,6 @@
         <shape>
             <name>pano03</name>
             <title>03</title>
-            <first>1</first>
             <texture>resources/maps/pano03.jpg</texture>
             <bounds>pano03bound01</bounds>
             <connection>07</connection>
