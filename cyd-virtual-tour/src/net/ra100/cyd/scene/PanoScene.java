@@ -4,6 +4,7 @@
  */
 package net.ra100.cyd.scene;
 
+import net.ra100.cyd.utils.Helper;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.sun.j3d.loaders.Scene;
@@ -264,10 +265,10 @@ public class PanoScene {
         ArrayList<Shape3D> shp = new ArrayList<Shape3D>();
         while (it.hasNext()) {
             Shape sp = it.next();
-            if (sp.getTitle().matches("01")) {
-                sp.setVisible(true);
+//            if (sp.getTitle().matches("03")) {
+//                sp.setVisible(true);
 //                sp.getCenter().setPickable(false);
-            }
+//            }
             shp.add(sp.getCenter());
             Iterator<String> cons = sp.getConnectionNames().iterator();
             while (cons.hasNext()) {

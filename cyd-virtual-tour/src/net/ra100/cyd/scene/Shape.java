@@ -1,5 +1,6 @@
 package net.ra100.cyd.scene;
 
+import net.ra100.cyd.utils.Helper;
 import java.util.ArrayList;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.Bounds;
@@ -17,6 +18,11 @@ public class Shape {
      * meno objektu
      */
     private String name = null;
+
+    /**
+     * nastavenie vychodzej pozicie
+     */
+    private Boolean first = false;
 
     /**
      * cesta k texture
@@ -388,5 +394,23 @@ public class Shape {
     public void setMapcoordinates(float[] mapcoordinates) {
         this.mapcoordinates = mapcoordinates;
     }
+
+    /**
+     * getter
+     * @return
+     */
+    public Boolean getFirst() {
+        return first;
+    }
+
+    /**
+     * setter
+     * @param first
+     */
+    public void setFirst(Boolean first) {
+        this.first = first;
+    }
+
+
 
 }

@@ -88,6 +88,7 @@ public class MapPoint extends CustomNode {
     }
 
     protected function setFirst() {
+        panel.getScene().changeShape(shape);
         active = true;
         this.effect = activeEffect;
     }

@@ -37,6 +37,7 @@ public class SceneXML {
     public final static String GUESTBOOK = "guestbook";
     public final static String TEXT = "text";
     public final static String URL = "url";
+    public final static String FIRST = "first";
 
     /**
      * cety k texturam
@@ -103,6 +104,13 @@ public class SceneXML {
             s.setTexture(node.element(TEXTURE).getText());
             s.setTitle(node.element(TITLE).getText());
             s.setCenterName(node.element(CENTER).getText());
+            if (node.element(FIRST) != null) {
+            String first = node.element(FIRST).getText();
+                if (first.equals("1")) {
+                    s.setFirst(true);
+                    Logger.getLogger("net.ra100.cyd").log(Level.FINE, "First set.");
+                }
+            }
 
             Iterator<Element> bounds = node.elements(BOUNDS).iterator();
             while (bounds.hasNext()){

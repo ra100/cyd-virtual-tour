@@ -14,7 +14,7 @@ import javax.media.j3d.View;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3d;
 import net.ra100.cyd.main.PanoUniverse;
-import net.ra100.cyd.scene.Helper;
+import net.ra100.cyd.utils.Helper;
 import net.ra100.cyd.scene.PanoExtension;
 import net.ra100.cyd.scene.Shape;
 
@@ -118,11 +118,13 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         newPos = new Point3d(vec.x, vec.y, vec.z);
         
         hideExtras();
-        actualShape.setVisible(false);
-        actualShape = newAct;
-        Helper.setTransparency(actualShape.getCenter().getAppearance(),1.0f);
-        actualShape.setTextureLoaded(true);
-        actualShape.setVisible(true);
+        if (actualShape != null) {
+            actualShape.setVisible(false);
+            actualShape = newAct;
+            Helper.setTransparency(actualShape.getCenter().getAppearance(),1.0f);
+            actualShape.setTextureLoaded(true);
+            actualShape.setVisible(true);
+        }
         if (parent.isExtras()) {
             showExtras();
         }

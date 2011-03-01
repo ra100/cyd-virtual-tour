@@ -8,7 +8,7 @@ package net.ra100.cyd.UI;
 
 import javafx.data.pull.PullParser;
 import javafx.data.pull.Event;
-import net.ra100.cyd.scene.Helper;
+import net.ra100.cyd.utils.Helper;
 
 /**
  * @author ra100

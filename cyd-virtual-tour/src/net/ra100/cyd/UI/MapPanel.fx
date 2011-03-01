@@ -106,11 +106,14 @@ public class MapPanel extends CustomNode {
        xoffset = ((-1)*minx);
        yoffset = ((-1)*miny);
 
-       activePano = mapPanos[0];
-       activePano.setFirst();
        for (a in mapPanos) {
            a.setShape();
            insert a into map.content;
+           if (a.shape.getFirst()) {
+               activePano = a;
+               activePano.setFirst();
+           }
+
        }
 
 

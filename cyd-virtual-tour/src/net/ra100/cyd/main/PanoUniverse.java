@@ -44,7 +44,7 @@ import javafx.async.RunnableFuture;
 import javax.media.j3d.Shape3D;
 
 import net.ra100.cyd.navigation.*;
-import net.ra100.cyd.scene.Helper;
+import net.ra100.cyd.utils.Helper;
 import net.ra100.cyd.scene.PanoExtension;
 import net.ra100.cyd.scene.Shape;
 

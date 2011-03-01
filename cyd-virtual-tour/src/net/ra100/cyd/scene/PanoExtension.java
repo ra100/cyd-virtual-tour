@@ -5,6 +5,7 @@
 
 package net.ra100.cyd.scene;
 
+import net.ra100.cyd.utils.Helper;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.Shape3D;
 import javafx.scene.image.Image;
