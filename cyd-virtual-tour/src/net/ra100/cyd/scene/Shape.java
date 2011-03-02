@@ -15,7 +15,7 @@ import javax.vecmath.Vector3f;
 public class Shape {
 
     /**
-     * meno objektu
+     * meno objektu v 3d scene
      */
     private String name = null;
 
@@ -31,6 +31,7 @@ public class Shape {
 
     /**
      * skrateny nazov, pouziva sa na vytvorenie prepojeni medzi panoramami, susednosti
+     * nazov, ktory je v databaze
      */
     private String title = null;
 

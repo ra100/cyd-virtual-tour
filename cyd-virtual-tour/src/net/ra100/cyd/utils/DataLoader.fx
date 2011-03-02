@@ -4,6 +4,9 @@ import javafx.data.pull.PullParser;
 import javafx.data.pull.Event;
 import net.ra100.cyd.main.PanoScene;
 import java.lang.StringBuffer;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.io.IOException;
 
 /**
  * nacitavanie udajov zo stranky/databazy
@@ -37,28 +40,57 @@ public class DataLoader {
         }
     }
 
-    public function create(){
+    public function load(reload: Integer): Boolean{
         var language = scene.language;
         var id = scene.id;
         var token = scene.token;
         var vals: StringBuffer = new StringBuffer();
         var i = 0;
+        input = safeStrings(input);
         for (val in input) {
             i++;
-            val.replace({" ";"&"; "?"; "%"; "="; "'"; '"'; '\\'}, {"%20";"%26";"%3F";"%25";"%3D";"%27";"%22";"%5C"});
-            vals.append("&value{i}={val}")  
+            vals.append("&value{i}={val}");
         }
         vals.append("&count={i}");
 
         url = "{baseURL}?action={action}&language={language}&id={id}&token={token}{vals.toString()}";
+        Logger.getLogger("net.ra100.cyd").log(Level.INFO, url);
 
         var uis = Helper.urlInputStream(url);
-        if (uis == null) {
-            // TODO chybova hlaska
-            // vyskoci okno, moznost refresh
+        if (uis == null and reload < 2) {
+            //automaticky reload ak zlyha pripojenie
+            return load(reload+1);
         } else {
             parser.input = uis;
             parser.parse();
+            try {
+                uis.close();
+            } catch(ex : IOException) {
+                ex.printStackTrace();
+            }
+            return true;
         }
     }
+
+    /**
+    * zmeni specialne znaky aby nerobili problemy v URL
+    * input: String[] - vstupne pole retazcov
+    * return String[]
+    */
+    public function safeStrings(input: String[]): String[] {
+        for (val in input) {
+            val.replace({" ";"&"; "?"; "%"; "="; "'"; '"'; '\\'}, {"%20";"%26";"%3F";"%25";"%3D";"%27";"%22";"%5C"});
+        }
+        return input;
+    }
+
+
+    public function getValueByKey(key: String): String {
+        var out: String = null;
+        for (a in values) {
+            if (a.key == key) return a.value;
+        }
+        return out;
+    }
+
 }

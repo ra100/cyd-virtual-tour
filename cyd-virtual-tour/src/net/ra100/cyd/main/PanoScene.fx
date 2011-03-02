@@ -27,6 +27,9 @@ import javafx.animation.transition.ScaleTransition;
 import javafx.animation.Timeline;
 import net.ra100.cyd.UI.MapPanel;
 import net.ra100.cyd.scene.Shape;
+import net.ra100.cyd.utils.DataLoader;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  * @author ra100
@@ -52,6 +55,8 @@ public class PanoScene {
     /* security identifikatory pre zapis do DB a identifikaciu usera */
     public-read var id: Integer;
     public-read var token: String;
+
+    public var dataloader: DataLoader = DataLoader {scene: this};
 
     def progressIndicator: ProgressIndicator = ProgressIndicator {
         progress: -1
@@ -250,17 +255,23 @@ public class PanoScene {
         language = lang;
     }
 
+    /**
+    * nacitanie ID z databazy, vytvorenie paru token +id, prepojenie na panoramu
+    */
     function userInit() {
         var random = new java.util.Random();
-        token = Float.toHexString(random.nextFloat());
-        /*TODO DB and other stuff*/
-        id = 1;
+        token = Float.toString(random.nextFloat());
+        dataloader.action = 'init';
+        dataloader.input = [mapPanel.activePano.getTitle()];
+        dataloader.load(0);
+        id = Integer.parseInt(dataloader.getValueByKey('id'));
+        Logger.getLogger("net.ra100.cyd").log(Level.INFO, "My ID: {id}");
     }
-
 
     /* inicializacia po nacitani sceny */
     public function firstInit() {
         mapPanel.initMap();
+        userInit();
     }
 
     /* zmeni panoramu podla instancie Shape */

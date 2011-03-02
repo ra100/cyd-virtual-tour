@@ -70,8 +70,6 @@ public class MapPoint extends CustomNode {
         y = y * panel.scale;
         size = 1;
 
-//        point.layoutX = x;
-//        point.layoutY = y;
         point.translateX = x;
         point.translateY = y;
         point.scaleX = size;
@@ -83,10 +81,23 @@ public class MapPoint extends CustomNode {
         panel.getScene().changeShape(shape);
         active = true;
         this.effect = activeEffect;
+        //zapis pri odchode
+        panel.getScene().dataloader.action = 'leave';
+        panel.getScene().dataloader.input = [this.shape.getTitle()];
+        panel.getScene().dataloader.load(0);
+        //----
         panel.getActive().leave();
         panel.setActive(this);
+        //zapis po nacitani
+        panel.getScene().dataloader.action = 'enter';
+        panel.getScene().dataloader.input = [this.shape.getTitle()];
+        panel.getScene().dataloader.load(0);
+        //---
     }
 
+    /**
+    * nastavi vychodziu panoramu
+    */
     protected function setFirst() {
         panel.getScene().changeShape(shape);
         active = true;
@@ -111,5 +122,10 @@ public class MapPoint extends CustomNode {
         point.scaleY = 1.0;
         label.visible = false;
     }
+
+    public function getTitle(): String {
+        return shape.getTitle();
+    }
+
 
 }

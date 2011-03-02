@@ -161,8 +161,8 @@ public class Helper {
         } catch (Exception e) {
             Logger.getLogger("net.ra100.cyd").log(Level.SEVERE,
                     "Chyba pri nahravani suboru: ", e);
+            return null;
         }
-        return null;
     }
 
     /**
