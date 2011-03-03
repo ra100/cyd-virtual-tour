@@ -44,7 +44,6 @@ import javafx.async.RunnableFuture;
 import javax.media.j3d.Shape3D;
 
 import net.ra100.cyd.navigation.*;
-import net.ra100.cyd.utils.Helper;
 import net.ra100.cyd.scene.PanoExtension;
 import net.ra100.cyd.scene.Shape;
 
@@ -75,6 +74,7 @@ public class PanoUniverse extends Observable implements RunnableFuture {
     public MousePickListener mouseAdapter = null;
     private Vector3d vector = null;
     private Shape shape = null;
+    private Boolean updateMap = false;
 
     PanoUniverse() {
         // Transparent 3D scene background
@@ -410,7 +410,7 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         return sh;
     }
 
-    public void changePano(Shape sh) {
+    public void changePanoFX(Shape sh) {
         setLoaded(-1);
         Transform3D t3 = new Transform3D();
         sh.getPano().getLocalToVworld(t3);
@@ -435,4 +435,18 @@ public class PanoUniverse extends Observable implements RunnableFuture {
     public Shape getShape() {
         return shape;
     }
+
+    public void setShape(Shape shape) {
+        this.shape = shape;
+    }
+    
+    public Boolean getUpdateMap() {
+        return updateMap;
+    }
+
+    public void setUpdateMap(Boolean updateMap) {
+        this.updateMap = updateMap;
+    }
+
+    
 }

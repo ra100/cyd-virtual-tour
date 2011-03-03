@@ -68,7 +68,7 @@ package class UniverseFX extends JavaTaskBase, Observer {
             };
 
     package function changeShape(sp: Shape) {
-        universe.changePano(sp);
+        universe.changePanoFX(sp);
     }
 
     package function showExtras() {
@@ -106,6 +106,12 @@ package class UniverseFX extends JavaTaskBase, Observer {
     override public function update(arg0: Observable, arg1: Object): Void {
         FX.deferAction(
         function (): Void {
+            if (universe.getUpdateMap()) {
+                scene.updateMap();
+                universe.setUpdateMap(false);
+                return;
+            }
+
             if (not initialized) {
                 if (universe.isInitialized()) {
                     initialized = true;

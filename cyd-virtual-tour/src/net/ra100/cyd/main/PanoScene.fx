@@ -285,7 +285,7 @@ public class PanoScene {
     }
 
     public function updateMap(): Void {
-        mapPanel.changePano(universeFX.universe.getShape())
+        mapPanel.changePano(universeFX.universe.getShape());
     }
 
 }

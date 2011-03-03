@@ -77,6 +77,8 @@ public class WalkBehavior extends OrbitBehaviorInterim {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            parent.setUpdateMap(true);
+                            parent.setShape(pom);
                             parent.setLoaded(-1);
                             hideExtras();
                             actualShape.setVisible(false);
@@ -89,7 +91,7 @@ public class WalkBehavior extends OrbitBehaviorInterim {
                             setViewingTransform(t3);
                             setRotationCenter(newPos);
                             parent.setLoaded(100);
-                                            }
+                        }
                     }).start();
                     return true;
                 }

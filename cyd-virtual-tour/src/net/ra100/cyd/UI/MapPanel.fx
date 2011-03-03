@@ -153,13 +153,10 @@ public class MapPanel extends CustomNode {
     }
 
     public function changePano(sp: Shape): Void {
-        var it = mapPanos.iterator();
-        var found = false;
-        while (it.hasNext() and  not found) {
-            var mp: MapPoint = it.next();
+        for (mp in mapPanos) {
             if (mp.shape.getTitle() == sp.getTitle()) {
-                if (mp.shape.getTitle() != activePano.shape.getTitle()) mp.setActive();
-                found = true;
+                mp.changeActive();
+                return;
             }
         }
     }
