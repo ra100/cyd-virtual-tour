@@ -10,16 +10,11 @@ import net.ra100.cyd.main.PanoScene;
 import javafx.scene.control.Label;
 import net.ra100.cyd.UI.res.MapBG;
 import javafx.scene.Node;
-import javafx.geometry.VPos;
 import javafx.scene.layout.Stack;
 import javafx.animation.transition.TranslateTransition;
-import javafx.scene.Group;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import net.ra100.cyd.scene.Shape;
-import javafx.scene.layout.Panel;
-import javafx.scene.layout.Flow;
-import javafx.scene.shape.Line;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -149,16 +144,24 @@ public class MapPanel extends CustomNode {
         }
     }
 
-    public function getScene(): PanoScene {
-        return myScene;
-    }
-
     public function setActive(mp: MapPoint) {
         activePano = mp;
     }
 
     public function getActive() : MapPoint {
         return activePano;
+    }
+
+    public function changePano(sp: Shape): Void {
+        var it = mapPanos.iterator();
+        var found = false;
+        while (it.hasNext() and  not found) {
+            var mp: MapPoint = it.next();
+            if (mp.shape.getTitle() == sp.getTitle()) {
+                if (mp.shape.getTitle() != activePano.shape.getTitle()) mp.setActive();
+                found = true;
+            }
+        }
     }
 
 

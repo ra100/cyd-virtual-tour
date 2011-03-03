@@ -428,5 +428,11 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         }).start();
     }
 
-
+    /**
+     * getter
+     * @return
+     */
+    public Shape getShape() {
+        return shape;
+    }
 }

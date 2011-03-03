@@ -17,6 +17,7 @@ import javafx.scene.effect.ColorAdjust;
 import net.ra100.cyd.UI.res.Point;
 import javafx.scene.layout.Stack;
 import javafx.scene.layout.Panel;
+import net.ra100.cyd.utils.DataElement;
 
 /**
  * @author ra100
@@ -76,30 +77,48 @@ public class MapPoint extends CustomNode {
         point.scaleY = size;
     }
 
-
+    /**
+     nastavenie aktivnej panoramy a zmena pozicie
+    */
     protected function setActive(): Void {
-        panel.getScene().changeShape(shape);
+        panel.myScene.dataloader.action = 'leave';
+        panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
+        panel.myScene.dataloader.load(0);
+        panel.myScene.changeShape(shape);
         active = true;
         this.effect = activeEffect;
-        //zapis pri odchode
-        panel.getScene().dataloader.action = 'leave';
-        panel.getScene().dataloader.input = [this.shape.getTitle()];
-        panel.getScene().dataloader.load(0);
-        //----
         panel.getActive().leave();
         panel.setActive(this);
         //zapis po nacitani
-        panel.getScene().dataloader.action = 'enter';
-        panel.getScene().dataloader.input = [this.shape.getTitle()];
-        panel.getScene().dataloader.load(0);
+        panel.myScene.dataloader.action = 'enter';
+        panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
+        panel.myScene.dataloader.load(0);
         //---
     }
+
+    /**
+    zmeni obrazok na mape, ked sa meni panorama pohybom sipkami
+    */
+    protected function changeActive(): Void {
+        panel.myScene.dataloader.action = 'leave';
+        panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
+        panel.myScene.dataloader.load(0);
+        active = true;
+        this.effect = activeEffect;
+        panel.getActive().leave();
+        panel.setActive(this);
+        //zapis po nacitani
+        panel.myScene.dataloader.action = 'enter';
+        panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
+        panel.myScene.dataloader.load(0);
+    }
+
 
     /**
     * nastavi vychodziu panoramu
     */
     protected function setFirst() {
-        panel.getScene().changeShape(shape);
+        panel.myScene.changeShape(shape);
         active = true;
         this.effect = activeEffect;
     }

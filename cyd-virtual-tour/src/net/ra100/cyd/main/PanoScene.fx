@@ -30,6 +30,7 @@ import net.ra100.cyd.scene.Shape;
 import net.ra100.cyd.utils.DataLoader;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import net.ra100.cyd.utils.DataElement;
 
 /**
  * @author ra100
@@ -262,7 +263,7 @@ public class PanoScene {
         var random = new java.util.Random();
         token = Float.toString(random.nextFloat());
         dataloader.action = 'init';
-        dataloader.input = [mapPanel.activePano.getTitle()];
+        dataloader.input = [DataElement {value: mapPanel.activePano.getTitle(), key: "panoname"}];
         dataloader.load(0);
         id = Integer.parseInt(dataloader.getValueByKey('id'));
         Logger.getLogger("net.ra100.cyd").log(Level.INFO, "My ID: {id}");
@@ -282,4 +283,9 @@ public class PanoScene {
     public function getShapes(): Shape[] {
         return universeFX.universe.getShapesArray();
     }
+
+    public function updateMap(): Void {
+        mapPanel.changePano(universeFX.universe.getShape())
+    }
+
 }

@@ -67,17 +67,9 @@ package class UniverseFX extends JavaTaskBase, Observer {
                 initUniverse(universe);
             };
 
-//    package function showCenters() {
-//        universe.showCenters();
-//            }
     package function changeShape(sp: Shape) {
         universe.changePano(sp);
     }
-
-//
-//    package function hideCenters() {
-//        universe.hideCenters();
-//            }
 
     package function showExtras() {
         universe.showExtras();
@@ -89,7 +81,7 @@ package class UniverseFX extends JavaTaskBase, Observer {
         universe.setExtras(false);
             }
 
-    package var move: Boolean = false;
+//    package var move: Boolean = false;
 
     /**
     * smer

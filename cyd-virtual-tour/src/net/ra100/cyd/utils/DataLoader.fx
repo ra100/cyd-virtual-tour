@@ -22,7 +22,7 @@ public class DataLoader {
     public var values: DataElement[];
     public var scene: PanoScene;
     public var action: String;
-    public var input: String[];
+    public var input: DataElement[];
 
     var url : String;
 
@@ -49,7 +49,7 @@ public class DataLoader {
         input = safeStrings(input);
         for (val in input) {
             i++;
-            vals.append("&value{i}={val}");
+            vals.append("&{val.key}={val.value}");
         }
         vals.append("&count={i}");
 
@@ -77,9 +77,9 @@ public class DataLoader {
     * input: String[] - vstupne pole retazcov
     * return String[]
     */
-    public function safeStrings(input: String[]): String[] {
+    public function safeStrings(input: DataElement[]): DataElement[] {
         for (val in input) {
-            val.replace({" ";"&"; "?"; "%"; "="; "'"; '"'; '\\'}, {"%20";"%26";"%3F";"%25";"%3D";"%27";"%22";"%5C"});
+            val.value.replace({" ";"&"; "?"; "%"; "="; "'"; '"'; '\\'}, {"%20";"%26";"%3F";"%25";"%3D";"%27";"%22";"%5C"});
         }
         return input;
     }
