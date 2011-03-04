@@ -7,6 +7,7 @@ import java.lang.StringBuffer;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * nacitavanie udajov zo stranky/databazy
@@ -55,26 +56,26 @@ public class DataLoader {
 
         url = "{baseURL}?action={action}&language={language}&id={id}&token={token}{vals.toString()}";
         Logger.getLogger("net.ra100.cyd").log(Level.INFO, url);
+        var uis: InputStream;
 
-        var uis = Helper.urlInputStream(url);
-        if (uis == null and reload < 2) {
-            //automaticky reload ak zlyha pripojenie
-            scene.messagePanel.label.content = ##"Connection Error";
-            scene.messagePanel.refresh.action = function(): Void {
-                load(reload+1);
-            }
-            scene.messagePanel.visible = true;
-            return false;
-        } else {
+        try {
+            uis = Helper.urlInputStreamEx(url);
             parser.input = uis;
             parser.parse();
-            try {
-                uis.close();
-            } catch(ex : IOException) {
-                ex.printStackTrace();
+        } catch (e) {
+            if (uis == null and reload < 2) {
+                //automaticky reload ak zlyha pripojenie
+
+                scene.messagePanel.label.content = ##"Connection Error";
+                scene.messagePanel.refresh.action = function(): Void {
+                    load(reload+1);
+                }
+                scene.messagePanel.visible = true;
             }
-            return true;
+        } finally {
+            uis.close();
         }
+        return true;
     }
 
     /**

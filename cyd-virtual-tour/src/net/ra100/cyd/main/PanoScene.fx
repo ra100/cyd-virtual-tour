@@ -298,8 +298,18 @@ public class PanoScene {
         return universeFX.universe.getShapesArray();
     }
 
+    /*
+    * updatovanie pozicie na mapke a v databaze
+    */
     public function updateMap(): Void {
         mapPanel.changePano(universeFX.universe.getShape());
     }
+
+    public function exit(): Void {
+        dataloader.action = 'exit';
+        dataloader.input = [DataElement {value: "", key: ""}];
+        dataloader.load(0);
+    }
+
 
 }

@@ -6,6 +6,7 @@ package net.ra100.cyd.utils;
 
 import com.sun.j3d.utils.image.TextureLoader;
 import java.awt.image.BufferedImage;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Iterator;
@@ -163,6 +164,17 @@ public class Helper {
                     "Chyba pri nahravani suboru: ", e);
             return null;
         }
+    }
+
+        /**
+     * pomocny objekt, vytori InputStream z URL ak nastane chyba hodi exception
+     * @param url
+     * @return InputStream
+     */
+    public static InputStream urlInputStreamEx(String url) throws Exception {
+        URL loadUrl = new URL(url);
+        URLConnection con = loadUrl.openConnection();
+        return con.getInputStream();
     }
 
     /**

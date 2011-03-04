@@ -13,9 +13,7 @@ import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import net.ra100.cyd.UI.res.*;
 import java.lang.System;
-import javafx.io.http.HttpRequest;
 import net.ra100.cyd.main.PanoScene;
-import java.io.IOException;
 import java.lang.Integer;
 
 /**
@@ -35,6 +33,7 @@ public class RightPanel extends CustomNode {
                     level: 1
                 }
                 action: function (): Void {
+                    myScene.exit();
                     FX.exit();
                 }
             };
@@ -42,18 +41,6 @@ public class RightPanel extends CustomNode {
     def exitMenuBG = ExitMenuBG { };
 
     var startTime : Long;
-
-    var request: HttpRequest = HttpRequest {
-        method: HttpRequest.GET
-
-        onInput: function(input: java.io.InputStream) {
-            try {
-                input.close();
-            } catch(ex : IOException) {
-                ex.printStackTrace();
-            }
-        }
-    }
 
     public override function create(): Node {
         startTime = System.currentTimeMillis();
@@ -101,18 +88,4 @@ public class RightPanel extends CustomNode {
             active = false;
         }
     }
-
-    function writeVisit(){
-//        var duration  = (System.currentTimeMillis()-startTime)/1000;
-//        var trace = myScene.getTrace();
-//        request.location = "http://ra100.scifi-guide.net/brhlovce/scripts/visit.php?duration={duration}&trace={trace}";
-//        try {
-//            request.start();
-//        } catch( ex: Exception) {
-//            println("Chyba http poziadavky");
-//        }
-
-    }
-
-
 }
