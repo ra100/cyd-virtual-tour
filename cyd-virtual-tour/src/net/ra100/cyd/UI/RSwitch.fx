@@ -21,14 +21,14 @@ public class RSwitch extends CustomNode {
 
     public override function create(): Node {
         return Group {
-                    content: [
-                        primary,
-                        secondary,
-                    ]
-                    onMouseClicked: function (e: MouseEvent): Void {
-                        change();
-                    }
-                };
+            content: [
+                primary,
+                secondary,
+            ]
+            onMouseClicked: function (e: MouseEvent): Void {
+                change();
+            }
+        };
     }
 
     public function change() {

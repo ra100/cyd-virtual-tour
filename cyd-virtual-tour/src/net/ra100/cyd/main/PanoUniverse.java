@@ -422,7 +422,7 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         new Thread(new Runnable() {
 
             @Override
-            public void run() {             
+            public void run() {
                 walkBeh.moveCamera(vector, shape);
                 setLoaded(100);
             }

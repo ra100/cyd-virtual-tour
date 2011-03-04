@@ -209,7 +209,7 @@
             <texture>resources/maps/pano16.jpg</texture>
             <bounds>pano16bound01</bounds>
             <connection>02</connection>
-            <extended type="guestbook">pano16ext01</extended>
+            <extended>pano16ext01</extended>
         </shape>
         <shape>
             <name>pano17</name>

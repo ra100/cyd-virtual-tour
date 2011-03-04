@@ -106,13 +106,14 @@ public class MapPanel extends CustomNode {
            insert a into map.content;
            if (a.shape.getFirst()) {
                activePano = a;
-               activePano.setFirst();
            }
-
        }
-
-
     }
+
+    public function loadFirst(): Void {
+        activePano.setFirst();
+    }
+
 
     public function show() {
         active = true;

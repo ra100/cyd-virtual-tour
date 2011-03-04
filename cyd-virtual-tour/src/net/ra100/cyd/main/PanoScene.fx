@@ -33,6 +33,8 @@ import java.util.logging.Level;
 import net.ra100.cyd.utils.DataElement;
 import net.ra100.cyd.UI.MessagePanel;
 import javafx.scene.Group;
+import net.ra100.cyd.UI.ItemType;
+import javafx.scene.image.Image;
 
 /**
  * @author ra100
@@ -107,6 +109,11 @@ public class PanoScene {
         disable: bind extensionDisplay.visible;
         myScene: this;
     }
+
+    /**
+    zoznam typov itemov
+    */
+    public var itemtypes: ItemType[];
 
     /**
     * panel na chybove hlasky
@@ -287,6 +294,26 @@ public class PanoScene {
     public function firstInit() {
         mapPanel.initMap();
         userInit();
+        loadItems();
+        mapPanel.loadFirst();
+    }
+
+    function loadItems(): Void {
+        var it = dataloader.values.iterator();
+        while (it.hasNext()) {
+            var val = it.next();
+            if (val.key == 'typeid') {
+               itemtypes[Integer.parseInt(val.value)] = ItemType {
+                    id: Integer.parseInt(val.value)
+                    name: [it.next().value, it.next().value]
+                    text: [it.next().value, it.next().value]
+                    image: Image{
+                        url: it.next().value
+                    }
+                }
+            }
+        }
+
     }
 
     /* zmeni panoramu podla instancie Shape */
@@ -310,6 +337,4 @@ public class PanoScene {
         dataloader.input = [DataElement {value: "", key: ""}];
         dataloader.load(0);
     }
-
-
 }

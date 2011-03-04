@@ -18,13 +18,6 @@ import javax.media.j3d.TransparencyAttributes;
 public class PanoExtension {
 
     /**
-     * typy extensoin
-     */
-    public static final int IMAGE = 1;
-    public static final int TEXT = 2;
-    public static final int GUESTBOOK = 3;
-
-    /**
      * jedinecne meno
      */
     private String name = null;
@@ -40,19 +33,9 @@ public class PanoExtension {
     private boolean visible;
 
     /**
-     * typ
-     */
-    private int type = 0;
-
-    /**
      * v pripade typu 1, obrazok
      */
     private Image image = null;
-
-    /**
-     * v pripade typu 1, cesta k obrazku
-     */
-    private String url = "";
 
     /**
      * constructor
@@ -141,22 +124,6 @@ public class PanoExtension {
 
     /**
      * getter
-     * @return typ
-     */
-    public int getType() {
-        return type;
-    }
-
-    /**
-     * setter
-     * @param type
-     */
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    /**
-     * getter
      * @return
      */
     public Image getImage() {
@@ -170,21 +137,4 @@ public class PanoExtension {
     public void setImage(Image image) {
         this.image = image;
     }
-
-    /**
-     * getter
-     * @return
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * setter
-     * @param url
-     */
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
 }

@@ -23,6 +23,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import net.ra100.cyd.UI.res.ExitButton;
 import javafx.scene.effect.Glow;
+import net.ra100.cyd.utils.DataElement;
+import net.ra100.cyd.utils.DataLoader;
 /**
  * @author ra100
  */
@@ -36,6 +38,9 @@ public class ExtensionDisplay extends CustomNode {
     //vyska a sirka contentu
     var height : Number;
     var width : Number;
+
+    var type: String;
+    var url: String;
 
     // load the image
     var image = new Image();
@@ -102,6 +107,8 @@ public class ExtensionDisplay extends CustomNode {
         opacity: 0.8
     }
 
+    var panel: Panel;
+
     def closeButton = RButton {
                 translateX: 636;
                 translateY: -16;
@@ -121,7 +128,7 @@ public class ExtensionDisplay extends CustomNode {
             };
 
     public override function create(): Node {
-            return Panel {
+            return panel = Panel {
                         content: [
                                 background,
                                 background2,
@@ -140,11 +147,19 @@ public class ExtensionDisplay extends CustomNode {
 
     public function setExtension(pe : PanoExtension) {
         extension = pe;
-        if (pe.getType() == pe.IMAGE) {setImage();}
-        else if (pe.getType() == pe.TEXT) {
+        myScene.dataloader.action = 'loadextension';
+        myScene.dataloader.input = [DataElement {value: extension.getName(), key: "extensionname"}];
+        myScene.dataloader.load(0);
+        type = myScene.dataloader.getValueByKey('type');
+        textHeader.content = myScene.dataloader.getValueByKey('title');
+        text.content = myScene.dataloader.getValueByKey('content');
+        url = myScene.dataloader.getValueByKey('url');
+
+        if (type == "image") {setImage();}
+        else if(type == "text") {
             textName = pe.getName();
             setText();
-        } else if (pe.getType() == 3) {
+        } else if (type == "guestbook") {
             guestBook.reloadlang();
             guestBook.load();
             guestBook.visible = true;
@@ -154,7 +169,7 @@ public class ExtensionDisplay extends CustomNode {
     function setImage(){
         if (extension.getImage() == null) {
             image = Image{
-                url: extension.getUrl()
+                url: url
             }
             extension.setImage(image);
         } else {
@@ -184,12 +199,6 @@ public class ExtensionDisplay extends CustomNode {
     }
 
     public function setText() {
-        var ext : ExpoText = new ExpoText();
-        ext.create(textName, myScene.language);
-        textHeader.content = ext.title;
-        text.content = ext.content;
-//        println(textHeader.content);
-        text.wrappingWidth = myScene.screenWidth-border*2-5;
         text.visible = true;
         textHeader.visible = true;
     }

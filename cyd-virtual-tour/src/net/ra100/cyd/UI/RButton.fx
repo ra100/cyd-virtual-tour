@@ -29,26 +29,24 @@ public class RButton extends CustomNode {
     public var label : Label;
 
     public var showGroup = Group {
-                content: [image]
-                effect: bind activeEffect;
-                onMouseClicked: function (e: MouseEvent): Void {
-                    action();
-                }
-                onMouseEntered: function (e: MouseEvent): Void {
-                    mouseOver();
-                }
-                onMouseExited: function (e: MouseEvent): Void {
-                    mouseOut();
-                }
-                onMousePressed: function (e: MouseEvent): Void {
-                    mousePressed();
-                }
-                onMouseReleased: function (e: MouseEvent): Void {
-                    mouseReleased();
-                }
-
-
-            };
+        content: [image]
+        effect: bind activeEffect;
+        onMouseClicked: function (e: MouseEvent): Void {
+            action();
+        }
+        onMouseEntered: function (e: MouseEvent): Void {
+            mouseOver();
+        }
+        onMouseExited: function (e: MouseEvent): Void {
+            mouseOut();
+        }
+        onMousePressed: function (e: MouseEvent): Void {
+            mousePressed();
+        }
+        onMouseReleased: function (e: MouseEvent): Void {
+            mouseReleased();
+        }
+    };
 
     public override function create(): Node {
         showGroup;
@@ -79,8 +77,5 @@ public class RButton extends CustomNode {
             if (isOver) {activeEffect = overEffect;}
             else {activeEffect = null;}
     }
-
-
-
 }
 

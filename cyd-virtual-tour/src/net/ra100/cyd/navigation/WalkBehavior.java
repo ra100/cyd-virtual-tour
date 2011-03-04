@@ -124,7 +124,7 @@ public class WalkBehavior extends OrbitBehaviorInterim {
             actualShape.setTextureLoaded(true);
             actualShape.setVisible(true);
         }
-        if (parent.isExtras()) {
+        if ((parent.isExtras())) {
             showExtras();
         }
         setViewingTransform(t3);

@@ -126,16 +126,6 @@ public class SceneXML {
                 String type = el.attributeValue(TYPE);
                 PanoExtension pe = new PanoExtension();
                 pe.setName(el.getText());
-                if (type != null) {
-                    if (type.matches(IMAGE)){
-                        pe.setType(PanoExtension.IMAGE);
-                        pe.setUrl(el.attributeValue(URL));
-                    } else if (type.matches(TEXT)){
-                        pe.setType(PanoExtension.TEXT);
-                    } else if (type.matches(GUESTBOOK)){
-                        pe.setType(PanoExtension.GUESTBOOK);
-                    }
-                }
                 s.addExtended(pe);
             }
 

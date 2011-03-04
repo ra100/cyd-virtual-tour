@@ -6,7 +6,6 @@ import net.ra100.cyd.main.PanoScene;
 import java.lang.StringBuffer;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -42,6 +41,7 @@ public class DataLoader {
     }
 
     public function load(reload: Integer): Boolean{
+        values = [];
         var language = scene.language;
         var id = scene.id;
         var token = scene.token;
@@ -90,13 +90,11 @@ public class DataLoader {
         return input;
     }
 
-
     public function getValueByKey(key: String): String {
-        var out: String = null;
         for (a in values) {
-            if (a.key == key) return a.value;
+            if (a.key == key) {return a.value;}
         }
-        return out;
+        return null;
     }
 
 }
