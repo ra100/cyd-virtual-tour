@@ -89,6 +89,7 @@ public class ExtensionDisplay extends CustomNode {
 	fill: Color.BLACK
         opacity: 0.5
     }
+    
     var background2 = Rectangle {
 	x: border-5
         y: border-5

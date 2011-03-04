@@ -411,6 +411,7 @@ public class PanoUniverse extends Observable implements RunnableFuture {
     }
 
     public void changePanoFX(Shape sh) {
+        if (sh == null) return;
         setLoaded(-1);
         Transform3D t3 = new Transform3D();
         sh.getPano().getLocalToVworld(t3);

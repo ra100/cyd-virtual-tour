@@ -59,7 +59,12 @@ public class DataLoader {
         var uis = Helper.urlInputStream(url);
         if (uis == null and reload < 2) {
             //automaticky reload ak zlyha pripojenie
-            return load(reload+1);
+            scene.messagePanel.label.content = ##"Connection Error";
+            scene.messagePanel.refresh.action = function(): Void {
+                load(reload+1);
+            }
+            scene.messagePanel.visible = true;
+            return false;
         } else {
             parser.input = uis;
             parser.parse();

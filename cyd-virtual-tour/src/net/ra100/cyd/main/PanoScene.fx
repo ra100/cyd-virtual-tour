@@ -31,6 +31,8 @@ import net.ra100.cyd.utils.DataLoader;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import net.ra100.cyd.utils.DataElement;
+import net.ra100.cyd.UI.MessagePanel;
+import javafx.scene.Group;
 
 /**
  * @author ra100
@@ -106,6 +108,13 @@ public class PanoScene {
         myScene: this;
     }
 
+    /**
+    * panel na chybove hlasky
+    */
+    public var messagePanel = MessagePanel {
+        visible: false;
+        myScene: this;
+    }
 
      // Frame
     var stage: Stage;
@@ -208,7 +217,12 @@ public class PanoScene {
                         ]
             }
                panel,
-               extensionDisplay
+               extensionDisplay,
+            Group {
+                layoutX: (screenWidth/2) - 162
+                layoutY: (screenHeight/2) - 107
+                content: [messagePanel]
+               }
             ]
         }
     }
