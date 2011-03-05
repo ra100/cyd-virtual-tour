@@ -204,20 +204,13 @@ public class PanoUniverse extends Observable implements RunnableFuture {
             }
         }
 
-//        sceneRadius = sphereBounds.getRadius();
-
         walkBeh.setTransFactors(sceneRadius / 0.1f, sceneRadius / 0.1f);
         walkBeh.setZoomFactor(sceneRadius / 0.1f);
         walkBeh.setRotFactors(0.3f, 0.3f);
 
         walkBeh.setFieldOfView(1.5d);
 
-//        orbitBehInterim.setPureParallelEnabled(true);
-//        orbitBehInterim.setProportionalZoom(true);
-
         walkBeh.setClippingBounds(sphereBounds);
-
-        walkBeh.goHome();
     }
 
     private void createScene() {
