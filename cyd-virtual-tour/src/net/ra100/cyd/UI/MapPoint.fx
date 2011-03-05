@@ -15,6 +15,7 @@ import javafx.scene.effect.Bloom;
 import javafx.scene.effect.ColorAdjust;
 import net.ra100.cyd.UI.res.Point;
 import net.ra100.cyd.utils.DataElement;
+import net.ra100.cyd.utils.AsyncTask;
 
 /**
  * @author ra100
@@ -106,13 +107,15 @@ public class MapPoint extends CustomNode {
     }
 
     protected function updateDB(action: String): Void {
-         FX.deferAction(
-            function(): Void {
-                panel.myScene.dataloader.action =  action;
+        AsyncTask {
+            run: function() {
+                panel.myScene.dataloader.action = action;
                 panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
                 panel.myScene.dataloader.load(0);
             }
-        );
+            onDone: function() {
+            }
+        }.start();
     }
 
 

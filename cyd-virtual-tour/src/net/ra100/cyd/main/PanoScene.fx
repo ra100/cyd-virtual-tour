@@ -37,6 +37,9 @@ import net.ra100.cyd.UI.ItemType;
 import javafx.scene.image.Image;
 import net.ra100.cyd.scene.PanoExtension;
 import javafx.scene.input.MouseEvent;
+import net.ra100.cyd.UI.res.Loader;
+import javafx.animation.transition.RotateTransition;
+import net.ra100.cyd.utils.AsyncTask;
 
 /**
  * @author ra100
@@ -50,7 +53,6 @@ public class PanoScene {
     var stylesheets : String = "{__DIR__}default.css";
 
     // loading indicator
-    public var loaded: Integer = 0;
     public var block = false;
 
     // Frame size
@@ -65,32 +67,33 @@ public class PanoScene {
 
     public var dataloader: DataLoader = DataLoader {scene: this};
 
-    def progressIndicator: ProgressIndicator = ProgressIndicator {
-        progress: -1
-        scaleX : 6
-        scaleY : 6
-        visible: bind universeFX.loaderVisible
-        effect:SepiaTone {
-            level: 0.5
-        }
+    public var loader = Loader {};
+
+    public var loaderAnim = RotateTransition {
+        duration: 10s
+        byAngle: 360
+        repeatCount: Timeline.INDEFINITE
+        node: loader
+        framerate: 24
     }
 
+    var progressIndicator: Group = Group {
+        visible: false
+        layoutX: 100
+        content: [loader]
+    }
+
+    /**
+    pozadie pre loader identifikator
+    */
     public var progressBackground : ImageView = ImageView {
-        visible: bind universeFX.loaderVisible
+        visible: bind progressIndicator.visible
         image: null
         preserveRatio: false
         opacity: 1.0
         effect: GaussianBlur {
                 radius: 10
                 }
-    }
-
-
-    def progressIndicatorPerc: ProgressIndicator = ProgressIndicator {
-        scaleX : 3
-        scaleY : 3
-        visible: bind universeFX.loaderVisible
-        progress: bind ProgressIndicator.computeProgress(100, loaded)
     }
 
     public var extensionDisplay: ExtensionDisplay = bind universeFX.extension;
@@ -176,12 +179,8 @@ public class PanoScene {
         extensionDisplay.visible = false;
         topPanel.myScene = this;
 
-        progressIndicator.translateX = screenWidth/2 - progressIndicator.width/2;
-        progressIndicator.translateY = screenHeight/2 - progressIndicator.height/2;
-
-        progressIndicatorPerc.translateX = screenWidth/2 - progressIndicatorPerc.width/2;
-        progressIndicatorPerc.translateY = screenHeight/2 - progressIndicatorPerc.height/2;
-
+//        progressIndicator.layoutX = screenWidth/2;
+//        progressIndicator.layoutY = screenHeight/2;
 
         stage = Stage {
         title: "Virtuálna prehliadka: Brhlovce"
@@ -238,7 +237,8 @@ public class PanoScene {
             ]
         }
     }
-    
+
+    showLoader();
     changeLanguage(SK);
     topPanel.updateLang();
 
@@ -247,18 +247,6 @@ public class PanoScene {
     //
     // JavaTaskBase
     universeFX.start();
-
-    // stale sa prekresluje, riesi to problem s neprekreslovanim v browseroch
-    ScaleTransition {
-	duration: 20s
-	node: debug2
-	byX: 1.1 byY: 1.1
-	repeatCount: Timeline.INDEFINITE
-        autoReverse: true
-    }.play();
-
-//    var pom: Double = bind universeFX.universe.getDirection();
-
     }
 
     public function showCenters(){
@@ -301,13 +289,24 @@ public class PanoScene {
     public function firstInit() {
         mapPanel.initMap();
         userInit();
-        FX.deferAction(
-            function():Void {
+        AsyncTask {
+            run: function() {
                 loadItems();
             }
-        );
+            onDone: function() {
+            }
+        }.start();
         mapPanel.loadFirst();
         updateCompass();
+        // stale sa prekresluje, riesi to problem s neprekreslovanim v browseroch
+        ScaleTransition {
+            duration: 20s
+            node: debug2
+            byX: 1.1 byY: 1.1
+            repeatCount: Timeline.INDEFINITE
+            autoReverse: true
+            framerate: 15
+        }.play();
     }
 
     public function updateCompass() {
@@ -360,9 +359,19 @@ public class PanoScene {
         universeFX.universe.setExtension(ext);
     }
 
-    public function setLoader(i: Integer): Void {
-        loaded = i;
+    public function setLoader(): Void {
         universeFX.loaderVisible = true;
+        universeFX.startLoading();
+    }
+
+    public function showLoader(): Void {
+        loaderAnim.play();
+        progressIndicator.visible = true;
+    }
+
+     public function hideLoader(): Void {
+        loaderAnim.pause();
+        progressIndicator.visible = false;
     }
 
 

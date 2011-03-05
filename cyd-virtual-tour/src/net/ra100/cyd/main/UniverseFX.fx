@@ -117,15 +117,13 @@ package class UniverseFX extends JavaTaskBase, Observer {
 
             }
             loaded = universe.getLoaded();
-            scene.loaded = loaded;
             if (loaded == 100) {
                 scene.block = true;
-                loaderVisible = false;
+                stopLoading();
             } else {
                 setLoaderImage();
             }
             if (universe.getExtension() != null) {
-                scene.loaded = 0;
                 setLoaderImage();
                 AsyncTask {
                     run: function() {
@@ -134,8 +132,7 @@ package class UniverseFX extends JavaTaskBase, Observer {
 
                     onDone: function() {
                         extension.visible = true;
-                        scene.loaded = 100;
-                        loaderVisible = false;
+                        stopLoading();
                     }
                 }.start();
             } else {
@@ -148,7 +145,7 @@ package class UniverseFX extends JavaTaskBase, Observer {
         var bi : BufferedImage = componentToImage(scene.fxCanvas3DComp.getJComponent());
         scene.progressBackground.image = SwingUtils.toFXImage(bi);
 
-        loaderVisible = true;
+        startLoading();
     }
 
     /*
@@ -175,6 +172,16 @@ package class UniverseFX extends JavaTaskBase, Observer {
     public function setScene(sc: PanoScene){
         scene = sc;
         extension.setScene(sc);
+    }
+
+    public function startLoading(): Void {
+        scene.showLoader();
+        loaderVisible = true;
+    }
+
+    public function stopLoading(): Void {
+        scene.hideLoader();
+        loaderVisible = false;
     }
 
 }

@@ -51,6 +51,7 @@ public class TopPanel extends CustomNode {
                 level: 1
             }
             action: function (): Void {
+                myScene.updateCompass();
                 showMap();
             }
         };
