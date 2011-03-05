@@ -22,6 +22,7 @@
 Label {
     font-family: "Helvetica, Arial, sans serif";
     font-size: 12pt;
+    -fx-font: 12pt "Helvetica, Arial, sans serif";
 }
 
 Label.maplabel {
@@ -30,27 +31,33 @@ Label.maplabel {
 
 #headerText {
     font-family: 'Helvetica, Arial, serif';
-    font-size: 16px;
+    font-size: 16pt;
     font-weight: bold;
+    -fx-font: 16pt 'Helvetica, Arial, serif';
 }
 
 #longText {
     font-family: 'Times New Roman';
-    font-size: 14px;
+    font-size: 14pt;
+    -fx-font: 14pt 'Times New Roman';
 }
 
 Label#comment{
     font-family: 'Helvetica, Arial, sans serif';
-    font-size: 12px;
+    font-size: 12pt;
+    -fx-font: 12pt 'Helvetica, Arial, sans serif';
 }
 
 Text#comment {
     font-family: 'Helvetica, Arial, sans serif';
-    font-size: 12px;
+    font-size: 12pt;
+    -fx-font: 12pt 'Helvetica, Arial, sans serif';
 }
 
 Text#message {
     font-family: 'Helvetica, Arial, sans serif';
-    font-size: 12px;
+    font-size: 12pt;
     color: #ffffff;
+    -fx-text-fill: #ffffff;
+    -fx-font: 12pt 'Helvetica, Arial, sans serif';
 }

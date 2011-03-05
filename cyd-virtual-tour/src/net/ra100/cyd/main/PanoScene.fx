@@ -36,6 +36,7 @@ import javafx.scene.Group;
 import net.ra100.cyd.UI.ItemType;
 import javafx.scene.image.Image;
 import net.ra100.cyd.scene.PanoExtension;
+import javafx.scene.input.MouseEvent;
 
 /**
  * @author ra100
@@ -70,7 +71,7 @@ public class PanoScene {
         scaleY : 6
         visible: bind universeFX.loaderVisible
         effect:SepiaTone {
-	level: 0.5
+            level: 0.5
         }
     }
 
@@ -128,7 +129,7 @@ public class PanoScene {
     var stage: Stage;
 
     // FXCanvas3D
-    public-read def fxCanvas3DComp = FXCanvas3DSBComp {
+    public-read def fxCanvas3DComp = FXCanvas3DSBCompR {
         // Resizing
         width: bind Math.max(stage.scene.width, 10);    // avoid width <= 0
         height: bind Math.max(stage.scene.height, 10);  // avoid height <= 0
@@ -140,7 +141,7 @@ public class PanoScene {
         initUniverse: function(universe: PanoUniverse): Void {
             //
             fxCanvas3DComp.isScreenSize = false;
-            fxCanvas3DComp.frame = stage;
+//            fxCanvas3DComp.frame = stage;
             // Finish FXCanvas3DComp
             fxCanvas3DComp.initFXCanvas3D(universe,this);
             // Show frame
@@ -161,6 +162,9 @@ public class PanoScene {
         width : screenWidth
         height: screenHeight
         content: [debug2]
+        onMouseDragged: function(e: MouseEvent): Void {
+            updateCompass();
+        }
     }
 
     public function deleteExt(){
@@ -253,6 +257,8 @@ public class PanoScene {
         autoReverse: true
     }.play();
 
+//    var pom: Double = bind universeFX.universe.getDirection();
+
     }
 
     public function showCenters(){
@@ -301,7 +307,14 @@ public class PanoScene {
             }
         );
         mapPanel.loadFirst();
+        updateCompass();
     }
+
+    public function updateCompass() {
+        mapPanel.updateCompass(universeFX.universe.getPosition(),
+                    universeFX.universe.getDirection()*(-60));
+    }
+
 
     function loadItems(): Void {
         var it = dataloader.values.iterator();

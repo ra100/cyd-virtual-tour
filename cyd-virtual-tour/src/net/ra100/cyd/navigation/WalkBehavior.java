@@ -334,4 +334,8 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         return center;
     }
 
+    public double getLongitude() {
+        return longditude;
+    }
+
 }

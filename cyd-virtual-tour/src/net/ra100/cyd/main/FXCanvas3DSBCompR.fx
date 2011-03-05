@@ -6,21 +6,13 @@
 
 package net.ra100.cyd.main;
 
-/**
- * @author ra100
- */
-
-import java.lang.System;
-
 import javax.swing.JPanel;
 
 import javafx.ext.swing.SwingComponent;
-import javafx.stage.Stage;
 
 // FXCanvas3D API 3.0
 
 import com.interactivemesh.j3d.community.gui.FXCanvas3DRepainter;
-import javafx.util.Math;
 import com.interactivemesh.j3d.community.gui.FXCanvas3DSB;
 
 /**
@@ -43,7 +35,7 @@ import com.interactivemesh.j3d.community.gui.FXCanvas3DSB;
  *
  */
 
-package class FXCanvas3DSBComp extends SwingComponent, FXCanvas3DRepainter {
+package class FXCanvas3DSBCompR extends SwingComponent, FXCanvas3DRepainter {
 
     // Parent of FXCanvas3DSB
     var container: JPanel;
@@ -52,17 +44,7 @@ package class FXCanvas3DSBComp extends SwingComponent, FXCanvas3DRepainter {
     var fxCanvas3D: FXCanvas3DSB;
     var panoscene = null;
 
-    // Frames per second
-    def updatesPerSecond = 2;
-    var elapsedFrames: Integer = 20;
-    var frameCounter: Integer;
-    var startTimePaint: Number = System.nanoTime()/1000000;
-    var endTimePaint: Number;
-    var frameDuration: Number;
-    package var fpsPaint: Integer;
-
     package var isScreenSize: Boolean = false;
-    package var frame: Stage;
 
      // Create SwingComponent - called at construction time
     override protected function createJComponent(): JPanel{
@@ -95,26 +77,7 @@ package class FXCanvas3DSBComp extends SwingComponent, FXCanvas3DRepainter {
 
                 // Call doesn't wait, paintComponent() will be called in the next loop !?
                 fxCanvas3D.repaint();
-//                //
-//                //  Frames per second
-//                //
-//
-//                frameCounter++;
-//
-//                if (frameCounter >= elapsedFrames) {
-//
-//                    endTimePaint = System.nanoTime()/1000000;
-//                    frameDuration = (endTimePaint-startTimePaint)/frameCounter;
-//                    startTimePaint = endTimePaint;
-//
-//                    fpsPaint = (1000 / frameDuration) as Integer;
-//                    FX.println("Frames per second = {fpsPaint}");
-//                    // Reset
-//                    frameCounter = 0;
-//                    elapsedFrames = Math.max(1, ((fpsPaint + 0.5) / updatesPerSecond)) as Integer;
-//                }
             }
         );
-//        FX.deferAction( function() : Void {panoscene.updateScreen();} );
     }
 }

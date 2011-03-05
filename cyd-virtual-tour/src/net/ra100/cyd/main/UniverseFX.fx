@@ -56,16 +56,14 @@ package class UniverseFX extends JavaTaskBase, Observer {
     }
     // Called from Main.fx
     // Initializes the 3D scene : calls run() on RunnableFuture 'universe'
-
     protected override function start(): Void {
         // Nothing to do
         super.start();
     }
     // Callback: Finish init
-
     override var onDone = function (): Void {
-                initUniverse(universe);
-            };
+        initUniverse(universe);
+    }
 
     package function changeShape(sp: Shape) {
         universe.changePanoFX(sp);
@@ -74,12 +72,12 @@ package class UniverseFX extends JavaTaskBase, Observer {
     package function showExtras() {
         universe.showExtras();
         universe.setExtras(true);
-            }
+    }
 
     package function hideExtras() {
         universe.hideExtras();
         universe.setExtras(false);
-            }
+    }
 
 //    package var move: Boolean = false;
 
@@ -87,15 +85,14 @@ package class UniverseFX extends JavaTaskBase, Observer {
     * smer
     * 1 dopredu, 2 dozadu, 3 vpravo, 4 vlavo, 5 hore, 6 dole
     */
-    package function moveCamera(direction: Integer) {
-         if (direction == FORWARD) {universe.getWalkBeh().moveCamera(0.0, 0, -0.1*speed);}
-         else if (direction == BACKWARD) {universe.getWalkBeh().moveCamera(0.0, 0, 0.1*speed); }
-         else if (direction == RIGHT) {universe.getWalkBeh().moveCamera(0.1*speed, 0, 0); }
-         else if (direction == LEFT) {universe.getWalkBeh().moveCamera(-0.1*speed, 0, 0); }
-         else if (direction == UP) {universe.getWalkBeh().moveCamera(0.0, -0.1*speed, 0); }
-         else if (direction == DOWN) {universe.getWalkBeh().moveCamera(0.0, 0.1*speed, 0); }
-         //scene.updateScreen();
-    }
+//    package function moveCamera(direction: Integer) {
+//         if (direction == FORWARD) {universe.getWalkBeh().moveCamera(0.0, 0, -0.1*speed);}
+//         else if (direction == BACKWARD) {universe.getWalkBeh().moveCamera(0.0, 0, 0.1*speed); }
+//         else if (direction == RIGHT) {universe.getWalkBeh().moveCamera(0.1*speed, 0, 0); }
+//         else if (direction == LEFT) {universe.getWalkBeh().moveCamera(-0.1*speed, 0, 0); }
+//         else if (direction == UP) {universe.getWalkBeh().moveCamera(0.0, -0.1*speed, 0); }
+//         else if (direction == DOWN) {universe.getWalkBeh().moveCamera(0.0, 0.1*speed, 0); }
+//    }
 
     protected var loaded: Integer = 0;
     protected var loaderVisible: Boolean = true;
@@ -144,7 +141,7 @@ package class UniverseFX extends JavaTaskBase, Observer {
             } else {
                 extension.visible = false;
             }
-            });
+        });
     }
 
     public function setLoaderImage() {

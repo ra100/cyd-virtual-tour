@@ -87,6 +87,7 @@ public class MapPoint extends CustomNode {
         panel.setActive(this);
         //zapis po nacitani
         updateDB('enter');
+        panel.myScene.updateCompass();
         //---
     }
 
@@ -101,6 +102,7 @@ public class MapPoint extends CustomNode {
         panel.setActive(this);
         //zapis po nacitani
         updateDB('enter');
+        panel.myScene.updateCompass();
     }
 
     protected function updateDB(action: String): Void {

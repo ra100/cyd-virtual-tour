@@ -19,6 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Polyline;
 import javafx.scene.Group;
+import javafx.scene.transform.Rotate;
+import net.ra100.cyd.UI.res.ViewDirection;
 
 /**
  * @author ra100
@@ -62,6 +64,17 @@ public class MapPanel extends CustomNode {
         layoutX: 32
         layoutY: 32
     };
+
+    public var rotation = Rotate {
+        angle: 0
+        pivotX: 0
+        pivotY: 0
+    };
+
+    public var compass: Group = Group {
+        layoutX: 32, layoutY: 32
+        content: [ViewDirection{transforms: rotation}]
+    }
 
     public var map: CustomPanel = CustomPanel { content: [back]  };
 
@@ -126,6 +139,8 @@ public class MapPanel extends CustomNode {
                activePano = a;
            }
        }
+
+       insert compass into map.content;
     }
 
     public function loadFirst(): Void {
@@ -182,6 +197,15 @@ public class MapPanel extends CustomNode {
         }
     }
 
+    public function updateCompass(pos: Double[], rot: Double) {
+        var x: Float = pos[0] + xoffset;
+        var y: Float = pos[1] + yoffset;
+        x = x * scale;
+        y = y * scale;
+        compass.translateX = x;
+        compass.translateY = y;
+        rotation.angle = rot;
+    }
 
 
 }

@@ -440,5 +440,15 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         this.updateMap = updateMap;
     }
 
-    
+    public double getDirection() {
+        return walkBeh.getLongitude();
+    }
+
+    public double[] getPosition() {
+        Point3d p = walkBeh.getCenter();
+        double[] pos = new double[2];
+        pos[0] = p.x;
+        pos[1] = p.z;
+        return pos;
+    }
 }

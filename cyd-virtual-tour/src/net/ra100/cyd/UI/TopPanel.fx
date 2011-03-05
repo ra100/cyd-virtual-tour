@@ -20,8 +20,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.control.Label;
 import net.ra100.cyd.scene.PanoExtension;
-import net.ra100.cyd.utils.AsyncTask;
-import java.lang.UnsupportedOperationException;
 
 /**
  * @author ra100
@@ -37,10 +35,16 @@ public class TopPanel extends CustomNode {
         translateX: 5};
         
     var helpextension = new PanoExtension("help");
+    var bookextension = new PanoExtension("pano16ext01");
+    var scoresextension = new PanoExtension("highscores");
 
     var naviButton = RSwitch {
         primary : RButton {
-            image: ToggleMap { };
+            image: ImageView {
+                image: Image {
+                        url: "{__DIR__}res/ToggleMap.png"
+                }
+            }
             text: ##"ShowNavButton"
             label : label
             overEffect: Glow {
@@ -51,7 +55,11 @@ public class TopPanel extends CustomNode {
             }
         };
         secondary :  RButton {
-            image: ToggleMap { };
+            image: ImageView {
+                image: Image {
+                        url: "{__DIR__}res/ToggleMap.png"
+                }
+            }
             text: ##"HideNavButton"
             label : label
             overEffect: Glow {
@@ -119,17 +127,68 @@ public class TopPanel extends CustomNode {
     }
 
     var helpButton = RButton {
-            translateX : 16
-            text: ##"Help Button"
-            label: label
-            image: HelpButton { }
-            overEffect: Glow {
-                level: 1
+        translateX : 16
+        text: ##"Help Button"
+        label: label
+        image: HelpButton { }
+        overEffect: Glow {
+            level: 1
+        }
+        action: function (): Void {
+            extend(helpextension);
+        }
+    };
+
+    var guestButton = RButton {
+        translateX : 16
+        text: ##"Guestbook"
+        label: label
+        image: ImageView {
+            image: Image {
+                    url: "{__DIR__}res/BookButton.png"
             }
-            action: function (): Void {
-                extend(helpextension);
+        }
+        overEffect: Glow {
+            level: 1
+        }
+        action: function (): Void {
+            extend(bookextension);
+        }
+    };
+
+    var scoresButton = RButton {
+        translateX : 16
+        text: ##"Highscores"
+        label: label
+        image: ImageView {
+            image: Image {
+                    url: "{__DIR__}res/Highscores.png"
             }
-        };
+        }
+        overEffect: Glow {
+            level: 1
+        }
+        action: function (): Void {
+            extend(scoresextension);
+        }
+    };
+
+    var bagButton = RButton {
+        translateX : 16
+        text: ##"Bag"
+        label: label
+        image: ImageView {
+            image: Image {
+                    url: "{__DIR__}res/BagButton.png"
+            }
+        }
+        overEffect: Glow {
+            level: 1
+        }
+        action: function (): Void {
+//            extend(scoresextension);
+        }
+    };
 
     var langButton = RSwitch {
         translateX : 16
@@ -184,6 +243,9 @@ public class TopPanel extends CustomNode {
                         naviButton,
                         extrasButton,
                         langButton,
+                        bagButton,
+                        guestButton,
+                        scoresButton,
                         helpButton
                     ]
                 }

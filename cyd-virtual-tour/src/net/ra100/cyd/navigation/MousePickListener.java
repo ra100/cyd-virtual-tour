@@ -25,8 +25,6 @@ import net.ra100.cyd.scene.Shape;
 public class MousePickListener implements MouseListener {
 
     private PanoUniverse parent;
-    private Vector3d vector = null;
-    private Shape shape = null;
 
     public MousePickListener(PanoUniverse pu) {
         this.parent = pu;
@@ -85,15 +83,4 @@ public class MousePickListener implements MouseListener {
             }
         }
     }
-
-//    private Shape findShape(Shape3D sp) {
-//        Iterator<Shape> it = parent.getShapes().iterator();
-//        while (it.hasNext()) {
-//            Shape sh = it.next();
-//            if (sh.getCenter().getName().matches(sp.getName())) {
-//                return sh;
-//            }
-//        }
-//        return null;
-//    }
 }
