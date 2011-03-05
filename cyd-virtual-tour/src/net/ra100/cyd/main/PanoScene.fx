@@ -35,6 +35,7 @@ import net.ra100.cyd.UI.MessagePanel;
 import javafx.scene.Group;
 import net.ra100.cyd.UI.ItemType;
 import javafx.scene.image.Image;
+import net.ra100.cyd.scene.PanoExtension;
 
 /**
  * @author ra100
@@ -48,7 +49,7 @@ public class PanoScene {
     var stylesheets : String = "{__DIR__}default.css";
 
     // loading indicator
-    package var loaded: Integer = 0;
+    public var loaded: Integer = 0;
     public var block = false;
 
     // Frame size
@@ -294,7 +295,11 @@ public class PanoScene {
     public function firstInit() {
         mapPanel.initMap();
         userInit();
-        loadItems();
+        FX.deferAction(
+            function():Void {
+                loadItems();
+            }
+        );
         mapPanel.loadFirst();
     }
 
@@ -337,4 +342,15 @@ public class PanoScene {
         dataloader.input = [DataElement {value: "", key: ""}];
         dataloader.load(0);
     }
+
+    public function setExtension(ext: PanoExtension): Void {
+        universeFX.universe.setExtension(ext);
+    }
+
+    public function setLoader(i: Integer): Void {
+        loaded = i;
+        universeFX.loaderVisible = true;
+    }
+
+
 }

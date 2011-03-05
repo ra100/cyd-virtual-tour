@@ -24,6 +24,10 @@ Label {
     font-size: 12pt;
 }
 
+Label.maplabel {
+    -fx-text-fill: #ffffff;
+}
+
 #headerText {
     font-family: 'Helvetica, Arial, serif';
     font-size: 16px;

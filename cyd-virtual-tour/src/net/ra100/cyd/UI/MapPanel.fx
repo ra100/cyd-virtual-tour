@@ -17,6 +17,8 @@ import javafx.scene.layout.HBox;
 import net.ra100.cyd.scene.Shape;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Polyline;
+import javafx.scene.Group;
 
 /**
  * @author ra100
@@ -31,6 +33,8 @@ public class MapPanel extends CustomNode {
     var active: Boolean = true;
     var label = Label {
         translateX: 5
+        translateY: 3
+        styleClass: "maplabel"
         text: " "};
     def bg = MapBG{};
 
@@ -40,6 +44,7 @@ public class MapPanel extends CustomNode {
 
     public var activePano: MapPoint;
     public var mapPanos: MapPoint[];
+    public var path: MapPoint[];
     
     /*helper*/
     def back: Rectangle = Rectangle {
@@ -49,7 +54,18 @@ public class MapPanel extends CustomNode {
         opacity: 0.0
     }
 
-    public var map: CustomPanel = CustomPanel { content: [back]  }
+    public var pathlines: Polyline = Polyline {
+        points: []
+        strokeWidth: 2.0
+        stroke: Color.RED
+        visible: true
+        layoutX: 32
+        layoutY: 32
+    };
+
+    public var map: CustomPanel = CustomPanel { content: [back]  };
+
+//    public var lines: Group = Group { content: [back, pathlines] };
 
     public override function create(): Node {
         hide();
@@ -101,6 +117,8 @@ public class MapPanel extends CustomNode {
        xoffset = ((-1)*minx);
        yoffset = ((-1)*miny);
 
+       insert pathlines into map.content;
+
        for (a in mapPanos) {
            a.setShape();
            insert a into map.content;
@@ -112,8 +130,8 @@ public class MapPanel extends CustomNode {
 
     public function loadFirst(): Void {
         activePano.setFirst();
+        insert [activePano.point.translateX, activePano.point.translateY] into pathlines.points;
     }
-
 
     public function show() {
         active = true;
@@ -147,6 +165,8 @@ public class MapPanel extends CustomNode {
 
     public function setActive(mp: MapPoint) {
         activePano = mp;
+        insert mp into path;
+        insert [activePano.point.translateX, activePano.point.translateY] into pathlines.points;
     }
 
     public function getActive() : MapPoint {

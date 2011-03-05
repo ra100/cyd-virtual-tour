@@ -8,15 +8,12 @@ package net.ra100.cyd.UI;
 import javafx.scene.CustomNode;
 import net.ra100.cyd.scene.Shape;
 import javafx.scene.Node;
-import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Bloom;
 import javafx.scene.effect.ColorAdjust;
 import net.ra100.cyd.UI.res.Point;
-import javafx.scene.layout.Stack;
-import javafx.scene.layout.Panel;
 import net.ra100.cyd.utils.DataElement;
 
 /**
@@ -81,18 +78,15 @@ public class MapPoint extends CustomNode {
      nastavenie aktivnej panoramy a zmena pozicie
     */
     protected function setActive(): Void {
-        panel.myScene.dataloader.action = 'leave';
-        panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
-        panel.myScene.dataloader.load(0);
-        panel.myScene.changeShape(shape);
+//        panel.myScene.setLoader(0);
+        updateDB('leave');
+        panel.myScene.changeShape(shape); 
         active = true;
         this.effect = activeEffect;
         panel.getActive().leave();
         panel.setActive(this);
         //zapis po nacitani
-        panel.myScene.dataloader.action = 'enter';
-        panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
-        panel.myScene.dataloader.load(0);
+        updateDB('enter');
         //---
     }
 
@@ -100,17 +94,23 @@ public class MapPoint extends CustomNode {
     zmeni obrazok na mape, ked sa meni panorama pohybom sipkami
     */
     protected function changeActive(): Void {
-        panel.myScene.dataloader.action = 'leave';
-        panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
-        panel.myScene.dataloader.load(0);
+        updateDB('leave');
         active = true;
         this.effect = activeEffect;
         panel.getActive().leave();
         panel.setActive(this);
         //zapis po nacitani
-        panel.myScene.dataloader.action = 'enter';
-        panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
-        panel.myScene.dataloader.load(0);
+        updateDB('enter');
+    }
+
+    protected function updateDB(action: String): Void {
+         FX.deferAction(
+            function(): Void {
+                panel.myScene.dataloader.action =  action;
+                panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
+                panel.myScene.dataloader.load(0);
+            }
+        );
     }
 
 

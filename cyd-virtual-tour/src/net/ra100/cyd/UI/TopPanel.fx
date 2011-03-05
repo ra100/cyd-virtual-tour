@@ -19,6 +19,9 @@ import net.ra100.cyd.UI.res.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.control.Label;
+import net.ra100.cyd.scene.PanoExtension;
+import net.ra100.cyd.utils.AsyncTask;
+import java.lang.UnsupportedOperationException;
 
 /**
  * @author ra100
@@ -27,11 +30,13 @@ public class TopPanel extends CustomNode {
 
     public var myScene: PanoScene;
     public var width: Integer;
-    public var hideHeight: Integer = 48;
+    public var hideHeight: Integer = 52;
     var active: Boolean = true;
     var label = Label {text: ""
-    visible: true
-    translateX: 5};
+        visible: true
+        translateX: 5};
+        
+    var helpextension = new PanoExtension("help");
 
     var naviButton = RSwitch {
         primary : RButton {
@@ -122,9 +127,7 @@ public class TopPanel extends CustomNode {
                 level: 1
             }
             action: function (): Void {
-               myScene.extensionDisplay.textName = "help";
-               myScene.extensionDisplay.setText();
-               myScene.extensionDisplay.visible = true;
+                extend(helpextension);
             }
         };
 
@@ -245,7 +248,10 @@ public class TopPanel extends CustomNode {
     }
 
     function hideExtras() {
-        myScene.hideExtras;
+        myScene.hideExtras();
     }
 
+    function extend(ext: PanoExtension) {
+        myScene.setExtension(ext);
+    }
 }

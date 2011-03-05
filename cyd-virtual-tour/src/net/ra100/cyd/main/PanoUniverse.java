@@ -8,8 +8,6 @@ import net.ra100.cyd.scene.PanoScene;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import java.awt.event.MouseListener;
-
 import javax.media.j3d.Background;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.Bounds;

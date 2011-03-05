@@ -14,7 +14,6 @@ import javax.media.j3d.View;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3d;
 import net.ra100.cyd.main.PanoUniverse;
-import net.ra100.cyd.utils.Helper;
 import net.ra100.cyd.scene.PanoExtension;
 import net.ra100.cyd.scene.Shape;
 

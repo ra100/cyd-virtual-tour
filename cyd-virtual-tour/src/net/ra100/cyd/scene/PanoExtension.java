@@ -46,6 +46,14 @@ public class PanoExtension {
     }
 
     /**
+     * constructor
+     * @param meno extension
+     */
+    public PanoExtension(String _name) {
+        this.name = _name;
+    }
+
+    /**
      * zakladny contructor
      */
     public PanoExtension() {

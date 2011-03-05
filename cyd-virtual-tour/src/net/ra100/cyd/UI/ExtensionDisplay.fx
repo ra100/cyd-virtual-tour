@@ -45,8 +45,6 @@ public class ExtensionDisplay extends CustomNode {
     // load the image
     var image = new Image();
 
-    public var textName : String;
-
     var guestBook = GuestBookRead{
         visible: false;
     }
@@ -151,13 +149,12 @@ public class ExtensionDisplay extends CustomNode {
         myScene.dataloader.input = [DataElement {value: extension.getName(), key: "extensionname"}];
         myScene.dataloader.load(0);
         type = myScene.dataloader.getValueByKey('type');
-        textHeader.content = myScene.dataloader.getValueByKey('title');
+        textHeader.content = myScene.dataloader.getValueByKey('titlen');
         text.content = myScene.dataloader.getValueByKey('content');
         url = myScene.dataloader.getValueByKey('url');
 
         if (type == "image") {setImage();}
         else if(type == "text") {
-            textName = pe.getName();
             setText();
         } else if (type == "guestbook") {
             guestBook.reloadlang();
