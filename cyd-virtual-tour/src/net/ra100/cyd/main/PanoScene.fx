@@ -314,7 +314,6 @@ public class PanoScene {
                     universeFX.universe.getDirection()*(-60));
     }
 
-
     function loadItems(): Void {
         var it = dataloader.values.iterator();
         while (it.hasNext()) {
@@ -372,7 +371,6 @@ public class PanoScene {
      public function hideLoader(): Void {
         loaderAnim.pause();
         progressIndicator.visible = false;
+        updateCompass();
     }
-
-
 }
