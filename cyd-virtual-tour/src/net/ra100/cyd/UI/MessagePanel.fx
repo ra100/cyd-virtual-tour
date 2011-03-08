@@ -21,6 +21,8 @@ import net.ra100.cyd.UI.res.ExitButton;
 import net.ra100.cyd.main.PanoScene;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.ext.swing.SwingTextField;
+import javafx.scene.control.TextBox;
 
 /**
  * @author ra100
@@ -57,8 +59,19 @@ public class MessagePanel extends CustomNode {
             level: 1
         }
         action: function (): Void {
+            this.textfield.visible = false;
             this.visible = false;
         }
+    }
+
+    public var textfield = TextBox {
+        layoutY: 30
+        translateY: 20
+	text: "anonym"
+	columns: 12
+	selectOnFocus: true
+        visible: false
+        editable: true
     }
 
     var background = Rectangle {
@@ -72,26 +85,26 @@ public class MessagePanel extends CustomNode {
     def bg = MessageBG{};
 
     public override function create(): Node {
-            return Stack {
-                height: bg.boundsInLocal.height
-                width: bg.boundsInLocal.width
-                content: [
-                    bg,
-                    background,
-                    VBox {
-                        nodeVPos: VPos.TOP
-                        padding: Insets { top: 4 right: 4 bottom: 4 left: 4}
-                        content: [label]
-                    }
-                    HBox {
-                        spacing: 10
-                        nodeVPos: VPos.BOTTOM;
-                        nodeHPos: HPos.CENTER
-                        hpos: HPos.CENTER
-                        padding: Insets { top: 4 right: 4 bottom: 4 left: 4}
-                        content: [refresh, close]
-                    }
-                ]
-            }
+        return Stack {
+            height: bg.boundsInLocal.height
+            width: bg.boundsInLocal.width
+            content: [
+                bg,
+                background,
+                VBox {
+                    nodeVPos: VPos.TOP
+                    padding: Insets { top: 4 right: 4 bottom: 4 left: 4}
+                    content: [label, textfield]
+                }
+                HBox {
+                    spacing: 10
+                    nodeVPos: VPos.BOTTOM;
+                    nodeHPos: HPos.CENTER
+                    hpos: HPos.CENTER
+                    padding: Insets { top: 4 right: 4 bottom: 4 left: 4}
+                    content: [refresh, close]
+                }
+            ]
         }
+    }
 }

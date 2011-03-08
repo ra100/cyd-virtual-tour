@@ -187,7 +187,7 @@ public class TopPanel extends CustomNode {
             level: 1
         }
         action: function (): Void {
-//            extend(scoresextension);
+            myScene.bagPanel.visible = not myScene.bagPanel.visible;
         }
     };
 

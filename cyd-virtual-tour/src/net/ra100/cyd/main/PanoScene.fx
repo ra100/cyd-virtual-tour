@@ -5,8 +5,6 @@
  */
 
 package net.ra100.cyd.main;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.effect.SepiaTone;
 import javafx.stage.Stage;
 import java.lang.Math;
 import net.ra100.cyd.UI.ExtensionDisplay;
@@ -40,6 +38,8 @@ import javafx.scene.input.MouseEvent;
 import net.ra100.cyd.UI.res.Loader;
 import javafx.animation.transition.RotateTransition;
 import net.ra100.cyd.utils.AsyncTask;
+import net.ra100.cyd.UI.Bag;
+import net.ra100.cyd.UI.BagPanel;
 
 /**
  * @author ra100
@@ -126,6 +126,12 @@ public class PanoScene {
     public var messagePanel = MessagePanel {
         visible: false;
         myScene: this;
+    }
+
+    public var bagPanel: BagPanel = BagPanel {
+        visible: false
+        myScene: this
+        bag: Bag { visible: true, myScene: this }
     }
 
      // Frame
@@ -229,6 +235,7 @@ public class PanoScene {
             }
                panel,
                extensionDisplay,
+               bagPanel,
             Group {
                 layoutX: (screenWidth/2) - 162
                 layoutY: (screenHeight/2) - 107
@@ -314,23 +321,34 @@ public class PanoScene {
                     universeFX.universe.getDirection()*(-60));
     }
 
+    /**
+    nacitavanie itemtypes, ktore sa pozuiju neskor
+    */
     function loadItems(): Void {
         var it = dataloader.values.iterator();
         while (it.hasNext()) {
             var val = it.next();
             if (val.key == 'typeid') {
-               itemtypes[Integer.parseInt(val.value)] = ItemType {
+                insert ItemType {
                     id: Integer.parseInt(val.value)
                     name: [it.next().value, it.next().value]
                     text: [it.next().value, it.next().value]
                     image: Image{
                         url: it.next().value
+                        backgroundLoading: true
                     }
-                }
+                } into itemtypes;
             }
         }
-
     }
+
+    public function getItemTypeById(tid: Integer): ItemType {
+        for (i in itemtypes) {
+            if (i.id == tid) return i;
+        }
+        return null;
+    }
+
 
     /* zmeni panoramu podla instancie Shape */
     public function changeShape(sp: Shape) {

@@ -24,16 +24,16 @@ import net.ra100.cyd.utils.AsyncTask;
 public class MapPoint extends CustomNode {
 
     protected var point: Node = Point {
-            onMouseEntered: function(e: MouseEvent): Void {
-                mouseOver();
-            }
-            onMouseExited: function(e: MouseEvent): Void {
-                mouseOut();
-            }
-            onMouseClicked: function(e: MouseEvent): Void {
-                setActive();
-            }
+        onMouseEntered: function(e: MouseEvent): Void {
+            mouseOver();
         }
+        onMouseExited: function(e: MouseEvent): Void {
+            mouseOut();
+        }
+        onMouseClicked: function(e: MouseEvent): Void {
+            setActive();
+        }
+    }
 
     protected var size: Float;
 
@@ -150,6 +150,4 @@ public class MapPoint extends CustomNode {
     public function getTitle(): String {
         return shape.getTitle();
     }
-
-
 }

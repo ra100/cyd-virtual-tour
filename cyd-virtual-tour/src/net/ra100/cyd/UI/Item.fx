@@ -24,27 +24,36 @@ public class Item extends CustomNode {
     // 0 - got it, 1 - found and dropped
     public var status: Integer = -1;
     
-    public-read var button = RButton {}
+    public var button: RButton = RButton {
+            image: ImageView {image: type.image}
+            action: function (): Void {
+                action();
+            }
+        }
 
     public override function create(): Node {
         return Group { content: [button]};
     }
 
-    public function setType(_type: ItemType): Void {
-        type = _type;
-        button.image = ImageView {image: type.image};
-        itemid = type.id;
-    }
-
     public function drop(): Void {
         status = 1;
         button.opacity = 0.5;
+        button.disable = true;
     }
 
     public function take(id: Integer): Void {
         itemid = id;
         status = 0;
         button.opacity = 1;
+        button.disable = false;
+    }
+
+    public function action(): Void {
+        if (status == 0) {
+            myScene.bagPanel.dropItem(this);
+        } else {
+            myScene.bagPanel.takeItem(this);
+        }
     }
 
     public function getName(): String {
@@ -67,5 +76,6 @@ public class Item extends CustomNode {
         return null;
     }
 
+    
 
 }

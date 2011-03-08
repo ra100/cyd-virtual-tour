@@ -67,6 +67,7 @@ public class DataLoader {
                 //automaticky reload ak zlyha pripojenie
 
                 scene.messagePanel.label.content = ##"Connection Error";
+                scene.messagePanel.refresh.visible = true;
                 scene.messagePanel.refresh.action = function(): Void {
                     load(reload+1);
                 }
@@ -95,6 +96,55 @@ public class DataLoader {
             if (a.key == key) {return a.value;}
         }
         return null;
+    }
+
+    /**
+    do pola DataElement[] nacita items, key - iid, value - typeid
+    */
+    public function getItemsIds(): DataElement[] {
+        var de: DataElement[];
+        var it = values.iterator();
+        while (it.hasNext()) {
+            var val = it.next();
+            if (val.key == 'iid') {
+                insert DataElement {
+                    key: val.value
+                    value: it.next().value
+                } into de;
+            }
+        }
+        return de;
+    }
+
+    /* spravi zoznam highscores*/
+    public function getHighscore(): DataElement[] {
+        var de: DataElement[];
+        var it = values.iterator();
+        while (it.hasNext()) {
+            var val = it.next();
+            if (val.key == 'time') {
+                insert DataElement {
+                    value: val.value
+                    key: it.next().value
+                    type: 1
+                } into de;
+            }
+            if (val.key == 'panos') {
+                insert DataElement {
+                    value: val.value
+                    key: it.next().value
+                    type: 2
+                } into de;
+            }
+            if (val.key == 'extensions') {
+                insert DataElement {
+                    value: val.value
+                    key: it.next().value
+                    type: 3
+                } into de;
+            }
+        }
+        return de;
     }
 
 }

@@ -12,4 +12,5 @@ package net.ra100.cyd.utils;
 public class DataElement {
     public var key: String;
     public var value: String;
+    public var type: Integer;
 }

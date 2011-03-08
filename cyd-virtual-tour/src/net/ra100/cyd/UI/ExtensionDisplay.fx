@@ -15,16 +15,17 @@ import javafx.scene.layout.Panel;
 import net.ra100.cyd.main.PanoScene;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
-import javafx.scene.effect.GaussianBlur;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import net.ra100.cyd.UI.res.ExitButton;
 import javafx.scene.effect.Glow;
 import net.ra100.cyd.utils.DataElement;
-import net.ra100.cyd.utils.DataLoader;
+import net.ra100.cyd.UI.res.StarButton;
+import javafx.scene.layout.Tile;
+import javafx.scene.Group;
+import javafx.geometry.HPos;
+import javafx.scene.control.Label;
+
 /**
  * @author ra100
  */
@@ -41,6 +42,9 @@ public class ExtensionDisplay extends CustomNode {
 
     var type: String;
     var url: String;
+
+    /*items v extension */
+    public var items: Item[];
 
     // load the image
     var image = new Image();
@@ -75,16 +79,6 @@ public class ExtensionDisplay extends CustomNode {
         smooth: true
     }
 
-    var imageViewBG = ImageView {
-        visible: true
-        image: bind image
-        preserveRatio: false
-        effect: GaussianBlur {
-            radius: 10
-        }
-        opacity: 1.0
-    }
-
     var background = Rectangle {
 	x: 0
         y: 0
@@ -107,37 +101,70 @@ public class ExtensionDisplay extends CustomNode {
 
     var panel: Panel;
 
+   var starButton =  RButton {
+        translateX: 630;
+        translateY: 20;
+        image: StarButton { };
+        visible: false
+        overEffect: Glow {
+            level: 1
+        }
+        action: function (): Void {
+            hideItems();
+        }
+    }
+
+    var itemsPanel: Tile = Tile {
+        layoutX: 5
+        layoutY: 5
+        visible: false
+        hgap: 5
+        vgap: 5
+        columns: 7
+        rows: 2
+        content: bind items
+    }
+
+    var scoreboard: Group = Group {
+            layoutX: 30
+            layoutY: 40
+        };
+
     def closeButton = RButton {
-                translateX: 636;
-                translateY: -16;
-                image: ExitButton { }
-                overEffect: Glow {
-                    level: 1
-                }
-                action: function (): Void {
-                    this.visible = false;
-                    guestBook.visible = false;
-                    text.visible = false;
-                    textHeader.visible = false;
-                    imageView.visible = false;
-                    imageViewBG.visible = false;
-                    myScene.deleteExt();
-                }
-            };
+        translateX: 636;
+        translateY: -16;
+        image: ExitButton { }
+        overEffect: Glow {
+            level: 1
+        }
+        action: function (): Void {
+            this.visible = false;
+            guestBook.visible = false;
+            text.visible = false;
+            textHeader.visible = false;
+            imageView.visible = false;
+            itemsPanel.visible = false;
+            myScene.bagPanel.visible = false;
+            scoreboard.visible = false;
+            myScene.deleteExt();
+        }
+    };
 
     public override function create(): Node {
-            return panel = Panel {
-                        content: [
-                                background,
-                                background2,
-                                imageViewBG,
-                                imageView,
-                                textHeader,
-                                text,
-                                guestBook,
-                                closeButton]
-                };
-                }
+        return panel = Panel {
+            content: [
+                background,
+                background2,
+                imageView,
+                textHeader,
+                text,
+                guestBook,
+                scoreboard,
+                itemsPanel,
+                starButton,
+                closeButton]
+        };
+    }
 
     public function setScene(sc: PanoScene){
         myScene = sc;
@@ -160,6 +187,49 @@ public class ExtensionDisplay extends CustomNode {
             guestBook.reloadlang();
             guestBook.load();
             guestBook.visible = true;
+        }
+        if (type == "highscores") {
+            textHeader.visible = true;
+            loadScores();
+        }
+        itemsPanel.visible = false;
+        setItems();
+    }
+
+    /* nastavenie items */
+    function setItems(): Void {
+        items = [];
+
+        for (de in myScene.dataloader.getItemsIds()) {
+            loadItem(Integer.parseInt(de.key), Integer.parseInt(de.value));
+        }
+
+        if (items.size() > 0) {
+            starButton.visible = true;
+        } else {
+            starButton.visible = false;
+        }
+
+    }
+
+    /* relaod itemov v extension */
+    public function reloadItems(): Void {
+        myScene.dataloader.action = 'loadextension';
+        myScene.dataloader.input = [DataElement {value: extension.getName(), key: "extensionname"}];
+        myScene.dataloader.load(0);
+
+        setItems();
+    }
+
+    /* skyje alebo zobrazi itemy */
+    function hideItems() {
+        if (itemsPanel.visible == false) {
+
+            itemsPanel.visible = true;
+            myScene.bagPanel.visible = true;
+        } else {
+            itemsPanel.visible = false;
+            myScene.bagPanel.visible = false;
         }
     }
 
@@ -188,10 +258,7 @@ public class ExtensionDisplay extends CustomNode {
         width = imageView.boundsInLocal.width;
         imageView.translateX = myScene.screenWidth/2 - width/2;
         imageView.translateY = myScene.screenHeight/2 - height/2;
-        imageViewBG.fitHeight = myScene.screenHeight;
-        imageViewBG.fitWidth = myScene.screenWidth;
         imageView.visible = true;
-        imageViewBG.visible = true;
 
     }
 
@@ -204,6 +271,89 @@ public class ExtensionDisplay extends CustomNode {
         return extension;
     }
 
+    public function loadItem(iid: Integer, tid: Integer) {
+        insert Item {
+            itemid: iid
+            type: myScene.getItemTypeById(tid)
+            myScene: myScene
+            status: -1
+        } into items;
+    }
 
+    public function ename(): String {
+        return this.extension.getName();
+    }
 
+    public function showitems() {
+        itemsPanel.visible = true;
+        starButton.visible = true;
+    }
+
+    public function loadScores(): Void {
+        var tile = Tile {
+            hgap: 8
+            vgap: 4
+            rows: 2
+            columns: 3
+            tileWidth: 190
+            autoSizeTiles: false
+            nodeHPos: HPos.LEFT
+            content: [
+                Label {text: ##"By time", id: "scoretitle"},
+                Label {text: ##"By pano", id: "scoretitle"},
+                Label {text: ##"By ext", id: "scoretitle"}]
+        }
+
+        var timetile = Tile {
+            columns: 2
+            rows: 10
+            vgap: 4
+            nodeHPos: HPos.LEFT
+            tileWidth: 80
+            tileHeight: 20
+            autoSizeTiles: false
+        }
+
+        var panotile = Tile {
+            columns: 2
+            rows: 10
+            vgap: 4
+            nodeHPos: HPos.LEFT
+            tileWidth: 80
+            tileHeight: 20
+            autoSizeTiles: false
+        }
+
+        var exttile = Tile {
+            columns: 2
+            rows: 10
+            vgap: 4
+            nodeHPos: HPos.LEFT
+            tileWidth: 80
+            tileHeight: 20
+            autoSizeTiles: false
+        }
+
+        insert timetile into tile.content;
+        insert panotile into tile.content;
+        insert exttile into tile.content;
+
+        var it = myScene.dataloader.getHighscore().iterator();
+        while (it.hasNext()) {
+            var d = it.next();
+            if (d.type == 1) {
+                insert Label {text: d.key, id: "scorename"} into timetile.content;
+                insert Label {text: d.value, id: "scoredata"} into timetile.content;
+            } else if (d.type == 2) {
+                insert Label {text: d.key, id: "scorename"} into panotile.content;
+                insert Label {text: d.value, id: "scoredata"} into panotile.content;
+            } else if (d.type == 3) {
+                insert Label {text: d.key, id: "scorename"} into exttile.content;
+                insert Label {text: d.value, id: "scoredata"} into exttile.content;
+            }
+        }
+        
+        scoreboard.content = [tile];
+        scoreboard.visible = true;
+    }
 }
