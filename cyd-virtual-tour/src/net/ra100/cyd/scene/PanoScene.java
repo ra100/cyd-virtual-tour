@@ -51,6 +51,10 @@ public class PanoScene {
      */
     private Texture tex = null;
 
+    /**
+     * url k popisu sceny
+     */
+    private String sceneurl = null;
 
     /**
      * getter pre sceneXml
@@ -66,6 +70,20 @@ public class PanoScene {
     public PanoScene() {
         Logger.getLogger("net.ra100.cyd").log(Level.INFO, "Creating PanoScene.");
         try {
+            createScene();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger("net.ra100.cyd").log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * constructor
+     * sceneurl - url odkial nacitat scenu
+     */
+    public PanoScene(String _sceneurl) {
+        Logger.getLogger("net.ra100.cyd").log(Level.INFO, "Creating PanoScene.");
+        try {
+            sceneurl = _sceneurl;
             createScene();
         } catch (FileNotFoundException ex) {
             Logger.getLogger("net.ra100.cyd").log(Level.SEVERE, null, ex);
@@ -90,7 +108,11 @@ public class PanoScene {
 //        Loader vrmlLoader = new VrmlLoader();
 
         sceneXml = new SceneXML();
-        sceneXml.load(XMLPATH);
+         if (sceneurl != null) {
+            sceneXml.load(sceneurl,1);
+        } else {
+            sceneXml.load(XMLPATH,0);
+        }
         tex = new TextureLoader(Helper.loadBack(), "RGBA").getTexture();
 
         orderedGroup = new OrderedGroup();

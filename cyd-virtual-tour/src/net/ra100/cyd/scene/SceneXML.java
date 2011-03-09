@@ -1,11 +1,13 @@
 package net.ra100.cyd.scene;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.media.j3d.Shape3D;
+import net.ra100.cyd.utils.Helper;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -70,9 +72,17 @@ public class SceneXML {
     /**
      * nacitanie popisneho XML suboru z adresy (vo vnutri balicka)
      * @param _path - cesta k suboru
+     * @param sw - 0- nacita sa z balicka, 1-nacita sa url
      */
-    public void load(String _path) {
-        Document document = getDocument(_path);
+    public void load(String _path, int sw) {
+
+        Document document = null;
+        if (sw == 1) {
+             document = getDocumentFromURL(_path);
+        } else {
+            document = getDocument(_path);
+        }
+
         Element root = document.getRootElement();
 
         Iterator<Element> it = root.elementIterator();
@@ -148,6 +158,26 @@ public class SceneXML {
         SAXReader reader = new SAXReader();
         try {
             document = reader.read(url);
+        } catch (DocumentException e) {
+            Logger.getLogger("net.ra100.cyd").log(Level.WARNING, e.toString());
+        }
+        return document;
+    }
+
+    /**
+     * This method is used to load the xml file from external URL to a document and return it
+     *
+     * @param xmlFileName is the xml file name to be loaded
+     * @return Document
+     */
+    public Document getDocumentFromURL(String urlpath) {
+        InputStream is = Helper.urlInputStream(urlpath);
+
+        Document document = null;
+        SAXReader reader = new SAXReader();
+        try {
+            document = reader.read(is);
+            Logger.getLogger("net.ra100.cyd").log(Level.INFO, "Loading scene from URL");
         } catch (DocumentException e) {
             Logger.getLogger("net.ra100.cyd").log(Level.WARNING, e.toString());
         }

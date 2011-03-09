@@ -50,7 +50,7 @@ package class UniverseFX extends JavaTaskBase, Observer {
     // Create RunnableFuture: PanoUniverse
     // Called in function 'start()'
     protected override function create(): RunnableFuture {
-        universe = new PanoUniverse();
+        universe = new PanoUniverse(scene.sceneurl);
         universe.addObserver(this);
         return universe;
     }

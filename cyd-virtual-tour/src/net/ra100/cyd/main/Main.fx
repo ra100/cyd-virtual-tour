@@ -5,10 +5,13 @@
  */
 package net.ra100.cyd.main;
 
+import java.util.Locale;
+
 /**
  * @author ra100
  */
-function run(args: String[]): Void {    
+function run(args: String[]): Void {
+    Locale.setDefault(new Locale("SK"));
     var scene: PanoScene = new PanoScene();
     scene.create();
 }

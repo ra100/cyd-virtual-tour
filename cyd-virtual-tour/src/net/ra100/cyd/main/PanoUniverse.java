@@ -73,10 +73,10 @@ public class PanoUniverse extends Observable implements RunnableFuture {
     private Vector3d vector = null;
     private Shape shape = null;
     private Boolean updateMap = false;
+    private String sceneurl;
 
-    PanoUniverse() {
-        // Transparent 3D scene background
-//        System.setProperty("j3d.transparentOffScreen", "true");
+    PanoUniverse(String url) {
+        sceneurl = url;
     }
 
     // JavaFX Interface RunnableFuture
@@ -212,7 +212,7 @@ public class PanoUniverse extends Observable implements RunnableFuture {
     }
 
     private void createScene() {
-        PanoScene ps = new PanoScene();
+        PanoScene ps = new PanoScene(sceneurl);
         setLoaded(73);
         sceneBranch.addChild(ps.getScene());
         shapes = ps.getSceneXml().getShapes();
