@@ -40,6 +40,32 @@ public class DataLoader {
         }
     }
 
+    var gbitem: GuestBook;
+    public var gblist = new GuestBookList();
+    var gbparser = PullParser {
+        documentType: PullParser.XML;
+        onEvent: function(event: Event) {
+            if (event.type == PullParser.START_ELEMENT){
+                if (event.qname.name == "comment") {
+                    gbitem = new GuestBook();
+                }
+            }
+            if (event.type == PullParser.END_ELEMENT) {
+                if (event.qname.name == "time") {
+                    gbitem.time = event.text;
+                } else if (event.qname.name == "name") {
+                    gbitem.name = event.text;
+                } else if (event.qname.name == "text") {
+                    gbitem.text = event.text;
+                } else if (event.qname.name == "comment") {
+                    gblist.addItem(gbitem);
+                } else if (event.qname.name == "rowcount") {
+                    gblist.setCount(event.text);
+                }
+            }
+        }
+    }
+
     public function load(reload: Integer): Boolean{
         values = [];
         var language = scene.language;
@@ -47,7 +73,7 @@ public class DataLoader {
         var token = scene.token;
         var vals: StringBuffer = new StringBuffer();
         var i = 0;
-        input = safeStrings(input);
+        if (action == "submitpost") input = safeStrings(input);
         for (val in input) {
             i++;
             vals.append("&{val.key}={val.value}");
@@ -60,8 +86,13 @@ public class DataLoader {
 
         try {
             uis = Helper.urlInputStreamEx(url);
-            parser.input = uis;
-            parser.parse();
+            if (action == "guestbook") {
+                gbparser.input = uis;
+                gbparser.parse();
+            } else {
+                parser.input = uis;
+                parser.parse();
+            }
         } catch (e) {
             if (uis == null and reload < 2) {
                 //automaticky reload ak zlyha pripojenie
@@ -79,6 +110,15 @@ public class DataLoader {
         return true;
     }
 
+    public function loadGuestbook(page: Integer): GuestBook[] {
+        gblist.reset();
+        action = "guestbook";
+        input = [DataElement {key: "page", value: page.toString()}];
+        load(0);
+        return gblist.getItems();
+    }
+
+
     /**
     * zmeni specialne znaky aby nerobili problemy v URL
     * input: String[] - vstupne pole retazcov
@@ -86,7 +126,15 @@ public class DataLoader {
     */
     public function safeStrings(input: DataElement[]): DataElement[] {
         for (val in input) {
-            val.value.replace({" ";"&"; "?"; "%"; "="; "'"; '"'; '\\'}, {"%20";"%26";"%3F";"%25";"%3D";"%27";"%22";"%5C"});
+            val.value = val.value.replace("%", "%25");
+            val.value = val.value.replace(" ", "%20");
+            val.value = val.value.replace("&", "%26");
+            val.value = val.value.replace('?', "%3F");
+            val.value = val.value.replace("=", "%3D");
+            val.value = val.value.replace("'", "%27");
+            val.value = val.value.replace('"', "%22");
+            val.value = val.value.replace('\\',"%5C");
+            println(val.value);
         }
         return input;
     }

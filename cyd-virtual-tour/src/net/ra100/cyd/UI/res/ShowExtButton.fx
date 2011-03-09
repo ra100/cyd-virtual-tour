@@ -34,9 +34,9 @@ public class ShowExtButton extends CustomNode {
    override function create(): Node {
        Group {
            content: [
-                   ImageView {
-                    image: Image {url: "{__DIR__}ShowExtButton.png"}
-                   }
+               ImageView {
+                image: Image {url: "{__DIR__}ShowExtButton.png"}
+               }
            ] // content
        } // Group
    } // function create()

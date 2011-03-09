@@ -5,21 +5,21 @@
  */
 package net.ra100.cyd.UI;
 
-import javafx.data.pull.PullParser;
-import javafx.data.pull.Event;
-import net.ra100.cyd.utils.Helper;
 import javafx.scene.CustomNode;
 import javafx.scene.Node;
 import javafx.scene.Group;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
-import java.lang.Exception;
 import javafx.scene.control.TextBox;
 import javafx.scene.text.Text;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import net.ra100.cyd.main.PanoScene;
+import net.ra100.cyd.utils.GuestBook;
+import net.ra100.cyd.utils.DataElement;
+import javafx.scene.layout.LayoutInfo;
 
 /**
  * @author ra100
@@ -29,15 +29,18 @@ public class GuestBookRead extends CustomNode {
     var textHeader = Text {
         smooth: false
         fill: Color.BLACK
-        wrappingWidth: 500
+        wrappingWidth: 700
         id: "headerText"
         content: ##"Guestbook";
     }
+    
+    public var myScene: PanoScene;
+    public var array: GuestBook[];
 
     override protected function create(): Node {
         return Group {
                     content: [VBox {
-                            translateX: 16
+                            translateX: 26
                             translateY: 16
                             content: [
                                 textHeader,
@@ -75,8 +78,6 @@ public class GuestBookRead extends CustomNode {
                 }
     }
 
-    public var list = new GuestBookList();
-
     def prevButton = RButton {
                 image: ImageView {
                 image: Image {
@@ -111,79 +112,49 @@ public class GuestBookRead extends CustomNode {
         selectOnFocus: true
 	columns: 16
 	editable: true
+        layoutInfo: LayoutInfo {
+                width: 120
+                maxWidth: 120
+                }
     }
 
     var textfield = TextBox {
-	text: ##"Write your comment here"
+	promptText: ##"Write your comment here"
 	columns: 54
 	selectOnFocus: true
         editable: true
+        multiline: true
+        lines: 2
+        layoutInfo: LayoutInfo {
+                width: 200
+                maxWidth: 200
+                }
     }
 
     var submit = RButton {
 	image: ImageView {
                 image: Image {
-                        url: "{__DIR__}res/SubmitButton.png"
+                        url: "{__DIR__}res/OkButton.png"
                 }
             }
 	action: function() { submitPost(); }
     }
 
-    var array: GuestBook[];
-    var item: GuestBook;
-    var url : String;
     var page = 0;
 
-    var parser = PullParser {
-        documentType: PullParser.XML;
-        onEvent: function(event: Event) {
-            if (event.type == PullParser.START_ELEMENT){
-                if (event.qname.name == "comment") {
-                    item = new GuestBook();
-                }
-            }
-            if (event.type == PullParser.END_ELEMENT) {
-                if (event.qname.name == "time") {
-                    item.time = event.text;
-                } else if (event.qname.name == "name") {
-                    item.name = event.text;
-                } else if (event.qname.name == "text") {
-                    item.text = event.text;
-                } else if (event.qname.name == "comment") {
-                    list.addItem(item);
-                } else if (event.qname.name == "rowcount") {
-                    list.setCount(event.text);
-                }
-            }
-        }
-    }
-
     public function load(){
-        list.reset();
-        url = "http://ra100.scifi-guide.net/brhlovce/scripts/guestbook.php?page={page}";
-        parser.input = Helper.urlInputStream(url);
-        //httpRequest.start();
-        parser.parse();
-        array = list.getItems();
+        array = myScene.dataloader.loadGuestbook(page);
     }
 
     function submitPost(){
-        var text = textfield.text.replaceAll(" ", "%20");
-        name.text = name.text.replaceAll(" ", "%20");
-//        if (name.text.length() == 0){
-//            name.text = "anonymous";
-//        }
-        url = "http://ra100.scifi-guide.net/brhlovce/scripts/guestbooksub.php?name={name.text}&text={text}";
-        try {
-            Helper.urlInputStream(url);
-        } catch( ex: Exception) {
-            println("Chyba http poziadavky");
-        } finally {
-            page = 0;
-            load();
-            textfield.text = ##"Write your comment here";
-            name.text = "";
-        }
+        myScene.dataloader.action = "submitpost";
+        myScene.dataloader.input = [DataElement{ key: "name", value: name.rawText},
+            DataElement{ key: "text", value: textfield.rawText}];
+        myScene.dataloader.load(0);
+        page = 0;
+        load();
+        textfield.text = "";
+        name.text = "";
     }
 
     function prevPage(){
@@ -194,7 +165,7 @@ public class GuestBookRead extends CustomNode {
     }
 
     function nextPage(){
-        if (page < (list.count/5)) {
+        if (page < (array.size()/7)) {
             page=page+1;
             load();
         }
@@ -202,10 +173,11 @@ public class GuestBookRead extends CustomNode {
     }
 
     public function reloadlang(){
-        textfield.text= ##"Write your comment here";
-        textHeader.content= ##"Guestbook";
-
+        textfield.promptText = ##"Write your comment here";
+        textHeader.content = ##"Guestbook";
+        name.promptText = ##"Name";
+        nameLabel.text = ##"Name";
+        message.text = ##"Message";
     }
-
 }
 

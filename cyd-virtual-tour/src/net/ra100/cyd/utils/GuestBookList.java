@@ -1,4 +1,4 @@
-package net.ra100.cyd.UI;
+package net.ra100.cyd.utils;
 
 import java.util.ArrayList;
 

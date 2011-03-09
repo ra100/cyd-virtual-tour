@@ -3,13 +3,13 @@
  * and open the template in the editor.
  */
 
-package net.ra100.cyd.UI;
+package net.ra100.cyd.utils;
 
 /**
  *
  * @author ra100
  */
-class GuestBook {
+public class GuestBook {
     public String time;
     public String name;
     public String text;

@@ -204,6 +204,7 @@ public class ExtensionDisplay extends CustomNode {
                 setText();
             } else if (type == "guestbook") {
                 guestBook.reloadlang();
+                guestBook.myScene = myScene;
                 guestBook.load();
                 guestBook.visible = true;
             }
