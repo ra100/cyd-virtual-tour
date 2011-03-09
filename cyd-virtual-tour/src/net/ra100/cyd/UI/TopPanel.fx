@@ -30,7 +30,7 @@ public class TopPanel extends CustomNode {
     public var width: Integer;
     public var hideHeight: Integer = 52;
     var active: Boolean = true;
-    var label = Label {text: ""
+    public var label = Label {text: ""
         visible: true
         translateX: 5};
         

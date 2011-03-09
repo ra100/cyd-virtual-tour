@@ -135,7 +135,7 @@ public class MapPoint extends CustomNode {
     protected function mouseOver() {
         point.scaleX = 1.3;
         point.scaleY = 1.3;
-        label.text = Integer.toHexString(actUsers);
+        label.text = "{panel.activeVisitos}{Integer.toHexString(actUsers)}";
         label.visible = true;
     }
 

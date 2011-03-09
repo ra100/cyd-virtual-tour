@@ -101,7 +101,7 @@ public class PanoScene {
 
     public var extensionDisplay: ExtensionDisplay = bind universeFX.extension;
 
-    var topPanel = TopPanel {
+    public var topPanel = TopPanel {
         visible: bind block
         disable: bind extensionDisplay.visible;
     }
@@ -278,6 +278,7 @@ public class PanoScene {
     public function changeLanguage(lang: String){
         Locale.setDefault(new Locale(lang));
         bagPanel.updateLang();
+        mapPanel.updateLang();
         language = lang;
     }
 

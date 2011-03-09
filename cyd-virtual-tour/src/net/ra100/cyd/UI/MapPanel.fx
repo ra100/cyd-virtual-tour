@@ -21,6 +21,9 @@ import javafx.scene.shape.Polyline;
 import javafx.scene.Group;
 import javafx.scene.transform.Rotate;
 import net.ra100.cyd.UI.res.ViewDirection;
+import net.ra100.cyd.UI.res.HidePathButton;
+import javafx.scene.effect.Glow;
+import net.ra100.cyd.UI.res.ShowPathButton;
 
 /**
  * @author ra100
@@ -33,12 +36,10 @@ public class MapPanel extends CustomNode {
     public var hideWidth: Float = 164;
     public var myScene: PanoScene;
     var active: Boolean = true;
-    var label = Label {
-        translateX: 5
-        translateY: 3
-        styleClass: "maplabel"
-        text: " "};
+
     def bg = MapBG{};
+
+    public var activeVisitos: String = ##"Active vistors";
 
     public var scale: Float = 1;
     public var xoffset: Float = 0;
@@ -47,7 +48,34 @@ public class MapPanel extends CustomNode {
     public var activePano: MapPoint;
     public var mapPanos: MapPoint[];
     public var path: MapPoint[];
-    
+
+    var pathButton = RSwitch {
+
+        primary : RButton {
+            image: ShowPathButton { };
+            text: ##"HidePath"
+            label : myScene.topPanel.label
+            overEffect: Glow {
+                level: 1
+            }
+            action: function (): Void {
+                pathlines.visible = false;
+            }
+        };
+        secondary :  RButton {
+            image: HidePathButton { };
+            text: ##"ShowPath"
+            label : myScene.topPanel.label
+            overEffect: Glow {
+                level: 1
+            }
+            action: function (): Void {
+                pathlines.visible = true;
+            }
+            visible : false;
+        }
+    }
+
     /*helper*/
     def back: Rectangle = Rectangle {
 	x: 0, y: 0
@@ -91,7 +119,13 @@ public class MapPanel extends CustomNode {
                     height: 32
                     spacing : 4
                     content: [
-                        label
+                        HBox {
+                            translateX: 3
+                            translateY: 3
+                            content: [
+                                pathButton
+                                ]
+                        }
                     ]
                 }
                 map
@@ -99,7 +133,6 @@ public class MapPanel extends CustomNode {
         }
         ]
         }
-
     }
 
     public function initMap() {
@@ -112,7 +145,7 @@ public class MapPanel extends CustomNode {
            var mp: MapPoint = MapPoint{};
            mp.shape = a;
            mp.panel = this;
-           mp.label = this.label;
+           mp.label = myScene.topPanel.label;
            insert mp into mapPanos;
 
            if (minx > a.getMapcoordinates()[0]) minx = a.getMapcoordinates()[0];
@@ -206,6 +239,12 @@ public class MapPanel extends CustomNode {
         compass.translateY = y;
         rotation.angle = rot;
     }
+
+     public function updateLang(){
+         pathButton.primary.text = ##"HidePath";
+         pathButton.secondary.text = ##"ShowPath";
+         activeVisitos = ##"Active vistors"
+     }
 
 
 }
