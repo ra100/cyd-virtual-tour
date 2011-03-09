@@ -44,8 +44,8 @@ public class ExtensionDisplay extends CustomNode {
     var height : Number;
     var width : Number;
 
-    var type: String;
-    var url: String;
+    public-read var type: String;
+    public-read var url: String;
 
     /*items v extension */
     public var items: Item[];
@@ -91,16 +91,7 @@ public class ExtensionDisplay extends CustomNode {
 	fill: Color.BLACK
         opacity: 0.5
     }
-
-    var bagbg = Rectangle {
-	x: 0
-        y: 0
-	width: bind myScene.screenWidth
-        height: bind myScene.screenHeight
-	fill: Color.CYAN
-        opacity: 0.3
-    }
-    
+   
     var background2 = Rectangle {
 	x: border-5
         y: border-5
@@ -194,31 +185,36 @@ public class ExtensionDisplay extends CustomNode {
         myScene = sc;
     }
 
-    public function setExtension(pe : PanoExtension) {
+    public function setExtension(pe : PanoExtension): Void {
         extension = pe;
         myScene.dataloader.action = 'loadextension';
-        myScene.dataloader.input = [DataElement {value: extension.getName(), key: "extensionname"}];
+        myScene.dataloader.input = [DataElement {value: extension.getSymlink(), key: "extensionname"}];
         myScene.dataloader.load(0);
         type = myScene.dataloader.getValueByKey('type');
-        textHeader.content = myScene.dataloader.getValueByKey('titlen');
-        text.content = myScene.dataloader.getValueByKey('content');
-        url = myScene.dataloader.getValueByKey('url');
 
-        if (type == "image") {setImage();}
-        else if(type == "text") {
-            setText();
-        } else if (type == "guestbook") {
-            guestBook.reloadlang();
-            guestBook.load();
-            guestBook.visible = true;
+        if (type == "pano") {
+            url = myScene.dataloader.getValueByKey('url');
+        } else {
+            textHeader.content = myScene.dataloader.getValueByKey('titlen');
+            text.content = myScene.dataloader.getValueByKey('content');
+            url = myScene.dataloader.getValueByKey('url');
+
+            if (type == "image") {setImage();}
+            else if(type == "text") {
+                setText();
+            } else if (type == "guestbook") {
+                guestBook.reloadlang();
+                guestBook.load();
+                guestBook.visible = true;
+            }
+            if (type == "highscores") {
+                textHeader.visible = true;
+                loadScores();
+            }
+            itemsPanel.visible = false;
+            setItems();
+            if (myScene.bagPanel.visible) itemsPanel.visible = true;
         }
-        if (type == "highscores") {
-            textHeader.visible = true;
-            loadScores();
-        }
-        itemsPanel.visible = false;
-        setItems();
-        if (myScene.bagPanel.visible) itemsPanel.visible = true;
     }
 
     /* nastavenie items */

@@ -221,10 +221,25 @@ public class MapPanel extends CustomNode {
         return activePano;
     }
 
+    /**
+    * zmena panoramy podla Shape objektu
+    */
     public function changePano(sp: Shape): Void {
         for (mp in mapPanos) {
             if (mp.shape.getTitle() == sp.getTitle()) {
                 mp.changeActive();
+                return;
+            }
+        }
+    }
+
+    /**
+    * zmena panoramy podla mena, pozitie pri volani z extension
+    */
+    public function changePano(title: String): Void {
+        for (mp in mapPanos) {
+            if (mp.shape.getTitle() == title) {
+                mp.setActive();
                 return;
             }
         }
@@ -240,11 +255,14 @@ public class MapPanel extends CustomNode {
         rotation.angle = rot;
     }
 
-     public function updateLang(){
+    /**
+    * updatovanie stringov pri zmene jazyka
+    */
+    public function updateLang(){
          pathButton.primary.text = ##"HidePath";
          pathButton.secondary.text = ##"ShowPath";
-         activeVisitos = ##"Active vistors"
-     }
+         activeVisitos = ##"Active vistors";
+    }
 
 
 }

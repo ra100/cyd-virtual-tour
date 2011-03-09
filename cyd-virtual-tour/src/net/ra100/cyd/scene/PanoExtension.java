@@ -23,6 +23,11 @@ public class PanoExtension {
     private String name = null;
 
     /**
+     * prepojenie na udaj v databaze
+     */
+    private String symlink = null;
+
+    /**
      * objekt v grafe sceny
      */
     private Shape3D shape = null;
@@ -51,6 +56,7 @@ public class PanoExtension {
      */
     public PanoExtension(String _name) {
         this.name = _name;
+        this.symlink = _name;
     }
 
     /**
@@ -145,4 +151,26 @@ public class PanoExtension {
     public void setImage(Image image) {
         this.image = image;
     }
+
+    /**
+     * getter
+     * @return
+     */
+    public String getSymlink() {
+        return symlink;
+    }
+
+    /**
+     * setter
+     * @param symlink
+     */
+    public void setSymlink(String symlink) {
+        if ((symlink == null) || (symlink.length() == 0)) {
+            this.symlink = name;
+        } else {
+            this.symlink = symlink;
+        }
+    }
+
+
 }

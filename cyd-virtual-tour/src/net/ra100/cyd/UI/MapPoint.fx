@@ -37,6 +37,9 @@ public class MapPoint extends CustomNode {
 
     protected var size: Float;
 
+    /**
+    * menu 3d objektu v scene
+    */
     protected var name: String;
 
     protected var shape: Shape;
@@ -46,11 +49,12 @@ public class MapPoint extends CustomNode {
     protected var actUsers: Integer = 0;
     
     public def overEffect: Effect = Bloom {threshold: 0.5}
-    public def activeEffect: Effect = ColorAdjust {
-	brightness: 0.0
-	contrast: 1.0
-	hue: 0.7
-	saturation: 0.5 }
+    public def activeEffect: Effect = null;
+//    ColorAdjust {
+//	brightness: 0.0
+//	contrast: 1.0
+//	hue: 0.7
+//	saturation: 0.5 }
 
     public-read var active: Boolean = false;
 
@@ -145,6 +149,9 @@ public class MapPoint extends CustomNode {
         label.visible = false;
     }
 
+    /**
+    * nazov panoramy, ktory je v databaze
+    */
     public function getTitle(): String {
         return shape.getTitle();
     }

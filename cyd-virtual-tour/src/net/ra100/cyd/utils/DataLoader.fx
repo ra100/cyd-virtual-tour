@@ -55,7 +55,7 @@ public class DataLoader {
         vals.append("&count={i}");
 
         url = "{baseURL}?action={action}&language={language}&id={id}&token={token}{vals.toString()}";
-//        Logger.getLogger("net.ra100.cyd").log(Level.INFO, url);
+        Logger.getLogger("net.ra100.cyd").log(Level.INFO, url);
         var uis: InputStream;
 
         try {

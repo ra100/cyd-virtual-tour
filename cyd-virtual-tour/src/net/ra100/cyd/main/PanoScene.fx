@@ -360,6 +360,14 @@ public class PanoScene {
         universeFX.changeShape(sp);
     }
 
+    /**
+    * nastaviak tivnu panoramu podla mena
+    */
+    public function changePano(title: String) {
+        mapPanel.changePano(title);
+    }
+
+
     public function getShapes(): Shape[] {
         return universeFX.universe.getShapesArray();
     }

@@ -39,6 +39,7 @@ public class SceneXML {
     public final static String TEXT = "text";
     public final static String URL = "url";
     public final static String FIRST = "first";
+    public final static String SYMLINK = "symlink";
 
     /**
      * cety k texturam
@@ -130,9 +131,10 @@ public class SceneXML {
             Iterator<Element> extensions = node.elements(EXTENDED).iterator();
             while (extensions.hasNext()){
                 Element el = extensions.next();
-                String type = el.attributeValue(TYPE);
+                String symlink = el.attributeValue(SYMLINK);
                 PanoExtension pe = new PanoExtension();
                 pe.setName(el.getText());
+                pe.setSymlink(symlink);
                 s.addExtended(pe);
             }
 

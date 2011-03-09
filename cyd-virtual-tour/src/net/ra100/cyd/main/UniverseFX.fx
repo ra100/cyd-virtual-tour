@@ -79,21 +79,6 @@ package class UniverseFX extends JavaTaskBase, Observer {
         universe.setExtras(false);
     }
 
-//    package var move: Boolean = false;
-
-    /**
-    * smer
-    * 1 dopredu, 2 dozadu, 3 vpravo, 4 vlavo, 5 hore, 6 dole
-    */
-//    package function moveCamera(direction: Integer) {
-//         if (direction == FORWARD) {universe.getWalkBeh().moveCamera(0.0, 0, -0.1*speed);}
-//         else if (direction == BACKWARD) {universe.getWalkBeh().moveCamera(0.0, 0, 0.1*speed); }
-//         else if (direction == RIGHT) {universe.getWalkBeh().moveCamera(0.1*speed, 0, 0); }
-//         else if (direction == LEFT) {universe.getWalkBeh().moveCamera(-0.1*speed, 0, 0); }
-//         else if (direction == UP) {universe.getWalkBeh().moveCamera(0.0, -0.1*speed, 0); }
-//         else if (direction == DOWN) {universe.getWalkBeh().moveCamera(0.0, 0.1*speed, 0); }
-//    }
-
     protected var loaded: Integer = 0;
     protected var loaderVisible: Boolean = true;
     protected var extension: ExtensionDisplay = new ExtensionDisplay();
@@ -108,13 +93,11 @@ package class UniverseFX extends JavaTaskBase, Observer {
                 universe.setUpdateMap(false);
                 return;
             }
-
             if (not initialized) {
                 if (universe.isInitialized()) {
                     initialized = true;
                     scene.firstInit();
                 }
-
             }
             loaded = universe.getLoaded();
             if (loaded == 100) {
@@ -129,10 +112,14 @@ package class UniverseFX extends JavaTaskBase, Observer {
                     run: function() {
                         extension.setExtension(universe.getExtension());
                     }
-
                     onDone: function() {
-                        extension.visible = true;
-                        stopLoading();
+                        if (extension.type != "pano") {
+                            stopLoading();
+                            extension.visible = true;
+                        } else {
+                            deleteExt();
+                            scene.changePano(extension.url);
+                        }  
                     }
                 }.start();
             } else {
@@ -142,10 +129,12 @@ package class UniverseFX extends JavaTaskBase, Observer {
     }
 
     public function setLoaderImage() {
-        var bi : BufferedImage = componentToImage(scene.fxCanvas3DComp.getJComponent());
-        scene.progressBackground.image = SwingUtils.toFXImage(bi);
+        if (not loaderVisible) {
+            var bi : BufferedImage = componentToImage(scene.fxCanvas3DComp.getJComponent());
+            scene.progressBackground.image = SwingUtils.toFXImage(bi);
 
-        startLoading();
+            startLoading();
+        }
     }
 
     /*
