@@ -73,9 +73,6 @@ public class SceneXML {
      */
     public void load(String _path) {
         Document document = getDocument(_path);
-//        String xPath = "//";
-
-//        List<Node> nodes = document.selectNodes(xPath);
         Element root = document.getRootElement();
 
         Iterator<Element> it = root.elementIterator();

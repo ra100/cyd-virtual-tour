@@ -50,14 +50,16 @@ public class PanoScene {
     public def SK = "sk";
     public def EN = "en";
 
+    public def sceneurl = ##"sceneurl";
+
     var stylesheets : String = "{__DIR__}default.css";
 
     // loading indicator
     public var block = false;
 
     // Frame size
-    public-read var screenWidth: Number = 700;
-    public-read var screenHeight: Number = 500;
+    public-read var screenWidth: Number = 800;
+    public-read var screenHeight: Number = 600;
 
     public-read var language: String = SK;
 
@@ -79,7 +81,8 @@ public class PanoScene {
 
     var progressIndicator: Group = Group {
         visible: false
-        layoutX: 100
+        layoutX: 150
+        layoutY: 50
         content: [loader]
     }
 
@@ -237,8 +240,6 @@ public class PanoScene {
                extensionDisplay,
                bagPanel,
             Group {
-                layoutX: (screenWidth/2) - 162
-                layoutY: (screenHeight/2) - 107
                 content: [messagePanel]
                }
             ]
@@ -276,6 +277,7 @@ public class PanoScene {
 
     public function changeLanguage(lang: String){
         Locale.setDefault(new Locale(lang));
+        bagPanel.updateLang();
         language = lang;
     }
 
@@ -314,6 +316,8 @@ public class PanoScene {
             autoReverse: true
             framerate: 15
         }.play();
+        topPanel.activateMap();
+        topPanel.activateExtras();
     }
 
     public function updateCompass() {

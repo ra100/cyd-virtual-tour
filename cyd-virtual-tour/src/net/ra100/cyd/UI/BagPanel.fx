@@ -16,6 +16,10 @@ import net.ra100.cyd.main.PanoScene;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import net.ra100.cyd.utils.DataElement;
+import javafx.scene.control.Label;
+import javafx.scene.layout.LayoutInfo;
+import javafx.geometry.VPos;
+import javafx.geometry.HPos;
 
 /**
  * @author Rastislav R@100 Švarba
@@ -31,7 +35,7 @@ public class BagPanel extends CustomNode {
         arcWidth: 5
         arcHeight: 5
 	width: 400
-        height: 150
+        height: 180
 	fill: Color.web("#000000")
         opacity: 0.7
     }
@@ -40,14 +44,14 @@ public class BagPanel extends CustomNode {
         arcWidth: 8
         arcHeight: 8
 	width: 406
-        height: 156
+        height: 186
 	fill: Color.web("#ffffff")
         opacity: 0.7
     }
 
     var close: RButton = RButton {
         translateX: 200
-        translateY: -80
+        translateY: -90
         image: ExitButton { };
         visible: true
         overEffect: Glow {
@@ -58,21 +62,31 @@ public class BagPanel extends CustomNode {
         }
     }
 
+    var info = Label {
+        textFill: Color.LIGHTGRAY
+        translateX: 15
+        translateY: 8
+         layoutInfo: LayoutInfo {
+            vpos: VPos.TOP
+            hpos: HPos.LEFT
+         }
+    }
+
     public override function create(): Node {
         return Stack {
-            layoutX: 150
+            layoutX: 200
             layoutY: 150
             content: [
                 background0,
                 background,
                 close,
+                info,
                 bag
             ]
         }
     }
 
     public function takeItem(it: Item): Boolean {
-
         for (ii in bag.items) {
             if ((it.type == ii.type) and (ii.status == 0)) {
                 myScene.messagePanel.label.content = ##"Already have";
@@ -147,4 +161,9 @@ public class BagPanel extends CustomNode {
         myScene.extensionDisplay.showitems();
         return true;
     }
+
+    public function updateLang(): Void {
+        info.text = ##"Bag info";
+    }
+
 }

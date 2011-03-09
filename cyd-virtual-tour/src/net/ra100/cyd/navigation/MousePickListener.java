@@ -32,8 +32,8 @@ public class MousePickListener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent me) {
-        int clicks = me.getClickCount();
-        if (clicks == 2 && SwingUtilities.isLeftMouseButton(me)) {
+//        int clicks = me.getClickCount();
+        if (SwingUtilities.isLeftMouseButton(me)) {
             pick(me);
         }
     }

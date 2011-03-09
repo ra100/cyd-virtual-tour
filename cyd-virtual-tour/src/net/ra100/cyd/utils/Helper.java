@@ -155,9 +155,6 @@ public class Helper {
         try {
             URL loadUrl = new URL(url);
             URLConnection con = loadUrl.openConnection();
-            //                        BufferedReader in = new BufferedReader(
-            //                                new InputStreamReader(
-            //                                con.getInputStream()));
             return con.getInputStream();
         } catch (Exception e) {
             Logger.getLogger("net.ra100.cyd").log(Level.SEVERE,
@@ -189,9 +186,6 @@ public class Helper {
         try {
             URL loadUrl = new URL(sceneXml.getPath() + "" + shape.getTexture());
             URLConnection con = loadUrl.openConnection();
-            //                        BufferedReader in = new BufferedReader(
-            //                                new InputStreamReader(
-            //                                con.getInputStream()));
             img = ImageIO.read(con.getInputStream());
         } catch (Exception e) {
             Logger.getLogger("net.ra100.cyd").log(Level.SEVERE,
@@ -218,9 +212,6 @@ public class Helper {
         try {
             URL loadUrl = new URL(path + "" + shape.getTexture());
             URLConnection con = loadUrl.openConnection();
-            //                        BufferedReader in = new BufferedReader(
-            //                                new InputStreamReader(
-            //                                con.getInputStream()));
             img = ImageIO.read(con.getInputStream());
         } catch (java.net.ConnectException ex) {
             Logger.getLogger("net.ra100.cyd").log(Level.WARNING,

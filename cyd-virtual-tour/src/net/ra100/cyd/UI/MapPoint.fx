@@ -118,7 +118,6 @@ public class MapPoint extends CustomNode {
         }.start();
     }
 
-
     /**
     * nastavi vychodziu panoramu
     */
@@ -127,7 +126,6 @@ public class MapPoint extends CustomNode {
         active = true;
         this.effect = activeEffect;
     }
-
 
     protected function leave(): Void {
         active = false;

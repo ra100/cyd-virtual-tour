@@ -23,6 +23,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.ext.swing.SwingTextField;
 import javafx.scene.control.TextBox;
+import javafx.scene.layout.LayoutInfo;
 
 /**
  * @author ra100
@@ -82,12 +83,25 @@ public class MessagePanel extends CustomNode {
         opacity: 0.0
     }
 
+    var background2 = Rectangle {
+	x: 0
+        y: 0
+	width: bind myScene.screenWidth
+        height: bind myScene.screenHeight
+	fill: Color.BLACK
+        opacity: 0.5
+    }
+
     def bg = MessageBG{};
 
     public override function create(): Node {
-        return Stack {
-            height: bg.boundsInLocal.height
-            width: bg.boundsInLocal.width
+        return 
+        Stack {
+            blocksMouse: true
+            content: [
+            background2,
+            Stack {
+
             content: [
                 bg,
                 background,
@@ -105,6 +119,11 @@ public class MessagePanel extends CustomNode {
                     content: [refresh, close]
                 }
             ]
+            layoutInfo: LayoutInfo {
+                maxHeight: bg.boundsInLocal.height
+                maxWidth: bg.boundsInLocal.width }
+        }
+        ]
         }
     }
 }

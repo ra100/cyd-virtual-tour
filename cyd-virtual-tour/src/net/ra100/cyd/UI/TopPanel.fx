@@ -232,7 +232,8 @@ public class TopPanel extends CustomNode {
 
     public override function create(): Node {
         return Stack {
-                nodeVPos: VPos.TOP,
+            blocksMouse: true
+            nodeVPos: VPos.TOP,
             content: [
         bg,
         VBox {
@@ -317,4 +318,16 @@ public class TopPanel extends CustomNode {
     function extend(ext: PanoExtension) {
         myScene.setExtension(ext);
     }
+
+    public function activateMap(): Void {
+        naviButton.change();
+        naviButton.primary.action();
+    }
+
+    public function activateExtras(): Void {
+        extrasButton.change();
+        extrasButton.primary.action();
+    }
+
+
 }

@@ -25,6 +25,10 @@ import javafx.scene.layout.Tile;
 import javafx.scene.Group;
 import javafx.geometry.HPos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.LayoutInfo;
+import javafx.geometry.VPos;
+import javafx.scene.layout.Stack;
+import javafx.scene.layout.Flow;
 
 /**
  * @author ra100
@@ -58,7 +62,7 @@ public class ExtensionDisplay extends CustomNode {
         y: border+14,
         smooth: false
         fill: Color.BLACK
-        wrappingWidth: 500
+        wrappingWidth: 700
         id : "headerText"
     }
 
@@ -68,7 +72,7 @@ public class ExtensionDisplay extends CustomNode {
         smooth: false
         fill: Color.BLACK
         textAlignment: TextAlignment.JUSTIFY
-        wrappingWidth: 500
+        wrappingWidth: 700
         id: "longText"
    }
 
@@ -87,6 +91,15 @@ public class ExtensionDisplay extends CustomNode {
 	fill: Color.BLACK
         opacity: 0.5
     }
+
+    var bagbg = Rectangle {
+	x: 0
+        y: 0
+	width: bind myScene.screenWidth
+        height: bind myScene.screenHeight
+	fill: Color.CYAN
+        opacity: 0.3
+    }
     
     var background2 = Rectangle {
 	x: border-5
@@ -99,10 +112,8 @@ public class ExtensionDisplay extends CustomNode {
         opacity: 0.8
     }
 
-    var panel: Panel;
-
    var starButton =  RButton {
-        translateX: 630;
+        translateX: 730;
         translateY: 20;
         image: StarButton { };
         visible: false
@@ -115,14 +126,21 @@ public class ExtensionDisplay extends CustomNode {
     }
 
     var itemsPanel: Tile = Tile {
-        layoutX: 5
-        layoutY: 5
+        translateX: -10
+        translateY: 80
         visible: false
         hgap: 5
         vgap: 5
-        columns: 7
-        rows: 2
+        rows: 7
+        vertical: true
         content: bind items
+        hpos: HPos.RIGHT
+        layoutInfo: LayoutInfo {
+            hpos: HPos.RIGHT
+            vpos: VPos.TOP
+            maxHeight: 500
+            height: 500
+        }
     }
 
     var scoreboard: Group = Group {
@@ -131,7 +149,7 @@ public class ExtensionDisplay extends CustomNode {
         };
 
     def closeButton = RButton {
-        translateX: 636;
+        translateX: 736;
         translateY: -16;
         image: ExitButton { }
         overEffect: Glow {
@@ -150,8 +168,11 @@ public class ExtensionDisplay extends CustomNode {
         }
     };
 
+    var panel: Panel;
+
     public override function create(): Node {
-        return panel = Panel {
+         panel = Panel {
+            blocksMouse: true
             content: [
                 background,
                 background2,
@@ -160,10 +181,13 @@ public class ExtensionDisplay extends CustomNode {
                 text,
                 guestBook,
                 scoreboard,
-                itemsPanel,
                 starButton,
                 closeButton]
         };
+        return Stack {
+            content: [panel, itemsPanel]
+        }
+
     }
 
     public function setScene(sc: PanoScene){
@@ -194,6 +218,7 @@ public class ExtensionDisplay extends CustomNode {
         }
         itemsPanel.visible = false;
         setItems();
+        if (myScene.bagPanel.visible) itemsPanel.visible = true;
     }
 
     /* nastavenie items */
@@ -224,13 +249,19 @@ public class ExtensionDisplay extends CustomNode {
     /* skyje alebo zobrazi itemy */
     function hideItems() {
         if (itemsPanel.visible == false) {
-
+//            items = [];
+//
+//            for (de in myScene.dataloader.getItemsIds()) {
+//                loadItem(Integer.parseInt(de.key), Integer.parseInt(de.value));
+//            }
+            
             itemsPanel.visible = true;
             myScene.bagPanel.visible = true;
         } else {
             itemsPanel.visible = false;
             myScene.bagPanel.visible = false;
         }
+        if (myScene.bagPanel.visible) itemsPanel.visible = true;
     }
 
     function setImage(){
@@ -289,13 +320,16 @@ public class ExtensionDisplay extends CustomNode {
         starButton.visible = true;
     }
 
+    /*
+    nacitanie a zobrazenie high scores tabuliek
+    */
     public function loadScores(): Void {
         var tile = Tile {
             hgap: 8
             vgap: 4
             rows: 2
             columns: 3
-            tileWidth: 190
+            tileWidth: 250
             autoSizeTiles: false
             nodeHPos: HPos.LEFT
             content: [
@@ -306,30 +340,30 @@ public class ExtensionDisplay extends CustomNode {
 
         var timetile = Tile {
             columns: 2
-            rows: 10
+            rows: 20
             vgap: 4
             nodeHPos: HPos.LEFT
-            tileWidth: 80
+            tileWidth: 110
             tileHeight: 20
             autoSizeTiles: false
         }
 
         var panotile = Tile {
             columns: 2
-            rows: 10
+            rows: 20
             vgap: 4
             nodeHPos: HPos.LEFT
-            tileWidth: 80
+            tileWidth: 110
             tileHeight: 20
             autoSizeTiles: false
         }
 
         var exttile = Tile {
             columns: 2
-            rows: 10
+            rows: 20
             vgap: 4
             nodeHPos: HPos.LEFT
-            tileWidth: 80
+            tileWidth: 110
             tileHeight: 20
             autoSizeTiles: false
         }

@@ -1,7 +1,6 @@
 package net.ra100.cyd.UI;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  *
