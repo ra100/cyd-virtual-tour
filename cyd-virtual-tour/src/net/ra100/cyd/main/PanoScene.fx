@@ -40,6 +40,7 @@ import javafx.animation.transition.RotateTransition;
 import net.ra100.cyd.utils.AsyncTask;
 import net.ra100.cyd.UI.Bag;
 import net.ra100.cyd.UI.BagPanel;
+import net.ra100.cyd.UI.MapPoint;
 
 /**
  * @author ra100
@@ -302,6 +303,7 @@ public class PanoScene {
         AsyncTask {
             run: function() {
                 loadItems();
+                loadStats();
             }
             onDone: function() {
             }
@@ -331,6 +333,39 @@ public class PanoScene {
     */
     function loadItems(): Void {
         var it = dataloader.values.iterator();
+        var panos: String[];
+        while (it.hasNext()) {
+            var val = it.next();
+            if (val.key == 'pano') {
+                insert val.value into panos;
+                delete val from dataloader.values;
+            }
+        }
+
+        var pom: MapPoint[];
+        for (val in mapPanel.mapPanos) {
+                insert val into pom;
+        }
+
+        var size: Float = panos.size();
+        var i: Float = size;
+        for (name in panos) {
+            for (mp in pom) {
+                if (name == mp.getTitle()) {
+                    delete mp from pom;
+                    mp.point.circle.radius = (8+(12*(i/size)));
+                    i--;
+                    break;
+                }
+            }
+        }
+    }
+    
+    /**
+    nacitanie poradia panoram
+    */
+    function loadStats(): Void {
+        var it = dataloader.values.iterator();
         while (it.hasNext()) {
             var val = it.next();
             if (val.key == 'typeid') {
@@ -343,6 +378,9 @@ public class PanoScene {
                         backgroundLoading: true
                     }
                 } into itemtypes;
+                delete val from dataloader.values
+            } else if (val.key == "pano") {
+                return;
             }
         }
     }

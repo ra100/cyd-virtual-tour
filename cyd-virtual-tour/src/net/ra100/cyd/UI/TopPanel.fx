@@ -32,7 +32,8 @@ public class TopPanel extends CustomNode {
     var active: Boolean = true;
     public var label = Label {text: ""
         visible: true
-        translateX: 5};
+        translateX: 5
+        translateY: -3};
         
     var helpextension = new PanoExtension("help");
     var bookextension = new PanoExtension("pano16ext01");

@@ -71,7 +71,7 @@ public class ExtensionDisplay extends CustomNode {
         y: border+40,
         smooth: false
         fill: Color.BLACK
-        textAlignment: TextAlignment.JUSTIFY
+        textAlignment: TextAlignment.LEFT
         wrappingWidth: 700
         id: "longText"
    }

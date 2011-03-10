@@ -12,10 +12,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Bloom;
-import javafx.scene.effect.ColorAdjust;
 import net.ra100.cyd.UI.res.Point;
 import net.ra100.cyd.utils.DataElement;
 import net.ra100.cyd.utils.AsyncTask;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import net.ra100.cyd.utils.DataLoader;
 
 /**
  * @author ra100
@@ -23,7 +25,16 @@ import net.ra100.cyd.utils.AsyncTask;
 
 public class MapPoint extends CustomNode {
 
-    protected var point: Node = Point {
+    protected var panel: MapPanel;
+
+    public var point: Point = Point {
+        circle: Circle{
+            visible: bind panel.nicepathvisible
+            centerX: 7.5, centerY: -7.5
+            radius: 8
+            fill: Color.FORESTGREEN
+            opacity: 0.5
+        }
         onMouseEntered: function(e: MouseEvent): Void {
             mouseOver();
         }
@@ -43,8 +54,6 @@ public class MapPoint extends CustomNode {
     protected var name: String;
 
     protected var shape: Shape;
-
-    protected var panel: MapPanel;
 
     protected var actUsers: Integer = 0;
     
@@ -113,9 +122,14 @@ public class MapPoint extends CustomNode {
     protected function updateDB(action: String): Void {
         AsyncTask {
             run: function() {
-                panel.myScene.dataloader.action = action;
-                panel.myScene.dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
-                panel.myScene.dataloader.load(0);
+                    var dataloader: DataLoader = DataLoader {scene: panel.myScene};
+                    dataloader.action = action;
+                    dataloader.input = [DataElement{ value: this.shape.getTitle(), key: 'panoname'}];
+                    dataloader.load(0);
+                    if (action == "enter") {
+                        panel.updateVisitors();
+                    }
+
             }
             onDone: function() {
             }

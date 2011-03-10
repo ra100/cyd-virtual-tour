@@ -285,9 +285,18 @@ public class Point extends CustomNode {
         }; // Path
     } // end path path4405
 
+    public var circle = Circle {
+    }
+
+    public function setRadius(i: Integer) {
+        circle.radius = i;
+    }
+
+
    override function create(): Node {
        Group {
            content: [
+               circle,
                path3801(),
                path4405(),
            ] // content

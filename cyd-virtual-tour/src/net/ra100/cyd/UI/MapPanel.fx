@@ -7,7 +7,6 @@ package net.ra100.cyd.UI;
 
 import javafx.scene.CustomNode;
 import net.ra100.cyd.main.PanoScene;
-import javafx.scene.control.Label;
 import net.ra100.cyd.UI.res.MapBG;
 import javafx.scene.Node;
 import javafx.scene.layout.Stack;
@@ -24,6 +23,12 @@ import net.ra100.cyd.UI.res.ViewDirection;
 import net.ra100.cyd.UI.res.HidePathButton;
 import javafx.scene.effect.Glow;
 import net.ra100.cyd.UI.res.ShowPathButton;
+import net.ra100.cyd.utils.AsyncTask;
+import java.lang.Thread;
+import java.lang.InterruptedException;
+import net.ra100.cyd.utils.DataLoader;
+import javafx.scene.layout.LayoutInfo;
+import net.ra100.cyd.UI.res.NicePathButton;
 
 /**
  * @author ra100
@@ -50,7 +55,6 @@ public class MapPanel extends CustomNode {
     public var path: MapPoint[];
 
     var pathButton = RSwitch {
-
         primary : RButton {
             image: ShowPathButton { };
             text: ##"HidePath"
@@ -71,6 +75,35 @@ public class MapPanel extends CustomNode {
             }
             action: function (): Void {
                 pathlines.visible = true;
+            }
+            visible : false;
+        }
+    }
+
+    /**
+    * prepisnac zobrazenia nicepaths
+    */
+    var niceButton = RSwitch {
+        primary : RButton {
+            image: NicePathButton { };
+            text: ##"HideNice"
+            label : myScene.topPanel.label
+            overEffect: Glow {
+                level: 1
+            }
+            action: function (): Void {
+                nicepathvisible = false;
+            }
+        };
+        secondary :  RButton {
+            image: NicePathButton { };
+            text: ##"ShowNice"
+            label : myScene.topPanel.label
+            overEffect: Glow {
+                level: 1
+            }
+            action: function (): Void {
+                nicepathvisible = true;
             }
             visible : false;
         }
@@ -100,11 +133,19 @@ public class MapPanel extends CustomNode {
     };
 
     public var compass: Group = Group {
-        layoutX: 32, layoutY: 32
+        layoutX: 32.5, layoutY: 32.5
         content: [ViewDirection{transforms: rotation}]
     }
 
-    public var map: CustomPanel = CustomPanel { content: [back]  };
+    public var nicepathvisible: Boolean = true;
+
+    public var map: CustomPanel = CustomPanel { content: [back]
+        layoutInfo: LayoutInfo {
+            maxHeight: 220
+            maxWidth: 150
+            width: 150
+            height: 220}
+    };
 
 //    public var lines: Group = Group { content: [back, pathlines] };
 
@@ -123,7 +164,8 @@ public class MapPanel extends CustomNode {
                             translateX: 3
                             translateY: 3
                             content: [
-                                pathButton
+                                pathButton,
+                                niceButton
                                 ]
                         }
                     ]
@@ -179,6 +221,8 @@ public class MapPanel extends CustomNode {
     public function loadFirst(): Void {
         activePano.setFirst();
         insert [activePano.point.translateX, activePano.point.translateY] into pathlines.points;
+
+       startUpdateVisitors();
     }
 
     public function show() {
@@ -261,7 +305,42 @@ public class MapPanel extends CustomNode {
     public function updateLang(){
          pathButton.primary.text = ##"HidePath";
          pathButton.secondary.text = ##"ShowPath";
+         niceButton.primary.text = ##"HideNice";
+         niceButton.secondary.text = ##"ShowNice";
          activeVisitos = ##"Active vistors";
+    }
+
+    public var dataloader: DataLoader = DataLoader {scene: myScene};
+
+    public function startUpdateVisitors(): Void {
+        AsyncTask {
+            run: function() {
+               while(true) {
+                   try {
+                       updateVisitors();
+                       Thread.sleep(30000);
+                   } catch(ex : InterruptedException) {
+                   }
+               }
+            }
+            onDone: function() {}
+        }.start();
+    }
+
+    /**
+    * nacita aktualnych navstevnikov
+    */
+    public function updateVisitors(): Void {
+        dataloader.action = "activeusers";
+        dataloader.input = [];
+        dataloader.load(2);
+        var pit = dataloader.values.iterator();
+        for (m in mapPanos) {
+            if (pit.hasNext()) {
+                var pom = pit.next();
+                m.actUsers = Integer.parseInt(pom.value);
+            }
+        }
     }
 
 
