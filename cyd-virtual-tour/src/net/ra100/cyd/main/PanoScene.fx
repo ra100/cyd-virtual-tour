@@ -184,6 +184,15 @@ public class PanoScene {
         universeFX.deleteExt();
     }
 
+    var scene: Scene;
+    var end = Rectangle {
+	x: 0, y: 0
+	width: screenWidth, height: screenHeight
+        blocksMouse: true
+	fill: Color.BLACK
+        visible: false
+    }
+
     public function create(){
         universeFX.setScene(this);
         extensionDisplay.visible = false;
@@ -192,26 +201,14 @@ public class PanoScene {
 //        progressIndicator.layoutX = screenWidth/2;
 //        progressIndicator.layoutY = screenHeight/2;
 
-        stage = Stage {
-        title: "Virtuálna prehliadka: Brhlovce"
-
-        style: StageStyle.UNDECORATED
-
-        fullScreen: false
-        resizable: false
-        visible: true
-
-        width: screenWidth
-        height: screenHeight
-
-        scene: Scene  {
+        scene = Scene  {
             stylesheets: bind stylesheets
             fill: Color.TRANSPARENT // Color.TRANSPARENT | null
             content: [
                     fxCanvas3DComp,
                     progressBackground,
                     progressIndicator,
-                    
+
             Flow {
                 hpos: HPos.LEFT
                 vpos: VPos.TOP
@@ -242,9 +239,23 @@ public class PanoScene {
                bagPanel,
             Group {
                 content: [messagePanel]
-               }
+               },
+               end
             ]
         }
+        stage = Stage {
+        title: "Virtuálna prehliadka: Brhlovce"
+
+        style: StageStyle.UNDECORATED
+
+        fullScreen: false
+        resizable: false
+        visible: true
+
+        width: screenWidth
+        height: screenHeight
+
+        scene: scene
     }
 
     showLoader();
@@ -418,6 +429,8 @@ public class PanoScene {
     }
 
     public function exit(): Void {
+        end.visible = true;
+        scene.content = [];
         dataloader.action = 'exit';
         dataloader.input = [DataElement {value: "", key: ""}];
         dataloader.load(0);

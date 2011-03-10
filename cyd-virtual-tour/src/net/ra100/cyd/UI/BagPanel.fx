@@ -124,7 +124,7 @@ public class BagPanel extends CustomNode {
             myScene.messagePanel.refresh.action = function(): Void {
                 
                 myScene.dataloader.action = 'score';
-                myScene.dataloader.input = [DataElement {value: myScene.messagePanel.textfield.text , key: "name"}];
+                myScene.dataloader.input = [DataElement {value: myScene.messagePanel.textfield.rawText , key: "name"}];
                 myScene.dataloader.load(0);
 
                 myScene.messagePanel.textfield.visible = false;

@@ -132,10 +132,10 @@ public class Helper {
      * Nacitanie obrazku, ktory bude textura pre extension objekty
      * @return BufferedImage
      */
-    public static BufferedImage loadBack() {
+    public static BufferedImage loadBack(String path) {
         BufferedImage img = null;
         try {
-            URL loadUrl = new URL("http://ra100.scifi-guide.net/brhlovce/files/resources/back.png");
+            URL loadUrl = new URL(path+"resources/back.png");
             URLConnection con = loadUrl.openConnection();
             img = ImageIO.read(con.getInputStream());
         } catch (Exception e) {

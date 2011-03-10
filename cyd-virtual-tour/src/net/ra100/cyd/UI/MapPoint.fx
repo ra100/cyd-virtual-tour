@@ -32,9 +32,13 @@ public class MapPoint extends CustomNode {
             visible: bind panel.nicepathvisible
             centerX: 7.5, centerY: -7.5
             radius: 8
-            fill: Color.FORESTGREEN
-            opacity: 0.5
+            stroke: Color.FORESTGREEN
+            strokeWidth: 2
+            fill: Color.TRANSPARENT
+            disable: true
+            opacity: 0.9
         }
+
         onMouseEntered: function(e: MouseEvent): Void {
             mouseOver();
         }

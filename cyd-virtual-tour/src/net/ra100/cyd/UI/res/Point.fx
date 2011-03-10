@@ -287,12 +287,7 @@ public class Point extends CustomNode {
 
     public var circle = Circle {
     }
-
-    public function setRadius(i: Integer) {
-        circle.radius = i;
-    }
-
-
+    
    override function create(): Node {
        Group {
            content: [

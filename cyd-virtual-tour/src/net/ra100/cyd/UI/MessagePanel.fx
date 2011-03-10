@@ -68,7 +68,8 @@ public class MessagePanel extends CustomNode {
     public var textfield = TextBox {
         layoutY: 30
         translateY: 20
-	text: "anonym"
+	text: ""
+        promptText: "Nickname"
 	columns: 12
 	selectOnFocus: true
         visible: false

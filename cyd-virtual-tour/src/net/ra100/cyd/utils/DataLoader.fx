@@ -73,7 +73,7 @@ public class DataLoader {
         var token = scene.token;
         var vals: StringBuffer = new StringBuffer();
         var i = 0;
-        if (action == "submitpost") input = safeStrings(input);
+        if ((action == "submitpost") or (action == "score")) input = safeStrings(input);
         for (val in input) {
             i++;
             vals.append("&{val.key}={val.value}");

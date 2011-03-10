@@ -113,7 +113,7 @@ public class PanoScene {
         } else {
             sceneXml.load(XMLPATH,0);
         }
-        tex = new TextureLoader(Helper.loadBack(), "RGBA").getTexture();
+        tex = new TextureLoader(Helper.loadBack(sceneXml.getPath()), "RGBA").getTexture();
 
         orderedGroup = new OrderedGroup();
 
