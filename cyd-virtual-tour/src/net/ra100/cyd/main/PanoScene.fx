@@ -53,6 +53,8 @@ public class PanoScene {
 
     public def sceneurl = ##"sceneurl";
 
+    public var running = true;
+
     var stylesheets : String = "{__DIR__}default.css";
 
     // loading indicator
@@ -105,6 +107,7 @@ public class PanoScene {
     public var topPanel = TopPanel {
         visible: bind block
         disable: bind extensionDisplay.visible;
+        myScene: this
     }
 
 
@@ -185,22 +188,17 @@ public class PanoScene {
     }
 
     var scene: Scene;
-    var end = Rectangle {
-	x: 0, y: 0
-	width: screenWidth, height: screenHeight
-        blocksMouse: true
-	fill: Color.BLACK
-        visible: false
-    }
+
+    public-read var sha: Integer;
 
     public function create(){
-        universeFX.setScene(this);
-        extensionDisplay.visible = false;
-        topPanel.myScene = this;
-
-//        progressIndicator.layoutX = screenWidth/2;
-//        progressIndicator.layoutY = screenHeight/2;
-
+        sha = FX.addShutdownAction(function(): Void {exit();});
+        var exitFlow = Flow {
+                translateX : screenWidth - 42;
+                content: [
+                        exitPanel
+                        ]
+            }
         scene = Scene  {
             stylesheets: bind stylesheets
             fill: Color.TRANSPARENT // Color.TRANSPARENT | null
@@ -227,41 +225,38 @@ public class PanoScene {
                 content: [
                         mapPanel
                         ]
-            }
-            Flow {
-                translateX : screenWidth - 42;
-                content: [
-                        exitPanel
-                        ]
-            }
+            },
+               exitFlow,
                panel,
                extensionDisplay,
                bagPanel,
             Group {
                 content: [messagePanel]
-               },
-               end
+               }
             ]
         }
+        if (not (FX.getArgument("javafx.applet") == null)) {
+            delete exitFlow from scene.content;
+        }
+
         stage = Stage {
-        title: "Virtuálna prehliadka: Brhlovce"
+            title: "Virtuálna prehliadka: Brhlovce"
 
-        style: StageStyle.UNDECORATED
+            style: StageStyle.UNDECORATED
 
-        fullScreen: false
-        resizable: false
-        visible: true
+            fullScreen: false
+            resizable: false
+            visible: true
 
-        width: screenWidth
-        height: screenHeight
+            width: screenWidth
+            height: screenHeight
 
-        scene: scene
-    }
-
+            scene: scene
+        }
     showLoader();
     changeLanguage(SK);
-    topPanel.updateLang();
-
+    universeFX.setScene(this);
+    extensionDisplay.visible = false;
     //
     // Start
     //
@@ -290,6 +285,7 @@ public class PanoScene {
     public function changeLanguage(lang: String){
         Locale.setDefault(new Locale(lang));
         bagPanel.updateLang();
+        topPanel.updateLang();
         mapPanel.updateLang();
         language = lang;
     }
@@ -429,8 +425,7 @@ public class PanoScene {
     }
 
     public function exit(): Void {
-        end.visible = true;
-        scene.content = [];
+        running = false;
         dataloader.action = 'exit';
         dataloader.input = [DataElement {value: "", key: ""}];
         dataloader.load(0);

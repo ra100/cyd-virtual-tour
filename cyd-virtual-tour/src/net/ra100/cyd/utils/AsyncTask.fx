@@ -28,7 +28,7 @@ public class AsyncTask extends Task, AsyncTaskHelper.Task {
 
     // don't need stop - isn't implemented
     override function stop() {
-        // do nothing
+        peer.stopAllNow();
     }
 
     // called from the helper Java class from a different thread

@@ -33,9 +33,7 @@ public class RightPanel extends CustomNode {
                     level: 1
                 }
                 action: function (): Void {
-                    myScene.exit();
-                    FX.exit();
-                    System.exit(0);
+                     FX.exit();
                 }
             };
             

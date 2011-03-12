@@ -37,4 +37,12 @@ public class AsyncTaskHelper implements Runnable {
     public static interface Task {
         public void taskRun();
     }
+
+    /**
+     * ukoncenie vsetkych beziacich taskov
+     */
+    public void stopAllNow() {
+        QUEUE.shutdownNow();
+        QUEUE.shutdown();
+    }
 }

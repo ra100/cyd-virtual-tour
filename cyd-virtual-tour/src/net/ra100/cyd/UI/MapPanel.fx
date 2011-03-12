@@ -147,7 +147,19 @@ public class MapPanel extends CustomNode {
             height: 220}
     };
 
-//    public var lines: Group = Group { content: [back, pathlines] };
+    public var updater = AsyncTask {
+        run: function() {
+           while(myScene.running) {
+               try {
+                   if (not myScene.running) break;
+                   updateVisitors();
+                   Thread.sleep(30000);
+               } catch(ex : InterruptedException) {
+               }
+           }
+        }
+        onDone: function() {println("bye bye");}
+    };
 
     public override function create(): Node {
         hide();
@@ -313,18 +325,7 @@ public class MapPanel extends CustomNode {
     public var dataloader: DataLoader = DataLoader {scene: myScene};
 
     public function startUpdateVisitors(): Void {
-        AsyncTask {
-            run: function() {
-               while(true) {
-                   try {
-                       updateVisitors();
-                       Thread.sleep(30000);
-                   } catch(ex : InterruptedException) {
-                   }
-               }
-            }
-            onDone: function() {}
-        }.start();
+        updater.start();
     }
 
     /**
