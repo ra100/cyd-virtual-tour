@@ -6,10 +6,8 @@
 package net.ra100.cyd.UI;
 
 import javafx.scene.CustomNode;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.Stack;
-import javafx.scene.layout.Panel;
 import net.ra100.cyd.UI.res.ExitButton;
 import javafx.scene.effect.Glow;
 import net.ra100.cyd.main.PanoScene;
@@ -74,8 +72,8 @@ public class BagPanel extends CustomNode {
 
     public override function create(): Node {
         return Stack {
-            layoutX: 200
-            layoutY: 150
+            translateX: 200
+            translateY: 150
             content: [
                 background0,
                 background,
@@ -111,6 +109,9 @@ public class BagPanel extends CustomNode {
 
         if (status == "ok" or status == "found") {
             delete it from myScene.extensionDisplay.items;
+            if (myScene.extensionDisplay.items.size() == 0) {
+                myScene.extensionDisplay.hideStar();
+            }
             bag.addItem(it);
             return true;
         }

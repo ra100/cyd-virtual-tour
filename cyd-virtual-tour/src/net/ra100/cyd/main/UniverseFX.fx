@@ -119,6 +119,7 @@ package class UniverseFX extends JavaTaskBase, Observer {
                         } else {
                             deleteExt();
                             scene.changePano(extension.url);
+                            extension.visible = false;
                         }  
                     }
                 }.start();

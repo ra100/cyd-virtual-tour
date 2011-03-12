@@ -155,6 +155,7 @@ public class ExtensionDisplay extends CustomNode {
             itemsPanel.visible = false;
             myScene.bagPanel.visible = false;
             scoreboard.visible = false;
+            extension = null;
             myScene.deleteExt();
         }
     };
@@ -234,6 +235,11 @@ public class ExtensionDisplay extends CustomNode {
 
     }
 
+    public function hideStar(): Void {
+        starButton.visible = false;
+    }
+
+
     /* relaod itemov v extension */
     public function reloadItems(): Void {
         myScene.dataloader.action = 'loadextension';
@@ -245,13 +251,7 @@ public class ExtensionDisplay extends CustomNode {
 
     /* skyje alebo zobrazi itemy */
     function hideItems() {
-        if (itemsPanel.visible == false) {
-//            items = [];
-//
-//            for (de in myScene.dataloader.getItemsIds()) {
-//                loadItem(Integer.parseInt(de.key), Integer.parseInt(de.value));
-//            }
-            
+        if (itemsPanel.visible == false) {          
             itemsPanel.visible = true;
             myScene.bagPanel.visible = true;
         } else {
