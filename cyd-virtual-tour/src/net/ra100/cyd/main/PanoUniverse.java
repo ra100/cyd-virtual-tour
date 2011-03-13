@@ -451,4 +451,8 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         pos[1] = p.z;
         return pos;
     }
+    
+    public void initDirection(double longi, double lati) {
+        walkBeh.initDirection(longi, lati);
+    }
 }

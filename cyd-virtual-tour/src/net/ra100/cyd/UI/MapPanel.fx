@@ -29,6 +29,8 @@ import java.lang.InterruptedException;
 import net.ra100.cyd.utils.DataLoader;
 import javafx.scene.layout.LayoutInfo;
 import net.ra100.cyd.UI.res.NicePathButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * @author ra100
@@ -117,6 +119,10 @@ public class MapPanel extends CustomNode {
         opacity: 0.0
     }
 
+    public var podorys : ImageView = ImageView {
+        image: null
+    }
+
     public var pathlines: Polyline = Polyline {
         points: []
         strokeWidth: 2.0
@@ -149,9 +155,9 @@ public class MapPanel extends CustomNode {
 
     public var updater = AsyncTask {
         run: function() {
-           while(myScene.running) {
+           while(true) {
                try {
-                   if (not myScene.running) break;
+//                   if (not myScene.running) break;
                    updateVisitors();
                    Thread.sleep(30000);
                } catch(ex : InterruptedException) {
@@ -217,6 +223,10 @@ public class MapPanel extends CustomNode {
        xoffset = ((-1)*minx);
        yoffset = ((-1)*miny);
 
+       podorys.image = Image {url: "{Shape.path}resources/podorys.png"
+            backgroundLoading: true
+       };
+       insert podorys into map.content;
        insert pathlines into map.content;
 
        for (a in mapPanos) {
@@ -339,7 +349,7 @@ public class MapPanel extends CustomNode {
         for (m in mapPanos) {
             if (pit.hasNext()) {
                 var pom = pit.next();
-                m.actUsers = Integer.parseInt(pom.value);
+                m.actUsers = pom.value;
             }
         }
     }

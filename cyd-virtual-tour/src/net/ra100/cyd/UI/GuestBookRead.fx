@@ -47,9 +47,10 @@ public class GuestBookRead extends CustomNode {
                                 VBox {
                                     spacing: 4
                                     content: bind for (a in array) [
-                                            Label { translateY: 4
-                                                text: "{a.time} :: {a.name}"
-                                                id: "comment"
+                                            Text { translateY: 4
+                                                content: "{a.time} :: {a.name}"
+                                                id: "commentName"
+
                                             }
                                             Text {
                                                 wrappingWidth: 650

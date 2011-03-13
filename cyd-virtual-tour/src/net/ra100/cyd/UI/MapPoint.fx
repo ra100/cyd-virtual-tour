@@ -59,7 +59,7 @@ public class MapPoint extends CustomNode {
 
     protected var shape: Shape;
 
-    protected var actUsers: Integer = 0;
+    protected var actUsers: String = "0";
     
     public def overEffect: Effect = Bloom {threshold: 0.5}
     public def activeEffect: Effect = null;
@@ -144,9 +144,11 @@ public class MapPoint extends CustomNode {
     * nastavi vychodziu panoramu
     */
     protected function setFirst() {
+        panel.myScene.initView(shape.defaultLongitude, shape.defaultLatitude);
         panel.myScene.changeShape(shape);
         active = true;
         this.effect = activeEffect;
+        panel.myScene.changeShape(shape);
     }
 
     protected function leave(): Void {
@@ -157,7 +159,7 @@ public class MapPoint extends CustomNode {
     protected function mouseOver() {
         point.scaleX = 1.3;
         point.scaleY = 1.3;
-        label.text = "{panel.activeVisitos}{Integer.toHexString(actUsers)}";
+        label.text = "{panel.activeVisitos}{actUsers}";
         label.visible = true;
     }
 

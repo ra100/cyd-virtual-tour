@@ -22,15 +22,7 @@ import net.ra100.cyd.scene.Shape;
  * @author ra100
  */
 package class UniverseFX extends JavaTaskBase, Observer {
-
-    public def FORWARD: Integer = 1;
-    public def BACKWARD: Integer = 2;
-    public def RIGHT: Integer = 3;
-    public def LEFT: Integer = 4;
-    public def UP: Integer = 5;
-    public def DOWN: Integer = 6;
-    def speed: Integer = 50;
-
+    
     public-read var universe: PanoUniverse;
     var scene : PanoScene;
     

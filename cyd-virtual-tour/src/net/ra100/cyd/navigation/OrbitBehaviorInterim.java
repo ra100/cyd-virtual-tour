@@ -838,6 +838,7 @@ public class OrbitBehaviorInterim extends ViewPlatformAWTBehaviorInterim {
 	/**
 	 * Process AWTEvents
 	 */
+    @Override
     protected synchronized void processAWTEvents( final AWTEvent[] events ) {
         motion = false;
         for(int i=0; i<events.length; i++)

@@ -11,12 +11,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.media.j3d.PickInfo;
 import javax.media.j3d.Shape3D;
-import javax.media.j3d.Transform3D;
 import javax.swing.SwingUtilities;
-import javax.vecmath.Vector3d;
 import net.ra100.cyd.main.PanoUniverse;
 import net.ra100.cyd.scene.PanoExtension;
-import net.ra100.cyd.scene.Shape;
 
 /**
  *

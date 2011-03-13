@@ -41,6 +41,7 @@ import net.ra100.cyd.utils.AsyncTask;
 import net.ra100.cyd.UI.Bag;
 import net.ra100.cyd.UI.BagPanel;
 import net.ra100.cyd.UI.MapPoint;
+import javafx.scene.Cursor;
 
 /**
  * @author ra100
@@ -52,8 +53,6 @@ public class PanoScene {
     public def EN = "en";
 
     public def sceneurl = ##"sceneurl";
-
-    public var running = true;
 
     var stylesheets : String = "{__DIR__}default.css";
 
@@ -83,7 +82,7 @@ public class PanoScene {
     }
 
     var progressIndicator: Group = Group {
-        visible: false
+        visible: true
         layoutX: 150
         layoutY: 50
         content: [loader]
@@ -173,6 +172,8 @@ public class PanoScene {
         opacity: 0.0
     }
 
+    var scene: Scene;
+
     /* panel pre refreshovaci fix */
     var panel = Panel {
         width : screenWidth
@@ -180,6 +181,10 @@ public class PanoScene {
         content: [debug2]
         onMouseDragged: function(e: MouseEvent): Void {
             updateCompass();
+            scene.cursor = Cursor.HAND;
+        }
+        onMouseReleased: function(e: MouseEvent): Void {
+            scene.cursor = Cursor.DEFAULT;
         }
     }
 
@@ -187,11 +192,10 @@ public class PanoScene {
         universeFX.deleteExt();
     }
 
-    var scene: Scene;
-
     public-read var sha: Integer;
 
     public function create(){
+        println("Creating universe..");
         sha = FX.addShutdownAction(function(): Void {exit();});
         var exitFlow = Flow {
                 translateX : screenWidth - 42;
@@ -266,12 +270,10 @@ public class PanoScene {
 
     public function showCenters(){
         mapPanel.show();
-//        universeFX.showCenters();
     }
 
     public function hideCenters(){
         mapPanel.hide();
-//        universeFX.hideCenters();
     }
 
     public function showExtras(){
@@ -328,6 +330,7 @@ public class PanoScene {
         }.play();
         topPanel.activateMap();
         topPanel.activateExtras();
+       
     }
 
     public function updateCompass() {
@@ -425,7 +428,6 @@ public class PanoScene {
     }
 
     public function exit(): Void {
-        running = false;
         dataloader.action = 'exit';
         dataloader.input = [DataElement {value: "", key: ""}];
         dataloader.load(0);
@@ -445,9 +447,14 @@ public class PanoScene {
         progressIndicator.visible = true;
     }
 
-     public function hideLoader(): Void {
+    public function hideLoader(): Void {
         loaderAnim.pause();
         progressIndicator.visible = false;
         updateCompass();
     }
+
+    public function initView(lo: Double, la: Double) {
+        universeFX.universe.initDirection(lo, la);
+    }
+
 }

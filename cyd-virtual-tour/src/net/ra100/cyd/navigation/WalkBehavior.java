@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package net.ra100.cyd.navigation;
 
 import java.awt.event.MouseEvent;
@@ -152,10 +147,11 @@ public class WalkBehavior extends OrbitBehaviorInterim {
             		longditude += xchange * rotXMul;
             		latitude += ychange * rotYMul;
             	}
+                //proti pretoceniu
+                if (latitude > Math.PI/2f) latitude = Math.PI/2f;
+                if (latitude < -Math.PI/2f) latitude = -Math.PI/2f;
             }
-            //proti pretoceniu
-            if (latitude > Math.PI/2f) latitude = Math.PI/2f;
-            if (latitude < -Math.PI/2f) latitude = -Math.PI/2f;
+            
             // translate
             else if (translate(evt)) {
             	if (reverseTrans) {
@@ -336,6 +332,11 @@ public class WalkBehavior extends OrbitBehaviorInterim {
 
     public double getLongitude() {
         return longditude;
+    }
+
+    public void initDirection(double longd, double lat){
+        this.longditude = longd;
+        this.latitude = lat;
     }
 
 }

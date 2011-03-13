@@ -40,6 +40,8 @@ public class SceneXML {
     public final static String URL = "url";
     public final static String FIRST = "first";
     public final static String SYMLINK = "symlink";
+    public final static String LATITUDE = "latitude";
+    public final static String LONGITUDE = "longitude";
 
     /**
      * cety k texturam
@@ -101,6 +103,8 @@ public class SceneXML {
 
         if (node.getName().matches(PANORAMA)) {
             paths.add(node.element(PATH).getText());
+            Shape.setDefaultView(Double.parseDouble(node.element(LONGITUDE).getText()),
+                    Double.parseDouble(node.element(LATITUDE).getText()));
             Iterator<Element> it = node.elementIterator();
             while (it.hasNext()) {
                 nodeResolve(it.next());

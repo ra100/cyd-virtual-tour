@@ -87,6 +87,16 @@ public class Shape {
     public static String path = null;
 
     /**
+     * otocenie pohladu
+     */
+    public static Double defaultLatitude = 0.0;
+
+    /**
+     * otocenie pohladu
+     */
+    public static Double defaultLongitude = 0.0;
+
+    /**
      * getter
      * @return
      */
@@ -366,6 +376,15 @@ public class Shape {
         this.first = first;
     }
 
-
-
+    /**
+     * nastavenie default pohladu
+     * @param longi
+     * @param lati
+     */
+    public static void setDefaultView(Double longi, Double lati) {
+        if (lati != null) {
+            defaultLatitude = lati;
+            defaultLongitude = longi;
+        }
+    }
 }
