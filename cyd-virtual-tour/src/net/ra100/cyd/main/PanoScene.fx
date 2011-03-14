@@ -56,6 +56,8 @@ public class PanoScene {
 
     var stylesheets : String = "{__DIR__}default.css";
 
+    public var running = true;
+
     // loading indicator
     public var block = false;
 
@@ -428,6 +430,8 @@ public class PanoScene {
     }
 
     public function exit(): Void {
+        running = false;
+        mapPanel.updater = null;
         dataloader.action = 'exit';
         dataloader.input = [DataElement {value: "", key: ""}];
         dataloader.load(0);
