@@ -52,7 +52,6 @@ public class Shape {
 
     /**
      * suradnice stredu panoramy na minimape, x,y,z
-     * TODO
      */
     private float[] mapcoordinates = new float[3];
 

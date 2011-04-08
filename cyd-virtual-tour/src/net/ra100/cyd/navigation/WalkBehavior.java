@@ -18,8 +18,19 @@ import net.ra100.cyd.scene.Shape;
  */
 public class WalkBehavior extends OrbitBehaviorInterim {
 
+    /**
+     * zoznam panoram
+     */
     private ArrayList<Shape> shapes = null;
+
+    /**
+     * aktualna panorama
+     */
     private Shape actualShape = null;
+
+    /**
+     * odkaz na PanoUniverse, z ktoreho sa tato trieda vola
+     */
     private PanoUniverse parent = null;
 
     /**
@@ -41,6 +52,13 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         updateFlags(flags);
     }
 
+    /**
+     * posun kamery v smeroch x,y,z
+     * @param x
+     * @param y
+     * @param z
+     * @return
+     */
     public boolean moveCamera(double x, double y, double z){
 
         Transform3D tpom = new Transform3D();
@@ -127,6 +145,9 @@ public class WalkBehavior extends OrbitBehaviorInterim {
     }
 
     @Override
+    /**
+     * spracovanie udalosti z mysi
+     */
     void processMouseEvent( final MouseEvent evt ) {
 
         if (evt.getID()==MouseEvent.MOUSE_PRESSED) {
@@ -196,6 +217,9 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         }
    }
 
+    /**
+     * aktualizacia transformacii po posunuti
+     */
     @Override
     protected synchronized void integrateTransforms() {
     	// No longer: Check if the transform has been changed by another behavior
@@ -270,13 +294,22 @@ public class WalkBehavior extends OrbitBehaviorInterim {
 //        latitude = 0.0;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public ArrayList<Shape> getShapes() {
         return shapes;
     }
 
+    /**
+     * nastavenie zoznamu shapes
+     * @param shapes
+     */
     public void setShapes(ArrayList<Shape> shapes) {
         this.shapes = shapes;
         for (int i = 0; i < shapes.size(); i++){
+            /* TODO upravit, mozno odstranit */
             if (shapes.get(i).getTitle().matches("01")) {
                 actualShape = shapes.get(i);
                 break;
@@ -284,6 +317,12 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         }
     }
 
+    /**
+     * zisti ci sa po pohybe bude kamera nachadzat v hraniciach panoramy
+     * @param newPos
+     * @param shape
+     * @return
+     */
     private boolean isInBounds(Point3d newPos, Shape shape){
         Iterator<Bounds> it = shape.getBound().iterator();
         while (it.hasNext()) {
@@ -292,14 +331,25 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         return false;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public Shape getActualShape() {
         return actualShape;
     }
 
+    /**
+     * setter
+     * @param actualShape
+     */
     public void setActualShape(Shape actualShape) {
         this.actualShape = actualShape;
     }
 
+    /**
+     * skrytie rozsireni
+     */
     private void hideExtras(){
         ArrayList<PanoExtension> pe = getActualShape().getExtended();
         Iterator<PanoExtension> it = pe.iterator();
@@ -308,6 +358,9 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         }
     }
 
+    /**
+     * zobrazenie rozsireni
+     */
     private void showExtras(){
         ArrayList<PanoExtension> pe = getActualShape().getExtended();
         Iterator<PanoExtension> it = pe.iterator();
@@ -316,6 +369,10 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         }
     }
 
+    /**
+     * nastavanie rodica
+     * @param parent
+     */
     public void setParent(PanoUniverse parent) {
         this.parent = parent;
     }
@@ -330,10 +387,17 @@ public class WalkBehavior extends OrbitBehaviorInterim {
         return center;
     }
 
+    /**
+     * vrati sirku
+     * @return
+     */
     public double getLongitude() {
         return longditude;
     }
 
+    /**
+     * inicializacia smeru pohladu
+     */
     public void initDirection(double longd, double lat){
         this.longditude = longd;
         this.latitude = lat;

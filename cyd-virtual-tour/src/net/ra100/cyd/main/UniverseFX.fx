@@ -57,15 +57,24 @@ package class UniverseFX extends JavaTaskBase, Observer {
         initUniverse(universe);
     }
 
+    /**
+    zmena panoramy na objekt Shape
+    */
     package function changeShape(sp: Shape) {
         universe.changePanoFX(sp);
     }
 
+    /**
+    zobrazenie rozsireni
+    */
     package function showExtras() {
         universe.showExtras();
         universe.setExtras(true);
     }
 
+    /**
+    skrytie rozsireni
+    */
     package function hideExtras() {
         universe.hideExtras();
         universe.setExtras(false);
@@ -121,6 +130,9 @@ package class UniverseFX extends JavaTaskBase, Observer {
         });
     }
 
+    /**
+    nacita obrazok pozadia pri nahranvani
+    */
     public function setLoaderImage() {
         if (not loaderVisible) {
             var bi : BufferedImage = componentToImage(scene.fxCanvas3DComp.getJComponent());
@@ -130,7 +142,7 @@ package class UniverseFX extends JavaTaskBase, Observer {
         }
     }
 
-    /*
+    /**
     * spravi obrazok z componentu, aby nezmizol obraz, ked sa meni scena
     */
     function componentToImage(cmp : Component) : BufferedImage  {
@@ -146,21 +158,32 @@ package class UniverseFX extends JavaTaskBase, Observer {
         return(bi);
     }
 
-
+    /**
+    zmazanie rozsirenia z pamati
+    */
     public function deleteExt(){
         universe.setExtensionNo(null);
     }
 
+    /**
+    nastavenie sceny
+    */
     public function setScene(sc: PanoScene){
         scene = sc;
         extension.setScene(sc);
     }
 
+    /**
+    zobrazenie indikatora nahravania
+    */
     public function startLoading(): Void {
         scene.showLoader();
         loaderVisible = true;
     }
 
+    /**
+    zastavenie a skytie indikatora nahravania
+    */
     public function stopLoading(): Void {
         scene.hideLoader();
         loaderVisible = false;

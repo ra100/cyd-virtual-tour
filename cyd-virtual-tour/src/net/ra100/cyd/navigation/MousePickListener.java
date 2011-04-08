@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.ra100.cyd.navigation;
 
 import java.awt.event.MouseEvent;
@@ -51,6 +47,10 @@ public class MousePickListener implements MouseListener {
     public void mouseExited(MouseEvent me) {
     }
 
+    /**
+     * akcia vyberu objektu
+     * @param me
+     */
     private void pick(MouseEvent me) {
 
         parent.getPickCanvas().setShapeLocation(me.getX(), me.getY());

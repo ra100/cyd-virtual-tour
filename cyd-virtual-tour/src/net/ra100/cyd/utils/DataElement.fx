@@ -10,7 +10,13 @@ package net.ra100.cyd.utils;
  */
 
 public class DataElement {
+
+    /** kluc */
     public var key: String;
+
+    /** hodnota */
     public var value: String;
+
+    /** typ */
     public var type: Integer;
 }

@@ -6,7 +6,6 @@ package net.ra100.cyd.utils;
 
 import com.sun.j3d.utils.image.TextureLoader;
 import java.awt.image.BufferedImage;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Iterator;

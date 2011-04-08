@@ -17,6 +17,10 @@ public class NavigationKeyListener implements KeyListener{
     private WalkBehavior walkBeh = null;
     private double speed = 10;
 
+    /**
+     * constructor
+     * @param wb
+     */
     public NavigationKeyListener(WalkBehavior wb){
         super();
         walkBeh = wb;

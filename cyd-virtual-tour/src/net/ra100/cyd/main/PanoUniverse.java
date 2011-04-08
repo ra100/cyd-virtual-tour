@@ -75,6 +75,10 @@ public class PanoUniverse extends Observable implements RunnableFuture {
     private Boolean updateMap = false;
     private String sceneurl;
 
+    /**
+     * constructor,
+     * @param url - URL, kde je scene.xml
+     */
     PanoUniverse(String url) {
         sceneurl = url;
     }
@@ -157,6 +161,9 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         return fxCanvas3D;
     }
 
+    /**
+     * ukoncenie univerza
+     */
     void closeUniverse() {
         view.removeAllCanvas3Ds();
         view.attachViewPlatform(null);
@@ -211,6 +218,9 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         walkBeh.setClippingBounds(sphereBounds);
     }
 
+    /**
+     * vytvorenie sceny
+     */
     private void createScene() {
         PanoScene ps = new PanoScene(sceneurl);
         setLoaded(73);
@@ -291,6 +301,9 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         enviBranch.addChild(bg);
     }
 
+    /**
+     * zobrazenie rozsireni
+     */
     public void showExtras() {
         if (!extras) {
             setExtraTransparency(0.8f);
@@ -298,6 +311,9 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         }
     }
 
+    /**
+     * skrytie rozsireni
+     */
     protected void hideExtras() {
         if (extras) {
             setExtraTransparency(1.0f);
@@ -305,6 +321,10 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         }
     }
 
+    /**
+     * nastavenie priehladnosti na urcitu hodnotu
+     * @param trans
+     */
     private void setExtraTransparency(float trans) {
         ArrayList<PanoExtension> pe = walkBeh.getActualShape().getExtended();
         Iterator<PanoExtension> it = pe.iterator();
@@ -314,77 +334,148 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         }
     }
 
+    /**
+     * getter
+     * @return
+     */
     public ArrayList<Shape3D> getCenters() {
         return centers;
     }
 
+    /**
+     * setter
+     * @param centers
+     */
     public void setCenters(ArrayList<Shape3D> centers) {
         this.centers = centers;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public PickCanvas getPickCanvas() {
         return pickCanvas;
     }
 
+    /**
+     * setter
+     * @param pickCanvas
+     */
     public void setPickCanvas(PickCanvas pickCanvas) {
         this.pickCanvas = pickCanvas;
     }
 
+    /**
+     * getetr
+     * @return
+     */
     public ArrayList<Shape> getShapes() {
         return shapes;
     }
 
+    /**
+     * setter
+     * @param shapes
+     */
     public void setShapes(ArrayList<Shape> shapes) {
         this.shapes = shapes;
     }
 
+    /**
+     * notifikacia Observera
+     */
     private void startNotification() {
         setChanged();
         notifyObservers();
     }
 
+    /**
+     * getter
+     * @return
+     */
     public int getLoaded() {
         return loaded;
     }
 
+    /**
+     * setter
+     * @param loaded
+     */
     public void setLoaded(int loaded) {
         this.loaded = loaded;
         startNotification();
     }
 
+    /**
+     * getter
+     * @return
+     */
     public WalkBehavior getWalkBeh() {
         return walkBeh;
     }
 
+    /**
+     * geter
+     * @return
+     */
     public PanoExtension getExtension() {
         return extension;
     }
 
+    /**
+     * setter, s notifikaciou
+     * @param extension
+     */
     public void setExtension(PanoExtension extension) {
         this.extension = extension;
         startNotification();
     }
 
+    /**
+     * setter, nastavi rozsirenie, ale bez spatnej notifikacie FX observera
+     * @param extension
+     */
     public void setExtensionNo(PanoExtension extension) {
         this.extension = extension;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public boolean isExtras(){
         return extras;
     }
-    
+
+    /**
+     * setter
+     * @param ex
+     */
     public void setExtras(boolean ex) {
         extras = ex;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public boolean isIscenter() {
         return iscenter;
     }
 
+    /**
+     * setter
+     * @param iscenter
+     */
     public void setIscenter(boolean iscenter) {
         this.iscenter = iscenter;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public boolean isInitialized() {
         return initialized;
     }
@@ -401,6 +492,10 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         return sh;
     }
 
+    /**
+     * zmena panoramy z FX triedy
+     * @param sh
+     */
     public void changePanoFX(Shape sh) {
         if (sh == null) return;
         setLoaded(-1);
@@ -428,22 +523,34 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         return shape;
     }
 
+    /**
+     * setter
+     * @param shape
+     */
     public void setShape(Shape shape) {
         this.shape = shape;
     }
-    
+
+    /**
+     * getter
+     * @return
+     */
     public Boolean getUpdateMap() {
         return updateMap;
     }
 
+    /**
+     * urcuje ci sa ma mapa udatovat
+     * @param updateMap
+     */
     public void setUpdateMap(Boolean updateMap) {
         this.updateMap = updateMap;
     }
 
-    public double getDirection() {
-        return walkBeh.getLongitude();
-    }
-
+    /**
+     * vrati poziciu pozorovatela (x,y)
+     * @return
+     */
     public double[] getPosition() {
         Point3d p = walkBeh.getCenter();
         double[] pos = new double[2];
@@ -451,8 +558,22 @@ public class PanoUniverse extends Observable implements RunnableFuture {
         pos[1] = p.z;
         return pos;
     }
-    
+
+    /**
+     * inicializacia smeru pohladu
+     * @param longi
+     * @param lati
+     */
     public void initDirection(double longi, double lati) {
         walkBeh.initDirection(longi, lati);
     }
+
+    /**
+     * vrati smer pohladu
+     * @return
+     */
+    public double getDirection() {
+        return walkBeh.getLongitude();
+    }
 }
+

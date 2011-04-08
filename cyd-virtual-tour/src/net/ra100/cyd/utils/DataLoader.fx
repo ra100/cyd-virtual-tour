@@ -15,17 +15,49 @@ import java.io.InputStream;
 
 public class DataLoader {
 
+    /**
+    hodnota init
+    */
     public def INIT = "init";
+
+    /**
+    hodnota extension
+    */
     public def EXTENSION = "extension";
 
+    /**
+    zakladna url ku skriptu action.php, pri zmene servera je nutne upravit
+    */
     public var baseURL: String = "http://brhlovce.ra100.net/sites/brhlovce/misc/scripts/action.php";
+
+    /**
+    hodnoty nacitane z xml
+    */
     public var values: DataElement[];
+
+    /**
+    odkaz na hlavnu triedu sceny
+    */
     public var scene: PanoScene;
+
+    /**
+    typ akcie
+    */
     public var action: String;
+
+    /**
+    vstupne data odovzdane skriptu na spracovanie
+    */
     public var input: DataElement[];
 
+    /**
+    vysledna url, ktorou sa vytvori volanie na server
+    */
     var url : String;
 
+    /**
+    parser na spracovanie vrateneho XML zo servera
+    */
     var parser = PullParser {
         documentType: PullParser.XML;
         onEvent: function(event: Event) {
@@ -40,8 +72,19 @@ public class DataLoader {
         }
     }
 
+    /**
+    pomocna premenna polozky v knihe navstev
+    */
     var gbitem: GuestBook;
+
+    /**
+    zoznam prispevkov v knihe navstev
+    */
     public var gblist = new GuestBookList();
+
+    /**
+    parser z XML na knihu navstev
+    */
     var gbparser = PullParser {
         documentType: PullParser.XML;
         onEvent: function(event: Event) {
@@ -66,6 +109,9 @@ public class DataLoader {
         }
     }
 
+    /**
+    procesdura nacitania stranky,otvori url a vratene hodnoty nacita cez parser
+    */
     public function load(reload: Integer): Boolean{
         values = [];
         var language = scene.language;
@@ -110,6 +156,9 @@ public class DataLoader {
         return true;
     }
 
+    /**
+    nacitanie knihy navstev
+    */
     public function loadGuestbook(page: Integer): GuestBook[] {
         gblist.reset();
         action = "guestbook";
@@ -139,6 +188,9 @@ public class DataLoader {
         return input;
     }
 
+    /**
+    vrati prvu hodnotu z values podla kluca
+    */
     public function getValueByKey(key: String): String {
         for (a in values) {
             if (a.key == key) {return a.value;}
