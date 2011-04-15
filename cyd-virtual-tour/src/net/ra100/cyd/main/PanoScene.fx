@@ -153,7 +153,17 @@ public class PanoScene {
     }
 
     // UniverseFX
-    public var universeFX: UniverseFX = null;
+    public var universeFX: UniverseFX = UniverseFX{
+        // Callback of AsyncOperation
+        initUniverse: function(universe: PanoUniverse): Void {
+            //
+            fxCanvas3DComp.isScreenSize = false;
+            // Finish FXCanvas3DComp
+            fxCanvas3DComp.initFXCanvas3D(universe,this);
+            // Show frame
+            stage.visible = true;
+        }
+    };
 
     /* odstranenie problemu s tym, ze sa nerefreshuje obraz, ked je ako applet */
     var debug2 = Rectangle {
@@ -251,17 +261,6 @@ public class PanoScene {
     showLoader();
     changeLanguage(SK);
     extensionDisplay.visible = false;
-    universeFX = UniverseFX {
-        // Callback of AsyncOperation
-        initUniverse: function(universe: PanoUniverse): Void {
-            //
-            fxCanvas3DComp.isScreenSize = false;
-            // Finish FXCanvas3DComp
-            fxCanvas3DComp.initFXCanvas3D(universe,this);
-            // Show frame
-            stage.visible = true;
-        }
-    };
     universeFX.setScene(this);
     //
     // Start

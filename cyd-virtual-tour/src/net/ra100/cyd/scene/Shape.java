@@ -171,6 +171,7 @@ public class Shape {
                if (textureImage != null) this.textureLoaded = true;
             } else {
                 this.textureLoaded = textureLoaded;
+                Helper.setTexture(pano.getAppearance(), textureImage);
             }
         }
     }
@@ -190,12 +191,7 @@ public class Shape {
     public void setVisible(boolean visible) {
         if (visible) {
             setTransparency(0.0f);
-            if (textureLoaded) {
-                Helper.setTexture(pano.getAppearance(), textureImage);
-            } else {
-                setTextureLoaded(true);
-            }
-
+            setTextureLoaded(true);
         } else {
             setTransparency(1.0f);
             
