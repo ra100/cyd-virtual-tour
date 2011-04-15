@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
+import javax.imageio.ImageIO;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.BoundingPolytope;
 import javax.media.j3d.BranchGroup;
@@ -70,6 +71,7 @@ public class PanoScene {
     public PanoScene() {
         Logger.getLogger("net.ra100.cyd").log(Level.INFO, "Creating PanoScene.");
         try {
+            ImageIO.setUseCache(true);
             createScene();
         } catch (FileNotFoundException ex) {
             Logger.getLogger("net.ra100.cyd").log(Level.SEVERE, null, ex);

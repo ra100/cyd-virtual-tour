@@ -1,5 +1,6 @@
 package net.ra100.cyd.scene;
 
+import java.awt.image.BufferedImage;
 import net.ra100.cyd.utils.Helper;
 import java.util.ArrayList;
 import javax.media.j3d.Appearance;
@@ -28,6 +29,11 @@ public class Shape {
      * cesta k texture
      */
     private String texture = null;
+
+    /**
+     * Obrazok textury
+     */
+    private BufferedImage textureImage = null;
 
     /**
      * skrateny nazov, pouziva sa na vytvorenie prepojeni medzi panoramami, susednosti
@@ -161,8 +167,8 @@ public class Shape {
             this.textureLoaded = textureLoaded;
         } else {
             if (!this.textureLoaded) {
-               this.textureLoaded =
-                        Helper.loadTexture(pano.getAppearance(), this, path);
+               this.textureImage = Helper.loadTexture(pano.getAppearance(), this, path);
+               if (textureImage != null) this.textureLoaded = true;
             } else {
                 this.textureLoaded = textureLoaded;
             }
@@ -184,9 +190,16 @@ public class Shape {
     public void setVisible(boolean visible) {
         if (visible) {
             setTransparency(0.0f);
-            setTextureLoaded(true);
+            if (textureLoaded) {
+                Helper.setTexture(pano.getAppearance(), textureImage);
+            } else {
+                setTextureLoaded(true);
+            }
+
         } else {
             setTransparency(1.0f);
+            
+            pano.getAppearance().setTexture(null);
         }
         this.visible = visible;
     }

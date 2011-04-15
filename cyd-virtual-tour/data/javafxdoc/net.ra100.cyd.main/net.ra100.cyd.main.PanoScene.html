@@ -1,0 +1,793 @@
+
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../general.css" rel="stylesheet">
+<style type="text/css"></style>
+<link href="../sdk.css" rel="stylesheet">
+<script type="text/javascript" src="../mootools-1.2.1-yui.js"></script><script type="text/javascript" src="../sessvars.js"></script><script type="text/javascript" src="../sdk.js"></script>
+<meta name="collection" content="api">
+<meta name="keywords" content="JavaFX, Java FX">
+<title>JavaFX 1.3.1 API | net.ra100.cyd.main.PanoScene | Java FX</title>
+</head>
+<body>
+<div id="top-header">
+<h1>
+<a href="../index.html">Java<b>FX</b>: <i>Bringing Rich Experiences To All the Screens Of Your Life</i></a>
+</h1>
+<h3 id="master-index-link">
+<a href="../master-index.html">master index</a>
+</h3>
+<h3 id="collapse-expand-switcher">
+<a href="#" id="collapse-expand-link">expand all</a>
+</h3>
+<h3 id="profile-switcher">Profile: <a href="#" id="select-desktop-profile">desktop</a>, <a href="#" id="select-common-profile">common</a>
+</h3>
+</div>
+<ul id="classes-toc">
+<li>
+<h4 class="header">
+<a href="#">net.ra100.cyd.main</a>
+</h4>
+<ul class="content">
+<li class="">
+<a href="../net.ra100.cyd.main/net.ra100.cyd.main.FXCanvas3DSBCompR.html">FXCanvas3DSBCompR</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.main/net.ra100.cyd.main.Main.html">Main</a>
+</li>
+<li class=" selected-class">
+<a href="../net.ra100.cyd.main/net.ra100.cyd.main.PanoScene.html">PanoScene</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.main/net.ra100.cyd.main.UniverseFX.html">UniverseFX</a>
+</li>
+</ul>
+</li>
+<li>
+<h4 class="header">
+<a href="#">net.ra100.cyd.UI</a>
+</h4>
+<ul class="content">
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.Bag.html">Bag</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.BagPanel.html">BagPanel</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.CustomPanel.html">CustomPanel</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.ExtensionDisplay.html">ExtensionDisplay</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.GuestBookRead.html">GuestBookRead</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.Item.html">Item</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.ItemType.html">ItemType</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.LoadingImage.html">LoadingImage</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.MapPanel.html">MapPanel</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.MapPoint.html">MapPoint</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.MessagePanel.html">MessagePanel</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.RButton.html">RButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.RightPanel.html">RightPanel</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.RSwitch.html">RSwitch</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.TopPanel.html">TopPanel</a>
+</li>
+</ul>
+</li>
+<li>
+<h4 class="header">
+<a href="#">net.ra100.cyd.UI.res</a>
+</h4>
+<ul class="content">
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.ExitButton.html">ExitButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.ExitMenuBG.html">ExitMenuBG</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.HelpButton.html">HelpButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.HideButton.html">HideButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.HideExtButton.html">HideExtButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.HidePathButton.html">HidePathButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.Loader.html">Loader</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.MapBG.html">MapBG</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.MessageBG.html">MessageBG</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.NicePathButton.html">NicePathButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.Point.html">Point</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.RefreshButton.html">RefreshButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.ShowButton.html">ShowButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.ShowExtButton.html">ShowExtButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.ShowPathButton.html">ShowPathButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.StarButton.html">StarButton</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.TopMenuBG.html">TopMenuBG</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.ViewDirection.html">ViewDirection</a>
+</li>
+</ul>
+</li>
+<li>
+<h4 class="header">
+<a href="#">net.ra100.cyd.utils</a>
+</h4>
+<ul class="content">
+<li class="">
+<a href="../net.ra100.cyd.utils/net.ra100.cyd.utils.AsyncTask.html">AsyncTask</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.utils/net.ra100.cyd.utils.DataElement.html">DataElement</a>
+</li>
+<li class="">
+<a href="../net.ra100.cyd.utils/net.ra100.cyd.utils.DataLoader.html">DataLoader</a>
+</li>
+</ul>
+</li>
+<li id="copyright">
+<i>Copyright (c) 2008, 2010,</i>
+<br>
+<i>Oracle and/or its affiliates.</i>
+<br>
+<i>All rights reserved.</i>
+<br>
+<i>Use is subject to <a href="http://java.sun.com/javafx/1.3/docs/api/license.html">license terms</a>.</i>
+<br>
+</li>
+</ul>
+<div id="content">
+<div id="nav">
+<h1 class="classname">
+<i class="modifiers">public</i>
+                class
+                <a class="classname"><strong>net.ra100.cyd.main.</strong><b>PanoScene</b></a>
+</h1>
+<h2>
+<span class="descriptive">Inherits from: </span><a title="com.sun.javafx.runtime.FXBase"><strong>com.sun.javafx.runtime.</strong><b>FXBase</b></a>
+            &gt;
+            <a title="net.ra100.cyd.main.PanoScene" href="../net.ra100.cyd.main/net.ra100.cyd.main.PanoScene.html"><strong>net.ra100.cyd.main.</strong><b>PanoScene</b></a> 
+</h2>
+<h2>
+<span class="descriptive">Known subclasses: </span>
+</h2>
+<ul id="tabs">
+<li>Jump to Section:</li>
+<li>
+<a href="#overview">overview</a>
+</li>
+<li>
+<a href="#fields-summary">variables</a>
+</li>
+<li>
+<a href="#methods-summary">functions</a>
+</li>
+</ul>
+</div>
+<a id="overview">
+<h3>Overview</h3>
+</a>
+<div class="overview"></div>
+<div id="toc">
+<a id="fields-summary">
+<h3>Script Variable Summary</h3>
+</a>
+<table class="fields-summary fields">
+<tr>
+<th class="access">access</th><th class="name">name</th><th class="type">type</th><th><a class="tooltip" title="Indicates the variable can be read">Can Read</a></th><th><a title="Indicates the variable can only be set in the Object initializer. Any further changes will be ignored." class="tooltip">Can Init</a></th><th><a title="Indicates the varible can set at any time." class="tooltip">Can Write</a></th><th><a title="Indicates the default value of this variable" class="tooltip">Default Value</a></th><th class="description">description</th>
+</tr>
+<tr class="var ">
+<td class="access"></td><td class="name"><a name="__DIR__"></a><b class="name">__DIR__</b></td><td class="type"><a><i class="type">String</i></a></td><td class="canread"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access"></td><td class="name"><a name="__FILE__"></a><b class="name">__FILE__</b></td><td class="type"><a><i class="type">String</i></a></td><td class="canread"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+</table>
+<a id="fields-summary">
+<h3>Variable Summary</h3>
+</a>
+<table class="fields-summary fields">
+<tr>
+<th class="access">access</th><th class="name">name</th><th class="type">type</th><th><a class="tooltip" title="Indicates the variable can be read">Can Read</a></th><th><a title="Indicates the variable can only be set in the Object initializer. Any further changes will be ignored." class="tooltip">Can Init</a></th><th><a title="Indicates the varible can set at any time." class="tooltip">Can Write</a></th><th><a title="Indicates the default value of this variable" class="tooltip">Default Value</a></th><th class="description">description</th>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="bagPanel"></a><b class="name">bagPanel</b></td><td class="type"><a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.BagPanel.html"><i class="type">BagPanel</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="block"></a><b class="name">block</b></td><td class="type"><a><i class="type">Boolean</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="dataloader"></a><b class="name">dataloader</b></td><td class="type"><a href="../net.ra100.cyd.utils/net.ra100.cyd.utils.DataLoader.html"><i class="type">DataLoader</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access"></td><td class="name"><a name="debug2"></a><b class="name">debug2</b></td><td class="type"><a><i class="type">Rectangle</i></a></td><td class="canread"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="EN"></a><b class="name">EN</b></td><td class="type"><a><i class="type">String</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access"></td><td class="name"><a name="exitPanel"></a><b class="name">exitPanel</b></td><td class="type"><a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.RightPanel.html"><i class="type">RightPanel</i></a></td><td class="canread"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="extensionDisplay"></a><b class="name">extensionDisplay</b></td><td class="type"><a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.ExtensionDisplay.html"><i class="type">ExtensionDisplay</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public-read</td><td class="name"><a name="fxCanvas3DComp"></a><b class="name">fxCanvas3DComp</b></td><td class="type"><a href="../net.ra100.cyd.main/net.ra100.cyd.main.FXCanvas3DSBCompR.html"><i class="type">FXCanvas3DSBCompR</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public-read</td><td class="name"><a name="id"></a><b class="name">id</b></td><td class="type"><a><i class="type">Integer</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="itemtypes"></a><b class="name">itemtypes</b></td><td class="type"><a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.ItemType.html"><i class="type">ItemType[]</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description">
+<p class="comment">zoznam typov itemov</p>
+</td>
+</tr>
+<tr class="var ">
+<td class="access">public-read</td><td class="name"><a name="language"></a><b class="name">language</b></td><td class="type"><a><i class="type">String</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="loader"></a><b class="name">loader</b></td><td class="type"><a href="../net.ra100.cyd.UI.res/net.ra100.cyd.UI.res.Loader.html"><i class="type">Loader</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="loaderAnim"></a><b class="name">loaderAnim</b></td><td class="type"><a><i class="type">RotateTransition</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access"></td><td class="name"><a name="mapPanel"></a><b class="name">mapPanel</b></td><td class="type"><a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.MapPanel.html"><i class="type">MapPanel</i></a></td><td class="canread"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="messagePanel"></a><b class="name">messagePanel</b></td><td class="type"><a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.MessagePanel.html"><i class="type">MessagePanel</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description">
+<p class="comment">panel na chybove hlasky</p>
+</td>
+</tr>
+<tr class="var ">
+<td class="access"></td><td class="name"><a name="panel"></a><b class="name">panel</b></td><td class="type"><a><i class="type">Panel</i></a></td><td class="canread"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="progressBackground"></a><b class="name">progressBackground</b></td><td class="type"><a><i class="type">ImageView</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description">
+<p class="comment">pozadie pre loader identifikator</p>
+</td>
+</tr>
+<tr class="var ">
+<td class="access"></td><td class="name"><a name="progressIndicator"></a><b class="name">progressIndicator</b></td><td class="type"><a><i class="type">Group</i></a></td><td class="canread"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="running"></a><b class="name">running</b></td><td class="type"><a><i class="type">Boolean</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access"></td><td class="name"><a name="scene"></a><b class="name">scene</b></td><td class="type"><a><i class="type">Scene</i></a></td><td class="canread"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="sceneurl"></a><b class="name">sceneurl</b></td><td class="type"><a><i class="type">String</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public-read</td><td class="name"><a name="screenHeight"></a><b class="name">screenHeight</b></td><td class="type"><a><i class="type">Number</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public-read</td><td class="name"><a name="screenWidth"></a><b class="name">screenWidth</b></td><td class="type"><a><i class="type">Number</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public-read</td><td class="name"><a name="sha"></a><b class="name">sha</b></td><td class="type"><a><i class="type">Integer</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="SK"></a><b class="name">SK</b></td><td class="type"><a><i class="type">String</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access"></td><td class="name"><a name="stage"></a><b class="name">stage</b></td><td class="type"><a><i class="type">Stage</i></a></td><td class="canread"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access"></td><td class="name"><a name="stylesheets"></a><b class="name">stylesheets</b></td><td class="type"><a><i class="type">String</i></a></td><td class="canread"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public-read</td><td class="name"><a name="token"></a><b class="name">token</b></td><td class="type"><a><i class="type">String</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"></td><td class="canwrite"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="topPanel"></a><b class="name">topPanel</b></td><td class="type"><a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.TopPanel.html"><i class="type">TopPanel</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+<tr class="var ">
+<td class="access">public</td><td class="name"><a name="universeFX"></a><b class="name">universeFX</b></td><td class="type"><a href="../net.ra100.cyd.main/net.ra100.cyd.main.UniverseFX.html"><i class="type">UniverseFX</i></a></td><td class="canread"><img src="..//images/JFX_highlight_dot.png"></td><td class="caninit"><img src="..//images/JFX_highlight_dot.png"></td><td class="canwrite"><img src="..//images/JFX_highlight_dot.png"></td><td class="defaultvalue"></td><td class="description"></td>
+</tr>
+</table>
+<h3>Inherited Variables</h3>
+<a id="methods-summary">
+<h3>Function Summary</h3>
+</a>
+<dl class="methods-summary">
+<a id="changeLanguage(java.lang.String)"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>changeLanguage</b>(<i class="parameters"><b>lang</b>:
+                    
+                    <a><i>java.lang.String</i></a></i>)
+            :
+            
+            <a><i>java.lang.String</i></a>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<dl class="parameters">
+                    Parameters
+                    <dt>lang</dt>
+<dd></dd>
+</dl>
+<dl class="returns">
+                    Returns
+                    <dt>String</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="changePano(java.lang.String)"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>changePano</b>(<i class="parameters"><b>title</b>:
+                    
+                    <a><i>java.lang.String</i></a></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<p class="comment">nastaviak tivnu panoramu podla mena</p>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<p class="comment">nastaviak tivnu panoramu podla mena</p>
+<dl class="parameters">
+                    Parameters
+                    <dt>title</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="changeShape(Shape)"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>changeShape</b>(<i class="parameters"><b>sp</b>:
+                    
+                    <a><i>Shape</i></a></i>)
+            :
+            
+            <a><i>java.lang.Object[]</i></a>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<dl class="parameters">
+                    Parameters
+                    <dt>sp</dt>
+<dd></dd>
+</dl>
+<dl class="returns">
+                    Returns
+                    <dt>Object[]</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="create()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>create</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="deleteExt()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>deleteExt</b>(<i class="parameters"></i>)
+            :
+            
+            <a><i>java.lang.Object[]</i></a>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<dl class="returns">
+                    Returns
+                    <dt>Object[]</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="exit()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>exit</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="firstInit()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>firstInit</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="getItemTypeById(Integer)"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>getItemTypeById</b>(<i class="parameters"><b>tid</b>:
+                    
+                    <a><i>Integer</i></a></i>)
+            :
+            
+            <a href="../net.ra100.cyd.UI/net.ra100.cyd.UI.ItemType.html"><i>ItemType</i></a>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<dl class="parameters">
+                    Parameters
+                    <dt>tid</dt>
+<dd></dd>
+</dl>
+<dl class="returns">
+                    Returns
+                    <dt>ItemType</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="getShapes()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>getShapes</b>(<i class="parameters"></i>)
+            :
+            
+            <a><i>Byte[]</i></a>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<dl class="returns">
+                    Returns
+                    <dt>Byte[]</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="hideCenters()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>hideCenters</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="hideExtras()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>hideExtras</b>(<i class="parameters"></i>)
+            :
+            
+            <a><i>java.lang.Object[]</i></a>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<dl class="returns">
+                    Returns
+                    <dt>Object[]</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="hideLoader()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>hideLoader</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="initView(Double,Double)"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>initView</b>(<i class="parameters"><b>lo</b>:
+                    
+                    <a><i>Double</i></a>, <b>la</b>:
+                    
+                    <a><i>Double</i></a></i>)
+            :
+            
+            <a><i>java.lang.Object[]</i></a>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<dl class="parameters">
+                    Parameters
+                    <dt>lo</dt>
+<dd></dd>
+<dt>la</dt>
+<dd></dd>
+</dl>
+<dl class="returns">
+                    Returns
+                    <dt>Object[]</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="loadItems()"></a>
+<dt class="method ">
+<i class="modifiers"></i> <b>loadItems</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<p class="comment">nacitavanie itemtypes, ktore sa pozuiju neskor</p>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<p class="comment">nacitavanie itemtypes, ktore sa pozuiju neskor</p>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="loadStats()"></a>
+<dt class="method ">
+<i class="modifiers"></i> <b>loadStats</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<p class="comment">nacitanie poradia panoram</p>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<p class="comment">nacitanie poradia panoram</p>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="setExtension(PanoExtension)"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>setExtension</b>(<i class="parameters"><b>ext</b>:
+                    
+                    <a><i>PanoExtension</i></a></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<dl class="parameters">
+                    Parameters
+                    <dt>ext</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="setLoader()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>setLoader</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="showCenters()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>showCenters</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="showExtras()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>showExtras</b>(<i class="parameters"></i>)
+            :
+            
+            <a><i>java.lang.Object[]</i></a>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<dl class="returns">
+                    Returns
+                    <dt>Object[]</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="showLoader()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>showLoader</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="updateCompass()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>updateCompass</b>(<i class="parameters"></i>)
+            :
+            
+            <a><i>java.lang.Object[]</i></a>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<dl class="returns">
+                    Returns
+                    <dt>Object[]</dt>
+<dd></dd>
+</dl>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="updateMap()"></a>
+<dt class="method ">
+<i class="modifiers">public</i> <b>updateMap</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+<a id="userInit()"></a>
+<dt class="method ">
+<i class="modifiers"></i> <b>userInit</b>(<i class="parameters"></i>)
+            :
+            
+            <i>Void</i>
+</dt>
+<dd class="method ">
+<div>
+<p class="comment">nacitanie ID z databazy, vytvorenie paru token +id, prepojenie na panoramu</p>
+<a href="#" class="long-desc-open"><img src="../images/JFX_arrow_right.png"></a>
+<div class="long-desc">
+<p class="comment">nacitanie ID z databazy, vytvorenie paru token +id, prepojenie na panoramu</p>
+                            &nbsp;
+                        </div>
+</div>
+</dd>
+</dl>
+<h3>Inherited Functions</h3>
+</div>
+</div>
+</body>
+</html>

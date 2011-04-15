@@ -180,7 +180,7 @@ public class Helper {
      * @param sceneXml - zoznam panoram
      * @return - ak prebehne uspesne, vrati TRUE, inak FALSE
      */
-    public static boolean loadTexture(Appearance ap, Shape shape, SceneXML sceneXml) {
+    public static BufferedImage loadTexture(Appearance ap, Shape shape, SceneXML sceneXml) {
         BufferedImage img = null;
         try {
             URL loadUrl = new URL(sceneXml.getPath() + "" + shape.getTexture());
@@ -189,14 +189,26 @@ public class Helper {
         } catch (Exception e) {
             Logger.getLogger("net.ra100.cyd").log(Level.SEVERE,
                     "Chyba pri nahravani suboru: ", e);
-            return false;
+            return null;
         } finally {
             TextureLoader tex = new TextureLoader(img);
             ap.setTexture(tex.getTexture());
             Logger.getLogger("net.ra100.cyd").log(Level.INFO,
                     "Texture loaded.");
-            return true;
+            return img;
         }
+    }
+
+    /**
+     * nastavenie textury
+     * @param ap - Appearance
+     * @param img - BufferedImage
+     * @return true
+     */
+    public static Boolean setTexture(Appearance ap, BufferedImage img) {
+        TextureLoader tex = new TextureLoader(img);
+        ap.setTexture(tex.getTexture());
+        return true;
     }
 
     /**
@@ -206,7 +218,7 @@ public class Helper {
      * @param path - root cesty k obrazku
      * @return - ak prebehne uspesne, vrati TRUE, inak FALSE
      */
-    public static boolean loadTexture(Appearance ap, Shape shape, String path) {
+    public static BufferedImage loadTexture(Appearance ap, Shape shape, String path) {
         BufferedImage img = null;
         try {
             URL loadUrl = new URL(path + "" + shape.getTexture());
@@ -222,7 +234,7 @@ public class Helper {
         } finally {
             TextureLoader tex = new TextureLoader(img);
             ap.setTexture(tex.getTexture());
-            return true;
+            return img;
         }
     }
 
